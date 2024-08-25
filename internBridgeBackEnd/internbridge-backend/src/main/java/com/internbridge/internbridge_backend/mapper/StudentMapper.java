@@ -15,7 +15,7 @@ public class StudentMapper {
                 student.getDepartment(),
                 student.getPosition(),
                 student.getCv(),
-                student.getPhone(updatedStudent.getPhone())
+                student.getPhone()
         );
 
     }

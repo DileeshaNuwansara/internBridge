@@ -1,48 +1,41 @@
-import {Navbar,Nav, Container} from 'react-bootstrap';
-import { FaUser } from 'react-icons/fa';
+import React from 'react';
+import { Navbar, Container } from 'react-bootstrap';
+import SignInButton from './Buttons/SignInButton';
+import SignUpButton from './Buttons/SignUpButton';
 
+const Header = () => {
+  return (
+    <header className="sticky-top">
+      <Navbar bg="red" variant="light" expand="md" className="py-2">
+        <Container className="d-flex justify-content-between align-items-center">
+          <div className="d-flex align-items-center">
+            <Navbar.Brand href="/" className="d-flex align-items-center me-4">
+              <img
+                src="./assets/image.png"
+                alt="InternBridge Logo"
+                style={{ width: '180px', height: '90px' }}
+                className="d-inline-block align-top me-3"
+              />
+            </Navbar.Brand>
 
-const Header = () =>{
+            <Navbar.Brand href="https://ruh.ac.lk/index.php/en/" className="d-flex align-items-center">
+              <img
+                src="./assets/ruhuna_logo.png"
+                alt="University of Ruhuna Logo"
+                style={{ width: '220px', height: '90px' }}
+                className="d-inline-block align-top me-3"
+              />
+            </Navbar.Brand>
+          </div>
 
-
-
-    return (
-        <header>
-            <Navbar bg="dark" variant='dark' expand="md" collapseOnSelect>
-
-            
-            <Container>
-                <Navbar.Brand href="/">internBridge</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className='ms-auto'>
-                
-
-                <Nav.Link href ="/home">
-                    <h1>Home </h1>  
-                </Nav.Link>
-                <Nav.Link href ="/contact-us">
-                    <h1>Contact Us </h1>  
-                </Nav.Link>
-                <Nav.Link href ="/about-us">          
-                        <h1>About Us </h1>  
-                </Nav.Link>
-                <Nav.Link href ="/company">
-                    <h1>Company </h1>  
-                </Nav.Link>
-                <Nav.Link href ="/student">
-                    <h1>Student </h1>  
-                </Nav.Link>
-                <Nav.Link href ="/login"><FaUser/>
-                    <h1>Sign In </h1>  
-                </Nav.Link>
-                </Nav>
-                </Navbar.Collapse>
-            </Container>
-            </Navbar>
-        </header>
-
-    )
-}
+          <div className="auth-buttons d-flex align-items-center">
+            <SignInButton />
+            <SignUpButton />
+          </div>
+        </Container>
+      </Navbar>
+    </header>
+  );
+};
 
 export default Header;

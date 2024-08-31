@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {Container} from "react-bootstrap";
 // add pages and components
 import Header from './components/Header';
+import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 
 import Landing from './pages/Landing';
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Header/>
+      <NavBar/>
          <div className="pages">
           <Container>
 

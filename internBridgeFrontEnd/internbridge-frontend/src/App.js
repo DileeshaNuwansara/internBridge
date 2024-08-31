@@ -1,7 +1,8 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-
+import {Container} from "react-bootstrap";
 // add pages and components
-import NavBar from './components/NavBar';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 import Landing from './pages/Landing';
 import Home from './pages/Home';
@@ -15,8 +16,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar />
-      <div className="pages">
+      <Header/>
+         <div className="pages">
+          <Container>
+
+          
         <Routes>
           <Route 
             path="/"
@@ -37,9 +41,12 @@ function App() {
             <Route
             path="/student"
             element = {<Student/>} />
+
         </Routes>
+        </Container>
       </div>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }

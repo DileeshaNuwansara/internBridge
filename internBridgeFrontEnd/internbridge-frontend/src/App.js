@@ -1,33 +1,35 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {Container} from "react-bootstrap";
+import React, { useState,useEffect } from 'react';
 // add pages and components
-import Header from './components/Header';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+//import Header from './components/Header';
 
-import Landing from './pages/Landing';
-import Home from './pages/Home';
-import Contactus from './pages/Contactus';
-import Aboutus from './pages/Aboutus';
-import Company from './pages/Company';
-import Student from './pages/Student';
+import AppNavbar from './components/AppNabbar/AppNavbar';
+import Footer from './components/Footer/Footer';
+
+import Landing from './pages/Landing/Landing';
+import Home from './pages/Home/Home';
+import Contactus from './pages/Contactus/Contactus';
+import Aboutus from './pages/Aboutus/Aboutus';
+import Company from './pages/Company/Company';
+import Student from './pages/Student/Student';
 
 
-function App() {
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
-    <div className="App">
+    <>
+    
       <BrowserRouter>
-      <Header/>
-      <NavBar/>
-         <div className="pages">
-          <Container>
-
-          
+      {/* <Header/> */}
+      {/* display landingPageNavbar or AppNavbar */}
+      {isAuthenticated ? <AppNavbar /> : <Landing />}
+         
+        
         <Routes>
-          <Route 
+          {/* <Route 
             path="/"
             element = {<Landing/>}> 
-          </Route>
+          </Route> */}
           <Route 
             path="/home"
             element = {<Home/>} />
@@ -45,12 +47,12 @@ function App() {
             element = {<Student/>} />
 
         </Routes>
-        </Container>
-      </div>
+        
+      
       </BrowserRouter>
       <Footer/>
-    </div>
+    </>
   );
-}
+};
 
 export default App;

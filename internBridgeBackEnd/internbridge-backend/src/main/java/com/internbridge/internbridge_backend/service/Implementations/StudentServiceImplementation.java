@@ -38,9 +38,6 @@ public class StudentServiceImplementation implements StudentService {
         return StudentMapper.mapToStudentDto(student);
     }
 
-
-
-
     @Override
     public List<StudentDto> getAllStudents() {
             List<Student> students = studentRepository.findAll();

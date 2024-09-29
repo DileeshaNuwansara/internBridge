@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Signin.scss';
+import styles from './Signin.module.scss';
 import '../../App.scss';
 import { GoPaperAirplane } from "react-icons/go";
 import { BsShieldLockFill } from "react-icons/bs";
@@ -20,36 +20,36 @@ const Signin = () => {
 
   return (
     <>
-      <div className="signinPage flex">
-        <div className="container flex">
-            <div className="videoDiv">
+      <div className={styles.signinPage}>
+      <div className={`${styles.container} flex`}>
+      <div className={styles.videoDiv}>
                 <video src={video} autoPlay muted loop></video>
             
-            <div className="textDiv">
-                <h2 className="title">Create An Account </h2>
+                <div className={styles.textDiv}>
+                <h2 className={styles.title}>Create An Account </h2>
                 <p>Adopt to industrial experience</p>
             </div>
 
-            <div className="footerDiv flex">
-                <span className="text">Don't have an account?</span>
+            <div className={styles.footerDiv}>
+                <span className={styles.text}>Don't have an account?</span>
                 <Link to ={'/register'}>
-                    <button className="btn">Sign Up</button>
+                    <button className={styles.btn}>Sign Up</button>
                 </Link>
             </div>
             </div>
 
-            <div className="formDiv flex">
-                <div className="headerDiv">
+            <div className={styles.formDiv}>
+            <div className={styles.headerDiv}>
                     <img src={logo} alt="logo internbridge" />
                     <h3>Welcome Back!</h3>
                 </div>
 
-                <form action="" className="form grid">
-                    <span className='showMessage'>Login Status will go here</span>
-                    <div className="inputDiv">
+                <form className={styles.form}>
+                        <span className={styles.showMessage}>Login Status will go here</span>
+                        <div className={styles.inputDiv}>
                     <label htmlFor="username">Username </label>
-                    <div className="input flex">
-                    <FaUserShield className='icon'/>
+                    <div className={`${styles.input} flex`}>
+                    <FaUserShield className={styles.icon} />
                     <input type="text" className="text" id='username' placeholder='Enter Username'
                     value={formData.username}
                     onChange={handleChange}
@@ -57,10 +57,10 @@ const Signin = () => {
                     </div>
                     </div>
 
-                    <div className="inputDiv">
+                    <div className={styles.inputDiv}>
                     <label htmlFor="password">Password</label>
-                    <div className="input flex">
-                    <BsShieldLockFill className='icon'/>
+                    <div className={`${styles.input} flex`}>
+                    <BsShieldLockFill className={styles.icon} />
                     <input type="password" className="text" id='password' placeholder='Enter password' 
                     value={formData.password}
                     onChange={handleChange}
@@ -68,17 +68,14 @@ const Signin = () => {
                     </div>
                     </div>
 
-                    <button type='submit' className='btn flex'>
+                    <button type='submit' className={`${styles.btn} flex`}>
                         <span>Sign In </span>
-                        <GoPaperAirplane  className='icon'/>
-
+                        <GoPaperAirplane className={styles.icon} />
                     </button>
 
-                    <span className='forgotPassword'>
+                    <span className={styles.forgotPassword}>
                         Forgot Your Password? <a href="/">Click here</a>
                     </span>
-
-
                 </form>
             </div>
         </div>

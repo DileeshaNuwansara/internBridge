@@ -20,10 +20,10 @@ section .body {
 
 video {
   position: absolute;
-  top: 60px; // Changed to top to align video properly
-  left: 0; // Added to align video
+  top: 90px;
+  left: 0; 
   width: 100%;
-  height: 100%; 
+  height: 100%;
   object-fit: cover;
   z-index: -1;
   filter: brightness(70%);
@@ -32,35 +32,35 @@ video {
 
 .overlay {
   position: absolute;
-  top: 0px; 
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(102, 116, 138, 0.6);
   z-index: 1;
   mix-blend-mode: hard-light;
 }
 
 .homeContent {
   position: relative;
+  top: 40px;
   z-index: 2;
   text-align: center;
-  margin-top: 8rem;
+  margin-top: 2rem;
   color: #fff;
   justify-content: center;
 
   .textDiv {
-    margin-bottom: 2rem 0;
+    margin-bottom: 1rem 0;
 
     .smallText {
       font-size: 1rem;
       color: $primary-color;
-      font-weight: 550;
+      font-weight: 600;
       text-transform: uppercase;
     }
 
     .homeTitle {
-      font-size: 2rem;
-      font-weight: 700;
+      font-size: 3rem;
+      font-weight: 750;
       margin: 1rem 0;
       color: #fff;
       letter-spacing: 1px;
@@ -72,6 +72,8 @@ video {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); // Improved for responsiveness
   gap: 1rem;
+  margin-top: 50rem;
+
   margin: 1rem;
   background: $bg-overlay;
   border-radius: 5px;
@@ -102,8 +104,8 @@ video {
     }
 
     .icon {
-      font-size: 1.2rem;
-      color: #ffeb3b;
+      font-size: 1.3rem;
+      color: #f2e03fc7;
       transition: color 0.3s;
 
       &:hover {
@@ -116,8 +118,8 @@ video {
   label {
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
-    color: #f7e85add;
-    font-weight: 550;
+    color: #f1d767;
+    font-weight: 600;
   }
 
   h3.total {
@@ -344,7 +346,7 @@ video {
   .overlay {
     position: absolute;
     top: 0;
-    height: 110%;
+    height: 100%;
     width: 100%;
     z-index: 1;
     background: $overlay-color;
@@ -369,26 +371,27 @@ video {
   .homeContent {
     position: relative;
     width: 60%;
-    top:3px; 
+    top: 4px; 
     z-index: 2;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
-    margin-top: 5rem; 
+    margin-top: 4rem; 
     color: white;
 
     .textDiv {
+      margin-top: 3rem;
       margin-bottom: 5rem;
 
       .smallText {
-        font-size: 1rem;
+        font-size: 2rem;
         color: #fbae1f;
-        font-weight: 700;
+        font-weight: 600;
         text-transform: uppercase;
       }
 
       .homeTitle {
-        font-size: 3rem;
-        font-weight: 700;
+        font-size: 4rem;
+        font-weight: 750;
         margin: 1rem 0;
         color: #fff;
         letter-spacing: 1.5px;
@@ -400,19 +403,19 @@ video {
     display: flex;
     flex-direction: column;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
     width: 700px;
-    margin: 2rem auto;
+    margin: 1rem auto;
     background: $bg-overlay;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: $box-shadow; 
     
     .input {
       display: flex;
       align-items: center;
       background-color: rgba(213, 208, 238, 0.362);
-      padding: 1rem; /* Increased padding for large screens */
+      padding: .5rem; 
       border-radius: 20px;
       border: 2px solid rgba(184, 51, 51, 0.335);
 
@@ -474,12 +477,14 @@ video {
 
   
   .main {
+    position: relative;
     width: 80%; 
     margin: 0 auto;
-    padding: 4rem;
+    padding: 3rem;
+    top: 100px;
 
     .secTitle {
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
 
       .title {
         font-size: 3rem;

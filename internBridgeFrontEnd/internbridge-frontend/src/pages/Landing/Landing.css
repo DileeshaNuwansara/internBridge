@@ -1,0 +1,440 @@
+/* Landing.scss */
+section .body {
+  position: relative;
+  font-family: "Arial", sans-serif;
+  width: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+video {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+  filter: brightness(70%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 90%;
+  background-color: rgba(102, 123, 138, 0.6);
+  z-index: 1;
+  mix-blend-mode: hard-light;
+}
+
+.homeContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 3rem;
+  color: #fff;
+  justify-content: center;
+}
+.homeContent .textDiv {
+  margin-bottom: 1rem 0;
+}
+.homeContent .textDiv .smallText {
+  font-size: 1rem;
+  color: #ebf525;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.homeContent .textDiv .homeTitle {
+  font-size: 2rem;
+  font-weight: 750;
+  margin: 1rem 0;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.cardDiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 10rem;
+  margin: 1rem;
+  background: rgba(121, 133, 164, 0.594);
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow: 0 8px 16px rgba(228, 149, 11, 0.522);
+}
+.cardDiv .input {
+  display: flex;
+  align-items: center;
+  background-color: rgba(213, 208, 238, 0.362);
+  padding: 0.4rem;
+  border-radius: 30px;
+  border: 2px solid rgba(184, 51, 51, 0.335);
+}
+.cardDiv .input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.3rem;
+  color: rgb(7, 75, 112);
+  font-size: 0.9rem;
+}
+.cardDiv .input input::-moz-placeholder {
+  font-size: 14px;
+  color: rgba(61, 32, 32, 0.5411764706);
+}
+.cardDiv .input input::placeholder {
+  font-size: 14px;
+  color: rgba(61, 32, 32, 0.5411764706);
+}
+.cardDiv .input .icon {
+  font-size: 1.3rem;
+  color: rgba(242, 224, 63, 0.7803921569);
+  transition: color 0.3s;
+}
+.cardDiv .input .icon:hover {
+  color: #1e272e;
+}
+.cardDiv label {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #f1d767;
+  font-weight: 600;
+}
+.cardDiv h3.total {
+  font-size: 1.8rem;
+  color: #ffeb3b;
+  font-weight: 600;
+}
+.cardDiv .companyInput,
+.cardDiv .emailInput,
+.cardDiv .positionInput {
+  display: flex;
+  flex-direction: column;
+}
+.cardDiv input[type=range] {
+  width: 100%;
+  background: #863939;
+}
+
+.main {
+  width: 100%;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  z-index: -1;
+}
+.main .secTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.main .secTitle .title {
+  position: relative;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #343a40;
+  margin: 1.5rem 0;
+  z-index: 2;
+}
+.main .secTitle .title::after {
+  position: absolute;
+  background: #ffc107;
+  height: 5px;
+  width: 80px;
+  transform: translateX(-50%);
+  bottom: -5px;
+  z-index: -1;
+}
+.main .Content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+}
+.main .Content .interviewOne {
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: rgba(139, 118, 182, 0.46);
+  box-shadow: 0 8px 16px rgba(228, 149, 11, 0.522);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.main .Content .interviewOne:hover {
+  background: #f1edb9;
+  box-shadow: 1 4px 4px rgba(38, 43, 58, 0.4);
+  transform: translateY(-5px);
+}
+.main .Content .interviewOne .imageDiv {
+  height: 180px;
+  overflow: hidden;
+}
+.main .Content .interviewOne .imageDiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.main .Content .interviewOne .imageDiv:hover img {
+  transform: scale(1.1);
+}
+.main .Content .interviewOne .cardDetails {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.main .Content .interviewOne .cardDetails .name {
+  color: #069006;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.main .Content .interviewOne .cardDetails .ContentDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #6c757d;
+}
+.main .Content .interviewOne .cardDetails .ContentDiv .typeSes {
+  font-size: 1.5rem;
+  font-weight: 650;
+  color: #bb6107;
+}
+.main .Content .interviewOne .cardDetails .ContentDiv svg {
+  color: #17a2b8;
+  margin-right: 1rem;
+}
+.main .Content .interviewOne .cardDetails .timeDiv {
+  display: flex;
+  margin: 0.5rem 0;
+  border-top: 1.5px solid #1e272e;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #4f03b3;
+}
+.main .Content .interviewOne .cardDetails .timeDiv span {
+  font-size: 2rem;
+  color: #f85c23;
+}
+.main .Content .interviewOne .cardDetails .timeDiv svg {
+  color: #6c757d;
+  margin-right: 1rem;
+}
+.main .Content .interviewOne .cardDetails .dateDiv {
+  display: flex;
+  margin: 1rem 0;
+  border-top: 1.5px solid #1e272e;
+  font-weight: 600;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4f03b3;
+}
+.main .Content .interviewOne .cardDetails .dateDiv span {
+  font-size: 1rem;
+  color: rgb(45, 75, 250);
+}
+.main .Content .interviewOne .cardDetails .dateDiv svg {
+  color: #6c757d;
+  margin-right: 1rem;
+}
+.main .Content .interviewOne .cardDetails .desc p {
+  color: #495057;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-top: 1.7px solid #1e272e;
+}
+.main .Content .interviewOne .cardDetails .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #9ac6f6;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-color: #cc3333;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.main .Content .interviewOne .cardDetails .btn svg {
+  color: #fff;
+  margin-right: 0.1rem;
+}
+.main .Content .interviewOne .cardDetails .btn:hover {
+  background-color: #d3dd0a;
+  transform: translateY(-3px);
+}
+
+@media (min-width: 1200px) {
+  section .body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: rgba(38, 43, 58, 0.4);
+    mix-blend-mode: hard-light;
+  }
+  video {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: fill;
+       object-fit: fill;
+    z-index: -1;
+    filter: brightness(80%);
+  }
+  .homeContent {
+    position: relative;
+    width: 60%;
+    top: 3px;
+    z-index: 2;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 5rem;
+    color: white;
+  }
+  .homeContent .textDiv {
+    margin-bottom: 5rem;
+  }
+  .homeContent .textDiv .smallText {
+    font-size: 1rem;
+    color: #fbae1f;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .homeContent .textDiv .homeTitle {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    color: #fff;
+    letter-spacing: 1.5px;
+  }
+  .cardDiv {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    width: 700px;
+    margin: 2rem auto;
+    background: rgba(121, 133, 164, 0.594);
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(228, 149, 11, 0.522);
+  }
+  .cardDiv .input {
+    display: flex;
+    align-items: center;
+    background-color: rgba(213, 208, 238, 0.362);
+    padding: 1rem; /* Increased padding for large screens */
+    border-radius: 20px;
+    border: 2px solid rgba(184, 51, 51, 0.335);
+  }
+  .cardDiv .input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 2px;
+    color: rgb(221, 237, 246);
+    font-size: 14px;
+    font-weight: 550;
+  }
+  .cardDiv .input input::-moz-placeholder {
+    font-size: 14px;
+    color: rgba(42, 21, 21, 0.5411764706);
+  }
+  .cardDiv .input input::placeholder {
+    font-size: 14px;
+    color: rgba(42, 21, 21, 0.5411764706);
+  }
+  .cardDiv .input .icon {
+    font-size: 14px;
+    margin: 0 1rem;
+    color: #ebf525;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .cardDiv .input .icon:hover {
+    color: #1e272e;
+  }
+  .cardDiv label {
+    display: block;
+    color: #f2f754;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .cardDiv h3.total {
+    font-size: 3rem;
+  }
+  .cardDiv .companyInput,
+  .cardDiv .emailInput,
+  .cardDiv .positionInput {
+    display: flex;
+    flex-direction: column;
+  }
+  .cardDiv .input[type=range] {
+    background: #6c6969;
+  }
+  .main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 4rem;
+  }
+  .main .secTitle {
+    margin-bottom: 3rem;
+  }
+  .main .secTitle .title {
+    font-size: 3rem;
+  }
+  .main .Content {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensures responsive grid */
+    gap: 2.5rem;
+  }
+  .main .interviewOne .imageDiv {
+    height: 220px;
+  }
+  .main .interviewOne .cardDetails {
+    padding: 2rem;
+  }
+  .main .interviewOne .cardDetails .name {
+    font-size: 2rem;
+  }
+  .main .interviewOne .cardDetails .ContentDiv {
+    font-size: 1.8rem;
+  }
+  .main .interviewOne .cardDetails .timeDiv, .main .interviewOne .cardDetails .dateDiv {
+    font-size: 1.2rem;
+  }
+  .main .interviewOne .cardDetails .desc p {
+    font-size: 1.1rem;
+  }
+  .main .interviewOne .cardDetails .btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+}/*# sourceMappingURL=Landing.css.map */

@@ -1,79 +1,67 @@
-.App {
-  text-align: center;
-}
-
-body, html {
-  margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;@500;800&display=swap");
+* {
   padding: 0;
-}
-
-.body {
   margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-family: "Montserrat", "Sans-serif";
 }
 
-:root {
-  --PrimaryColor: hsl(188, 100%, 33%);
-  --SecondaryColor: hsl(180, 84%, 42%);
-  --gradientColor: linear-gradient(to right, hsl(187, 82%, 45%), hsl(190, 100%, 28%));
-  --whiteColor: hsl(0, 0%, 100%);
-  --blackColor: hsl(281, 33%, 15%);
-  --whiteColorDim: hsl(0, 0%, 90%);
-  --grayText: rgb(100, 190, 230);
-  --inputColor: rgb(230, 239, 240);
-  --bodyColor: rgb(240, 225, 235);
-  --cardBG: rgb(223, 225, 223);
+.flex {
+  display: flex;
+  align-items: center;
 }
 
+.grid {
+  display: grid;
+  align-items: center;
+  gap: 1.3rem;
+}
 
-a{
+html {
+  font-size: 90%;
+}
+
+a {
   text-decoration: none;
 }
 
-.section{
-  padding: 3rem 0 2rem;
+li {
+  list-style: none;
 }
 
-.container{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+.icon {
+  font-size: medium;
+  cursor: pointer;
 }
 
-.icon{
-  font-size: 3rem;
-  cursor:pointer;
+img, video {
+  height: auto;
+  width: 100%;
 }
 
-.flex{
-  display: flex;
+.message {
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.showMessage {
+  display: block;
+  color: aliceblue;
+  background: rgb(255, 0, 0);
+  border-radius: 3px;
+  text-align: center;
 }
 
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
-
-
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn .icon {
+  margin-left: 0.5rem;
 }
+
+.btn:hover {
+  color: rgb(25, 62, 250);
+  color: #f8b421;
+}/*# sourceMappingURL=App.css.map */

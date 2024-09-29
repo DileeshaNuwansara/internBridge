@@ -1,10 +1,10 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
 // add pages and components
 //import Header from './components/Header';
 
 import AppNavbar from './components/AppNabbar/AppNavbar';
-import Footer from './components/Footer/Footer';
+
 
 import Landing from './pages/Landing/Landing';
 import Home from './pages/Home/Home';
@@ -13,6 +13,7 @@ import Aboutus from './pages/Aboutus/Aboutus';
 import Company from './pages/Company/Company';
 import Student from './pages/Student/Student';
 
+import Signin from './pages/Signin/Signin'
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,14 +23,17 @@ const App = () => {
       <BrowserRouter>
       {/* <Header/> */}
       {/* display landingPageNavbar or AppNavbar */}
-      {isAuthenticated ? <AppNavbar /> : <Landing />}
+      {/* {isAuthenticated ? <AppNavbar /> : <Landing />} */}
          
         
         <Routes>
-          {/* <Route 
+          <Route 
             path="/"
             element = {<Landing/>}> 
-          </Route> */}
+          </Route> 
+          <Route 
+            path="/sign-in"
+            element = {<Signin/>} />
           <Route 
             path="/home"
             element = {<Home/>} />
@@ -50,7 +54,7 @@ const App = () => {
         
       
       </BrowserRouter>
-      <Footer/>
+      
     </>
   );
 };

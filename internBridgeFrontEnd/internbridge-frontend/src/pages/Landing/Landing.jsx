@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react';
 import LandingPageNavbar from '../../components/LandingPageNavbar/LandingPageNavbar';
 import './Landing.scss';
+import Footer from '../../components/Footer/Footer';
 import Activities from './Activities';
 import video from '../../assets/videos/video.mp4';
 import { MdEmail } from "react-icons/md";
@@ -33,6 +34,7 @@ const Landing = () => {
               Give Your Offerings To Our Students
             </h1>
           </div>
+          <br/>
 
           <div  data-aos="fade-up" className="cardDiv grid">
             <div className="companyInput">
@@ -62,7 +64,14 @@ const Landing = () => {
             </div>
           </div>
         </section>
-      <Activities/>
+        <section>
+        <Activities/>
+        </section>
+        <br/>
+        <section>
+        <Footer/>
+        </section>
+     
     </>
   );
 }

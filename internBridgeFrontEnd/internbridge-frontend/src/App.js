@@ -14,6 +14,7 @@ import Company from './pages/Company/Company';
 import Student from './pages/Student/Student';
 
 import Signin from './pages/Signin/Signin'
+import Register from './pages/Register/Register';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,6 +35,9 @@ const App = () => {
           <Route 
             path="/sign-in"
             element = {<Signin/>} />
+            <Route 
+            path="/register"
+            element = {<Register/>} />
           <Route 
             path="/home"
             element = {<Home/>} />

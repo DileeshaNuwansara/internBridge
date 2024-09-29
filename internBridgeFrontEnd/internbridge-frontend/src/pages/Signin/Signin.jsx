@@ -45,13 +45,13 @@ const Signin = () => {
                 </div>
 
                 <form action="" className="form grid">
-                    <span>Login Status will go here</span>
+                    <span className='showMessage'>Login Status will go here</span>
                     <div className="inputDiv">
                     <label htmlFor="username">Username </label>
                     <div className="input flex">
                     <FaUserShield className='icon'/>
                     <input type="text" className="text" id='username' placeholder='Enter Username'
-                    value={formData.password}
+                    value={formData.username}
                     onChange={handleChange}
                     />
                     </div>
@@ -75,7 +75,7 @@ const Signin = () => {
                     </button>
 
                     <span className='forgotPassword'>
-                        Forgot Your Password? <a href="">Click here</a>
+                        Forgot Your Password? <a href="/">Click here</a>
                     </span>
 
 

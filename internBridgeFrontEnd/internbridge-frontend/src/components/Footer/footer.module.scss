@@ -1,5 +1,6 @@
 .footer {
   width: 100%;
+  bottom:0;
   position: relative;
   padding: 2rem 0;
   display: flex;
@@ -7,7 +8,7 @@
   justify-content: center;
   margin: auto;
   background-color: #1a1a2e;
-}
+
 
 .secContent {
   width: 100%;
@@ -200,3 +201,4 @@
               color: #ccc;
             }
           }
+}

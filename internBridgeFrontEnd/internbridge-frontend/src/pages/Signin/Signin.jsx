@@ -21,8 +21,9 @@ const Signin = () => {
   return (
     <>
       <div className={styles.signinPage}>
-      <div className={`${styles.container} flex`}>
-      <div className={styles.videoDiv}>
+        <div className={`${styles.container} flex`}>
+          
+          <div className={styles.videoDiv}>
                 <video src={video} autoPlay muted loop></video>
             
                 <div className={styles.textDiv}>
@@ -36,9 +37,9 @@ const Signin = () => {
                     <button className={styles.btn}>Sign Up</button>
                 </Link>
             </div>
-            </div>
+          </div>
 
-            <div className={styles.formDiv}>
+          <div className={styles.formDiv}>
             <div className={styles.headerDiv}>
                     <img src={logo} alt="logo internbridge" />
                     <h3>Welcome Back!</h3>
@@ -50,7 +51,7 @@ const Signin = () => {
                     <label htmlFor="username">Username </label>
                     <div className={`${styles.input} flex`}>
                     <FaUserShield className={styles.icon} />
-                    <input type="text" className="text" id='username' placeholder='Enter Username'
+                    <input type="text"  id='username' placeholder='Enter Username'
                     value={formData.username}
                     onChange={handleChange}
                     />
@@ -61,7 +62,7 @@ const Signin = () => {
                     <label htmlFor="password">Password</label>
                     <div className={`${styles.input} flex`}>
                     <BsShieldLockFill className={styles.icon} />
-                    <input type="password" className="text" id='password' placeholder='Enter password' 
+                    <input type="password"  id='password' placeholder='Enter password' 
                     value={formData.password}
                     onChange={handleChange}
                     />
@@ -77,7 +78,8 @@ const Signin = () => {
                         Forgot Your Password? <a href="/">Click here</a>
                     </span>
                 </form>
-            </div>
+          </div>
+
         </div>
       </div>
     </>

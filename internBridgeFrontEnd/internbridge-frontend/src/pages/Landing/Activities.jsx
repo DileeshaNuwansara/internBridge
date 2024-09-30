@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Data from './Main';
-import styles from './Landing.module.scss'; 
+import styles from './Activity.module.scss'; 
 import { MdInterpreterMode } from "react-icons/md";
 import { FaHistory, FaComments } from 'react-icons/fa';
 import { MdDateRange } from "react-icons/md";

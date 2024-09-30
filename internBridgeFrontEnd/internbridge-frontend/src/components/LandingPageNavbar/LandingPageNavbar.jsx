@@ -1,5 +1,4 @@
 import {Navbar,Nav, Container} from 'react-bootstrap';
-import Button from '../Buttons/Button';
 import './LandingNavbar.scss';
 
 
@@ -9,7 +8,7 @@ const LandingPageNavbar = () =>{
 
     return (
         <>
-        <header>
+        <header className='landingnavbar'>
 
         
             <Navbar variant='dark' expand="md" className="py-2" collapseOnSelect sticky="top">
@@ -45,7 +44,8 @@ const LandingPageNavbar = () =>{
             </Nav>
                         {/* Sign In Button aligned to the right */}
             <div className="ms-auto">
-              <Button label="Submit Company Info" buttonType="signIn" />
+             
+              <button className='signInbtn'>Sign In</button>
             </div>
             
           </Navbar.Collapse>

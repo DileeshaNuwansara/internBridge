@@ -62,9 +62,9 @@ const Landing = () => {
           <Activities />
         </section>
         <br />
-        <section>
+        <div>
           <Footer />
-        </section>
+        </div>
       </div>
     </>
   );

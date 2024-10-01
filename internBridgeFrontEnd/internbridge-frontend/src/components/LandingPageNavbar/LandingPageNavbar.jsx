@@ -16,12 +16,12 @@ const LandingPageNavbar = () =>{
             <Container className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
                 <Navbar.Brand href="/" className="d-flex align-items-start me-4">
-              <img
-                src="./assets/image.png"
-                alt="InternBridge Logo"
-                style={{ width: '140px', height: '60px' }}
-                className="d-inline-block align-top me-3"
-              />
+                  <img
+                    src="./assets/image.png"
+                    alt="InternBridge Logo"
+                    style={{ width: '140px', height: '60px' }}
+                    className="d-inline-block align-top me-3"
+                  />
             </Navbar.Brand>
 
             <Navbar.Brand href="https://ruh.ac.lk/index.php/en/" className="d-flex align-items-center">

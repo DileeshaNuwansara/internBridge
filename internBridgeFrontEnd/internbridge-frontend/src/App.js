@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 // add pages and components
 //import Header from './components/Header';
 
-import AppNavbar from './components/AppNabbar/AppNavbar';
+import AppNavbar from './components/AppSideBar/AppSideBar';
 
 
 import Landing from './pages/Landing/Landing';

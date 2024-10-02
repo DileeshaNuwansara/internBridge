@@ -15,6 +15,7 @@ import Student from './pages/Student/Student';
 
 import Signin from './pages/Signin/Signin'
 import Register from './pages/Register/Register';
+import Testimonials from './pages/Testimonials/Testimonials';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -53,6 +54,9 @@ const App = () => {
             <Route
             path="/student"
             element = {<Student/>} />
+            <Route
+            path="/testimonials"
+            element = {<Testimonials/>} />
 
         </Routes>
         

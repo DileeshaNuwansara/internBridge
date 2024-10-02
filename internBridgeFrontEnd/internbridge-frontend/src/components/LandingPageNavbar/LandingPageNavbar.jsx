@@ -1,6 +1,6 @@
 import {Navbar,Nav, Container} from 'react-bootstrap';
-import './LandingNavbar.scss';
-
+import styles from './LandingNavbar.module.scss';
+import { Link } from 'react-router-dom';
 
 const LandingPageNavbar = () =>{
 
@@ -8,10 +8,9 @@ const LandingPageNavbar = () =>{
 
     return (
         <>
-        <header className='landingnavbar'>
-
+       <header className={styles.landingnavbar}>
         
-            <Navbar variant='dark' expand="md" className="py-2" collapseOnSelect sticky="top">
+            <Navbar variant='dark' expand="md" className={`py-2 ${styles.navbar}`} collapseOnSelect sticky="top">
                 
             <Container className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
@@ -33,19 +32,23 @@ const LandingPageNavbar = () =>{
               />
             </Navbar.Brand>
             </div>
-            <Navbar.Toggle aria-controls="custom-navbar-nav" className="collapsed" />
+            <Navbar.Toggle aria-controls="custom-navbar-nav" className={`collapsed ${styles['navbar-toggler']}`} />
             <Navbar.Collapse id="custom-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home">Home</Nav.Link>
-              <Nav.Link href="/student">Testimonials</Nav.Link>
-              <Nav.Link href="/contact-us">Contact Us</Nav.Link>
-              <Nav.Link href="/Department">Department</Nav.Link>
-              <Nav.Link href="/about-us">About Us</Nav.Link>
+              <Nav.Link href="/home" className={styles['nav-link']}>Home</Nav.Link>
+              <Nav.Link href="/student" className={styles['nav-link']}>Testimonials</Nav.Link>
+              <Nav.Link href="/contact-us" className={styles['nav-link']}>Contact Us</Nav.Link>
+              <Nav.Link href="/Department" className={styles['nav-link']}>Department</Nav.Link>
+              <Nav.Link href="/about-us" className={styles['nav-link']}>About Us</Nav.Link>
             </Nav>
-                        {/* Sign In Button aligned to the right */}
+                        
             <div className="ms-auto">
              
-              <button className='signInbtn'>Sign In</button>
+            <button className={styles.signInbtn}>
+                <Link to="/sign-in" className="text-white text-decoration-none">
+                  Sign In
+                </Link>
+              </button>
             </div>
             
           </Navbar.Collapse>

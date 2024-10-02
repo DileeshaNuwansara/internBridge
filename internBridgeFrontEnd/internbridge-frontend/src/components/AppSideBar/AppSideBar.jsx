@@ -3,7 +3,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './AppSideBar.module.scss';
 
-
+import './AppSideBar.module.scss';
 
 const AppSideBar = ({role}) =>{
 

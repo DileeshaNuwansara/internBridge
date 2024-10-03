@@ -180,10 +180,10 @@ $card-bg: rgba(139, 118, 182, 0.46);
   
     video {
       position: absolute;
-      top:90px;
+      top:95px;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 110%;
       object-fit:fill; 
       z-index: -1;
       filter: brightness(80%);
@@ -206,14 +206,14 @@ $card-bg: rgba(139, 118, 182, 0.46);
         margin-bottom: 5rem;
 
         .smallText {
-          font-size: 2rem;
+          font-size: 1rem;
           color: #fbae1f;
           font-weight: 600;
           text-transform: uppercase;
         }
 
         .homeTitle {
-          font-size: 4rem;
+          font-size: 3rem;
           font-weight: 750;
           margin: 1rem 0;
           color: #fff;
@@ -224,13 +224,14 @@ $card-bg: rgba(139, 118, 182, 0.46);
 
     .cardDiv {
       display: flex;
-      flex-direction: column;
+      flex-direction:column;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 1rem;
       width: 700px;
       margin: 1rem auto;
       background: $bg-overlay;
       border-radius: 5px;
+      //justify-content: center;
       padding: 1rem;
       box-shadow: $box-shadow; 
       
@@ -238,7 +239,7 @@ $card-bg: rgba(139, 118, 182, 0.46);
         display: flex;
         align-items: center;
         background-color: rgba(213, 208, 238, 0.362);
-        padding: .5rem; 
+        padding: 1rem; 
         border-radius: 20px;
         border: 2px solid rgba(184, 51, 51, 0.335);
 

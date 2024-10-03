@@ -1,0 +1,200 @@
+.Activity .main {
+  width: 100%;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  z-index: 0;
+}
+.Activity .main .secTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.Activity .main .secTitle .title {
+  position: relative;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #343a40;
+  margin: 1.5rem 0;
+  z-index: 2;
+}
+.Activity .main .secTitle .title::after {
+  position: absolute;
+  background: #ffc107;
+  height: 5px;
+  width: 80px;
+  transform: translateX(-50%);
+  bottom: -5px;
+  z-index: -1;
+}
+.Activity .main .Content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+}
+.Activity .main .Content .interviewOne {
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: rgba(139, 118, 182, 0.46);
+  box-shadow: 0 8px 16px rgba(228, 149, 11, 0.522);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.Activity .main .Content .interviewOne:hover {
+  background: #f1edb9;
+  box-shadow: 1 4px 4px rgba(38, 43, 58, 0.4);
+  transform: translateY(-5px);
+}
+.Activity .main .Content .interviewOne .imageDiv {
+  height: 180px;
+  overflow: hidden;
+}
+.Activity .main .Content .interviewOne .imageDiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.Activity .main .Content .interviewOne .imageDiv:hover img {
+  transform: scale(1.1);
+}
+.Activity .main .Content .interviewOne .cardDetails {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.Activity .main .Content .interviewOne .cardDetails .name {
+  color: #069006;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.Activity .main .Content .interviewOne .cardDetails .ContentDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #6c757d;
+}
+.Activity .main .Content .interviewOne .cardDetails .ContentDiv .typeSes {
+  font-size: 1.5rem;
+  font-weight: 650;
+  color: #bb6107;
+}
+.Activity .main .Content .interviewOne .cardDetails .ContentDiv svg {
+  color: #17a2b8;
+  margin-right: 1rem;
+}
+.Activity .main .Content .interviewOne .cardDetails .timeDiv {
+  display: flex;
+  margin: 0.5rem 0;
+  border-top: 1.5px solid #1e272e;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #4f03b3;
+}
+.Activity .main .Content .interviewOne .cardDetails .timeDiv span {
+  font-size: 2rem;
+  color: #f85c23;
+}
+.Activity .main .Content .interviewOne .cardDetails .timeDiv svg {
+  color: #6c757d;
+  margin-right: 1rem;
+}
+.Activity .main .Content .interviewOne .cardDetails .dateDiv {
+  display: flex;
+  margin: 1rem 0;
+  border-top: 1.5px solid #1e272e;
+  font-weight: 600;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4f03b3;
+}
+.Activity .main .Content .interviewOne .cardDetails .dateDiv span {
+  font-size: 1rem;
+  color: rgb(45, 75, 250);
+}
+.Activity .main .Content .interviewOne .cardDetails .dateDiv svg {
+  color: #6c757d;
+  margin-right: 1rem;
+}
+.Activity .main .Content .interviewOne .cardDetails .desc p {
+  color: #495057;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-top: 1.7px solid #1e272e;
+}
+.Activity .main .Content .interviewOne .cardDetails .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #9ac6f6;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-color: #cc3333;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.Activity .main .Content .interviewOne .cardDetails .btn svg {
+  color: #fff;
+  margin-right: 0.1rem;
+}
+.Activity .main .Content .interviewOne .cardDetails .btn:hover {
+  background-color: #d3dd0a;
+  transform: translateY(-3px);
+}
+
+@media (min-width: 1200px) {
+  .Activity {
+    padding-bottom: 3rem;
+  }
+  .Activity .main {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    padding: 3rem;
+    top: 100px;
+  }
+  .Activity .main .secTitle {
+    margin-bottom: 2rem;
+  }
+  .Activity .main .secTitle .title {
+    font-size: 3rem;
+  }
+  .Activity .main .Content {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensures responsive grid */
+    gap: 2.5rem;
+  }
+  .Activity .main .interviewOne .imageDiv {
+    height: 220px;
+  }
+  .Activity .main .interviewOne .cardDetails {
+    padding: 2rem;
+  }
+  .Activity .main .interviewOne .cardDetails .name {
+    font-size: 2rem;
+  }
+  .Activity .main .interviewOne .cardDetails .ContentDiv {
+    font-size: 1.8rem;
+  }
+  .Activity .main .interviewOne .cardDetails .timeDiv, .Activity .main .interviewOne .cardDetails .dateDiv {
+    font-size: 1.2rem;
+  }
+  .Activity .main .interviewOne .cardDetails .desc p {
+    font-size: 1.1rem;
+  }
+  .Activity .main .interviewOne .cardDetails .btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+}/*# sourceMappingURL=Activity.module.css.map */

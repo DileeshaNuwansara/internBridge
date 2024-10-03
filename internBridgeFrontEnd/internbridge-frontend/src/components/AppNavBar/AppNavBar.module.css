@@ -1,0 +1,73 @@
+.AppNavBar .navbar {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(233, 179, 62, 0.798);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.25rem;
+  position: fixed;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+.AppNavBar .navbar-dark {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+.AppNavBar .navbar-light {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #333;
+}
+.AppNavBar .navbar .navbar-brand img {
+  width: 170px;
+  height: 90px;
+}
+.AppNavBar .navbar .nav-link {
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f1450 !important;
+  padding: 0.8rem 1rem;
+}
+.AppNavBar .navbar .nav-link:hover {
+  color: #ff9800 !important;
+}
+.AppNavBar .navbar .notify-dot {
+  position: relative;
+}
+.AppNavBar .navbar .notify-dot:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+.AppNavBar .navbar .theme-toggle {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+  padding: 0;
+  margin-right: 1rem;
+  background-color: #a43f08;
+  transition: all 0.3s ease-in-out;
+}
+.AppNavBar .navbar .theme-toggle:hover {
+  background-color: transparent;
+}
+.AppNavBar body.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+.AppNavBar body.dark-mode .navbar-dark {
+  background-color: rgba(40, 40, 40, 0.85);
+}
+.AppNavBar body.dark-mode .nav-link {
+  color: #fff;
+}
+.AppNavBar body.dark-mode .nav-link:hover {
+  color: white;
+}/*# sourceMappingURL=AppNavBar.module.css.map */

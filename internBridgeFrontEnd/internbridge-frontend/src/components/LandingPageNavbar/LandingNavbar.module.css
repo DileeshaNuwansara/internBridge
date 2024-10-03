@@ -1,0 +1,137 @@
+@media (min-width: 768px) {
+  .landingnavbar .header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+  }
+  .landingnavbar .navbar {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: rgba(230, 237, 243, 0.435);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(77, 92, 110, 0.905);
+    transition: 0.3s ease-in-out;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .landingnavbar .navbar-toggler {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 1rem 1rem;
+  }
+  .landingnavbar .navbar-toggler .navbar-toggler-icon {
+    background-image: none;
+    display: inline-block;
+    position: relative;
+    width: 25px;
+    height: 5px;
+    background-color: #a43f08;
+    transition: all 0.3s ease-in-out;
+  }
+  .landingnavbar .navbar-toggler .navbar-toggler-icon::before, .landingnavbar .navbar-toggler .navbar-toggler-icon::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #634bd7;
+    transition: all 0.3s ease-in-out;
+  }
+  .landingnavbar .navbar-toggler .navbar-toggler-icon::before {
+    top: -5px;
+  }
+  .landingnavbar .navbar-toggler .navbar-toggler-icon::after {
+    top: 5px;
+  }
+  .landingnavbar .nav-link {
+    color: #1f1450 !important;
+    padding: 0.8rem 1rem;
+  }
+  .landingnavbar .nav-link:hover {
+    color: #ff9800 !important;
+  }
+  .landingnavbar .navbar-brand img {
+    width: 170px;
+    height: 90px;
+  }
+}
+.landingnavbar .signInbtn {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  width: 115px;
+  transition: background-color 0.3s ease;
+  background-color: #0c3054;
+  border-radius: 8rem;
+}
+.landingnavbar .signInbtn:hover {
+  background-color: #2635a9;
+}
+@media (max-width: 576px) {
+  .landingnavbar .signInbtn {
+    padding: 8px 15px;
+    font-size: 14px;
+    margin-right: 5px;
+    width: 100%;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  .landingnavbar .navbar-toggler {
+    position: absolute;
+    width: -moz-fit-content;
+    width: fit-content;
+    right: 10px;
+    top: 10px;
+  }
+  .landingnavbar .navbar-toggler .navbar-toggler-icon {
+    height: 3px;
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    background-color: #f75c08;
+    transition: all 0.3s ease-in-out;
+  }
+  .landingnavbar .navbar-toggler .navbar-toggler-icon::before, .landingnavbar .navbar-toggler .navbar-toggler-icon::after {
+    width: 20px;
+    height: 3px;
+  }
+  .landingnavbar .navbar {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(77, 92, 110, 0.905);
+    transition: 0.3s ease-in-out;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .landingnavbar .nav-link {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: auto;
+    padding: 0.5rem 0;
+    color: #1f1450 !important;
+  }
+  .landingnavbar .nav-link:hover {
+    color: #ff9800 !important;
+  }
+}/*# sourceMappingURL=LandingNavbar.module.css.map */

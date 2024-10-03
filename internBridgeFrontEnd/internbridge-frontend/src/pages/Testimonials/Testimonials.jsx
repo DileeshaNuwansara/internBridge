@@ -85,7 +85,6 @@ const Testimonials = () => {
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
                                         <ListGroup.Item>I highly encourage hiring students through InternBridge. Students bring fresh perspectives, enthusiasm, and the latest technical knowledge.</ListGroup.Item>
-                                        <ListGroup.Item>Member of Computer Science Department</ListGroup.Item>
                                         <ListGroup.Item>Member of InternBridge</ListGroup.Item>
                                         <ListGroup.Item>Member of {testimonial.position}</ListGroup.Item>
                                     </ListGroup>

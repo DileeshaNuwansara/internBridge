@@ -73,7 +73,7 @@ const AppNavBar = ({ role='student', notifications }) => {
             </Nav.Link>
 
 
-                       <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1)} id="user-dropdown">
+              <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1)} id="user-dropdown">
               <NavDropdown.Item as={Link} to={`/${role}/profile`}>Profile</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/logout">Sign Out</NavDropdown.Item>
             </NavDropdown>

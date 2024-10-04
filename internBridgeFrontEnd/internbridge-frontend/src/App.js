@@ -1,24 +1,23 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import React, { useState} from 'react';
-// add pages and components
-//import Header from './components/Header';
-
-import AppNavbar from './components/AppSideBar/AppSideBar';
+// add  components
 
 
+//add pages
 import Landing from './pages/Landing/Landing';
 import Home from './pages/Home/Home';
 import Contactus from './pages/Contactus/Contactus';
 import Aboutus from './pages/Aboutus/Aboutus';
 import Company from './pages/Company/Company';
 import Student from './pages/Student/Student';
-
-import Signin from './pages/Signin/Signin'
+import Signin from './pages/Signin/Signin';
 import Register from './pages/Register/Register';
 import Testimonials from './pages/Testimonials/Testimonials';
+import AdminDashboard from './pages/Dashboard/AdminDashboard';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <>
     
@@ -57,6 +56,9 @@ const App = () => {
             <Route
             path="/testimonials"
             element = {<Testimonials/>} />
+            <Route
+            path="/admin-dashboard"
+            element = {<AdminDashboard/>} />
 
         </Routes>
         

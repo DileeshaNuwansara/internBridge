@@ -12,7 +12,8 @@ const Aboutus = () => {
   return (
     <>
       <section>
-        <NavBar/>
+         <NavBar/> 
+        
       </section>
       {/* Page Content */}
       

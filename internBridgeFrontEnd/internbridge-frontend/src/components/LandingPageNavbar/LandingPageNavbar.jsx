@@ -35,10 +35,10 @@ const LandingPageNavbar = () =>{
             <Navbar.Toggle aria-controls="custom-navbar-nav" className={`collapsed ${styles['navbar-toggler']}`} />
             <Navbar.Collapse id="custom-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home" className={styles['nav-link']}>Home</Nav.Link>
+              <Nav.Link href="/" className={styles['nav-link']}>Home</Nav.Link>
               <Nav.Link href="/testimonials" className={styles['nav-link']}>Testimonials</Nav.Link>
               <Nav.Link href="/contact-us" className={styles['nav-link']}>Contact Us</Nav.Link>
-              <Nav.Link href="/department" className={styles['nav-link']}>Department</Nav.Link>
+              {/* <Nav.Link href="/department" className={styles['nav-link']}>Department</Nav.Link> */}
               <Nav.Link href="/company" className={styles['nav-link']}>Company-Partners</Nav.Link>
               <Nav.Link href="/about-us" className={styles['nav-link']}>About Us</Nav.Link>
             </Nav>

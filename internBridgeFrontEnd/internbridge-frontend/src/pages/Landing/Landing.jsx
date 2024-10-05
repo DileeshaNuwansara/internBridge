@@ -9,7 +9,7 @@ import { CgRename } from "react-icons/cg";
 import { FaSortNumericDown } from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import { FiSend } from 'react-icons/fi';
 const Landing = () => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
@@ -53,6 +53,10 @@ const Landing = () => {
                 <div className={styles.input}>
                   <input type="range" max="25" min="1" />
                   <FaSortNumericDown className={styles.icon} />
+                </div>
+                <div>
+                <button data-aos="fade-up" className={`${styles.btnicon} flex`} type="submit" >
+                SEND <FiSend className={styles.icon} /></button>
                 </div>
               </div>
             </div>

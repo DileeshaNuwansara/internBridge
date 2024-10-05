@@ -1,0 +1,13 @@
+.dashboardContent {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .dashboardContent {
+    flex-direction: column;
+    align-items: center;
+  }
+}/*# sourceMappingURL=dashboard.module.css.map */

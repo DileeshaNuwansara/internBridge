@@ -66,7 +66,8 @@
 }
 .footer .inputDiv .btn {
   width: 50%;
-  margin-top: 2rem;
+  margin-inline-start: 2rem;
+  margin-top: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;

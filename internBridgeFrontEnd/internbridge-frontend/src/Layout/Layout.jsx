@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import AppNavbar from '../AppNavBar/AppNavBar';
-import AppSidebar from '../AppSideBar/AppSideBar';
-import styles from './Layout.module.scss';
+import AppNavbar from '../components/AppNavBar/AppNavBar';
+import AppSidebar from '../components/AppSideBar/AppSideBar';
+import styles from "./Layout.module.css";
 
 
 const Layout = ({ children ,role }) => {

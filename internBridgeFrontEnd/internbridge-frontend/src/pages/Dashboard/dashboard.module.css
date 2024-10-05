@@ -1,8 +1,10 @@
 .dashboardContent {
   padding: 20px;
+  margin: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {

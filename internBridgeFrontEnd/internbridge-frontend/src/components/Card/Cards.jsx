@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import styles from './Card.module.scss';
+import styles from './Card.module.css';
 
 const Cards = ({ title, description, link }) => {
     const navigate = useNavigate();

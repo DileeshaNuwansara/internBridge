@@ -14,6 +14,7 @@ import Signin from './pages/Signin/Signin';
 import Register from './pages/Register/Register';
 import Testimonials from './pages/Testimonials/Testimonials';
 import AdminDashboard from './pages/Dashboard/AdminDashboard';
+import StudentDashboard from './pages/Dashboard/StudentDashboard';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,8 +58,8 @@ const App = () => {
             path="/testimonials"
             element = {<Testimonials/>} />
             <Route
-            path="/admin-dashboard"
-            element = {<AdminDashboard/>} />
+            path="/student-dashboard"
+            element = {<StudentDashboard/>} />
 
         </Routes>
         

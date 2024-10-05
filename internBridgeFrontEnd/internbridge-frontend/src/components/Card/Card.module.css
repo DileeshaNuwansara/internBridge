@@ -1,5 +1,5 @@
 .customButton {
-  background-color: rgb(174, 176, 46);
+  background-color: rgb(203, 206, 29);
   border: none;
   color: antiquewhite;
   padding: 10px 20px;
@@ -10,5 +10,5 @@
   transition: background-color 0.3s ease-in-out;
 }
 .customButton:hover {
-  background-color: #b38720;
+  background-color: #d69808;
 }/*# sourceMappingURL=Card.module.css.map */

@@ -6,7 +6,7 @@ import smallLogo from '../../assets/imgs/smallLogo.png';
 import styles from './AppSideBar.module.scss';  // Import the SCSS module
 import { MdOutlineSettings,MdDashboard } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
-import { FaPersonBurst,FaUsersLine } from "react-icons/fa6";
+import { FaUsersLine } from "react-icons/fa6";
 import { FaUserPlus,FaUserCog,FaFile,FaCalendarAlt,FaCalendarCheck } from "react-icons/fa";
 
 

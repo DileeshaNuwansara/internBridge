@@ -1,14 +1,16 @@
 import React,{useEffect} from 'react'
 import { FiSend } from 'react-icons/fi';
 import styles from  './footer.module.scss';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/imgs/internbridge_logo.png';
 import { FiChevronRight } from "react-icons/fi";
 import { SlSocialYoutube } from "react-icons/sl";
 import {TiSocialLinkedin} from "react-icons/ti";
 import { SlSocialFacebook } from "react-icons/sl";
+import {FaFacebook,FaLinkedin,FaYoutubeSquare} from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import smallLogo from '../../assets/imgs/smallLogo.png';
 
 const Footer = () => {
 
@@ -63,7 +65,7 @@ const Footer = () => {
             </div>
 
             <div className={styles.footerLinks}>
-            <div className={styles.linkGroup}>
+              <div className={styles.linkGroup}>
               <span className={styles.groupTitle}>Our Intern Bridge</span>
                 <ul>
                 <li className={`${styles.footerList} flex`}>
@@ -135,11 +137,54 @@ const Footer = () => {
 
             </div>
 
+           
+          </div>
+
+          <div>
+            <div className={styles.footerDiv1}>
+              <div className="row container py-4 ">
+            <div className="col-12 col-md-6">
+              <img src={smallLogo} alt="InternBridge Logo" className={styles.logo} />
+            </div>
+            <div className="col-12 col-md-6 text-md-right ">
+              <ul className="list-inline d-flex my-3 mr-3 justify-content-end">
+                <li className="list-inline-item mr-4 mx-6">
+                  <Link to="/about-us" className="text-white">About Us</Link>
+                </li>
+                <li className="list-inline-item mr-4 mx-8">
+                  <Link to="/contactus" className="text-white mr-4">Contact Us</Link>
+                </li>
+                <li className="list-inline-item mr-4">
+                  <a href="https://facebook.com" className="text-white" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                    <FaFacebook  />
+                  </a>
+                </li>
+              
+          
+                <li className="list-inline-item">
+                  <a href="https://linkedin.com" className="text-white" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <FaLinkedin  />
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="https://youtube.com" className="text-white" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                    <FaYoutubeSquare  />
+                  </a>
+                </li>
+              </ul>
+            </div>
+                </div>
+                
+            </div>
+
             <div className={styles.footerDiv}>
-             
-              <small>COPYIGHT RESERVED--2024</small>
+              
+                <small>COPYIGHT RESERVED--2024</small>
             </div>
           </div>
+
+
+
         </div>
     </section>
   )

@@ -5,12 +5,11 @@ import logo from '../../assets/imgs/internbridge_logo.png';
 import smallLogo from '../../assets/imgs/smallLogo.png';
 import styles from './AppSideBar.module.scss';  // Import the SCSS module
 import { MdOutlineSettings,MdDashboard } from "react-icons/md";
-import { RiAdminFill } from "react-icons/ri";
 import { FaUsersLine } from "react-icons/fa6";
 import { FaUserPlus,FaUserCog,FaFile,FaCalendarAlt,FaCalendarCheck } from "react-icons/fa";
 
 
-const AppSideBar = ({ role = 'admin' }) => {
+const AppSideBar = ({ role = 'ROLE_ADMIN' }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -18,33 +17,41 @@ const AppSideBar = ({ role = 'admin' }) => {
   };
 
   const menuItems = {
-    admin: [
+    ROLE_ADMIN: [
       { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/admin/dashboard' },
       {
         label: 'Users', icon: <FaUsersLine size={25}/>, path: '/admin/users',
         submenu: [
-          { label: 'Students', path: '/admin/users/students' },
-          { label: 'Admins', path: '/admin/users/admins' },
-          { label: 'Company HRs', path: '/admin/users/companyhrs' },
-          { label: 'Coordinators', path: '/admin/users/coordinators' },
+          { label: 'Students', path: '/admin/add-students' },
+          { label: 'Admins', path: '/admin/add-admins' },
+          { label: 'Company HRs', path: '/admin/add-companyhrs' },
+          { label: 'Coordinators', path: '/admin/add-coordinators' },
         ]
       },
-      { label: 'Settings', icon: <MdOutlineSettings size={25}/>, path: '/admin/settings' },
-      { label: 'Profile', icon: < RiAdminFill size={25} />, path: '/users/admin/profile' },
+      { label: 'Settings', icon: <MdOutlineSettings size={25}/>, path: '/admin/profile-settings' },
+      // { label: 'Profile', icon: < RiAdminFill size={25} />, path: '/admin/profile-settings' },
     ],
-    student: [
-      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/users/student/dashboard' },
-      { label: 'Interviews', icon: <FaCalendarAlt size={25}/>, path: '/users/student/interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={25} />, path: '/users/student/practicesessions' },
-      { label: 'Profile', icon: < FaUserPlus size={25}/>, path: '/users/student/profile' },
+    ROLE_STUDENT: [
+      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/student/dashboard' },
+      { label: 'Interviews', icon: <FaCalendarAlt size={25}/>, path: '/student/interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={25} />, path: '/student/practicesessions' },
+      { label: 'Profile', icon: < FaUserPlus size={25}/>, path: '/student/profile-settings' },
     ],
-    coordinator: [
+    ROLE_COORDINATOR: [
       { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/users/coordinator/dashboard' },
       { label: 'Interviews', icon: <FaCalendarCheck size={25}/>, path: '/users/coordinator/interviews' },
       { label: 'Practice Sessions', icon: <FaCalendarCheck size={25}/>, path: '/users/coordinator/practicesessions' },
       { label: 'CV', icon: <FaFile size={25}/>, path: '/users/student/cvs' },
       { label: 'Applicants', icon: <FaUserCog size={25} />, path: '/users/admin/users/students' },
-      { label: 'Profile', icon: < FaUserPlus size={25} />, path: '/users/coordinator/profile' },
+      { label: 'Profile', icon: < FaUserPlus size={25} />, path: '/users/coordinator/profile-settings' },
+    ],
+    ROLE_COMPANYHR: [
+      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/companyhr/dashboard' },
+      { label: 'Interviews', icon: <FaCalendarCheck size={25}/>, path: '/companyhr/interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={25}/>, path: '/companyhr/practicesessions' },
+      { label: 'CV', icon: <FaFile size={25}/>, path: '/companyhr/cvs' },
+      { label: 'Applicants', icon: <FaUserCog size={25} />, path: '/companyhr/students' },
+      { label: 'Profile', icon: < FaUserPlus size={25} />, path: '/companyhr/profile-settings' },
     ],
   };
 

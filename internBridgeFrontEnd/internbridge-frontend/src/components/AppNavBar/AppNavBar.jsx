@@ -35,7 +35,7 @@ const AppNavBar = ({ role='student', notifications }) => {
           <Nav className="me-auto">
             <Nav.Link as={Link} to={`/${role}/dashboard`}>Dashboard</Nav.Link>
 
-            {role === 'admin' && (
+            {role === 'ROLE_ADMIN' && (
               <NavDropdown title="Manage Users" id="basic-nav-dropdown">
                 <NavDropdown.Item as={Link} to="/admin/users/admins">Manage Admins</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/admin/users/students">Manage Students</NavDropdown.Item>
@@ -46,19 +46,27 @@ const AppNavBar = ({ role='student', notifications }) => {
               </NavDropdown>
             )}
 
-            {role === 'student' && (
+            {role === 'ROLE_STUDENT' && (
               <>
               <Nav.Link as={Link} to="/student/profile">Profile</Nav.Link>
               <Nav.Link as={Link} to="/users/student/cvs">Students' CVs</Nav.Link>
               </>
             )}
 
-            {role === 'coordinator' && (
+            {role === 'ROLE_COORDINATOR' && (
               <>
                 <Nav.Link as={Link} to="/coordinator/applicants">Applicants</Nav.Link>
                 <Nav.Link as={Link} to="/coordinator/interviews">Interviews</Nav.Link>
                 <Nav.Link as={Link} to="/coordinator/practicesessions">Practice Sessions</Nav.Link>
                 <Nav.Link as={Link} to="/users/student/cvs">Students' CVs</Nav.Link>
+              </>
+            )}
+            {role === 'ROLE_COMPANYHR' && (
+              <>
+                <Nav.Link as={Link} to="/companyhr/applicants">Applicants</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/interviews">Interviews</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/practicesessions">Practice Sessions</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/cvs">Students' CVs</Nav.Link>
               </>
             )}
           </Nav>

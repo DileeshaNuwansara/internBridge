@@ -4,7 +4,7 @@ import AdminAddStudent from '../pages/Admin/AdminAddStudent';
 import AdminAddAdmin from '../pages/Admin/AdminAddAdmin';
 import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
 import AdminAddCoordinator from '../pages/Admin/AdminAddCoordinator';
-import ProfileSettings from '../pages/Coordinator/ProfileSettings';
+import ProfileSettings from '../pages/Admin/ProfileSettings';
 
 const ADMINRoutes = [
     {

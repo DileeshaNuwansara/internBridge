@@ -46,7 +46,7 @@ const LandingPageNavbar = () =>{
             <div className="ms-auto">
              
             <button className={styles.signInbtn}>
-                <Link to="/sign-in" className="text-white text-decoration-none">
+                <Link to="/signin" className="text-white text-decoration-none">
                   Sign In
                 </Link>
               </button>

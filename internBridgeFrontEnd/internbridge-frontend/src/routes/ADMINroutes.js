@@ -1,37 +1,43 @@
 import userRoles from "../userRoles/userRoles";
 import AdminDashboard from '../pages/Dashboard/AdminDashboard';
-import AdminAddStudent from '../pages/Admin/admin-add-student';
-import AdminAddAdmin from '../pages/Admin/admin-add-admin';
-import AdminAddCompanyhr from '../pages/Admin/admin-add-companyhr';
-import AdminAddCoordinator from '../pages/Admin/admin-add-coordinator';
-
+import AdminAddStudent from '../pages/Admin/AdminAddStudent';
+import AdminAddAdmin from '../pages/Admin/AdminAddAdmin';
+import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
+import AdminAddCoordinator from '../pages/Admin/AdminAddCoordinator';
+import ProfileSettings from '../pages/Admin/ProfileSettings';
 
 const ADMINRoutes = [
     {
-        path : "ADMIN/dashboard",
+        path : "/admin/dashboard",
         element: <AdminDashboard/>,
-        availability : [userRoles.admin,userRoles.student,userRoles.coordinator,userRoles.companyhr]
+        roles: ["ROLE_ADMIN"],
     },
     {
-        path:"ADMIN/addStudent",
+        path:"/admin/add-student",
         element:<AdminAddStudent/>,
-        availability:[userRoles.admin,userRoles.coordinator]
+        roles:[userRoles.admin,userRoles.coordinator]
     },
     {
-        path:"ADMIN/addAdmin",
+        path:"/admin/add-admin",
         element:<AdminAddAdmin/>,
-        availability:[userRoles.admin]
+        roles:[userRoles.admin]
     },
     {
-        path:"ADMIN/addCompanyhr",
+        path:"/admin/add-companyhr",
         element:<AdminAddCompanyhr/>,
-        availability:[userRoles.admin,userRoles.coordinator]
+        roles:[userRoles.admin,userRoles.coordinator]
     },
     {
-        path:"ADMIN/addCoordinator",
+        path:"/admin/add-Coordinator",
         element:<AdminAddCoordinator/>,
-        availability:[userRoles.admin,userRoles.coordinator]
-    }
+        roles:[userRoles.admin]
+    },
+    {
+        path: "/admin/profile-settings",
+        element: <ProfileSettings />,
+        roles: ["ROLE_ADMIN"], 
+      },
+    
 ]
 
 export  default ADMINRoutes;

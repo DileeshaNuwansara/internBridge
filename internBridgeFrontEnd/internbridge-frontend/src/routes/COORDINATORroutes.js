@@ -3,9 +3,10 @@ import ManagePracticeSessions from '../pages/Coordinator/ManagePracticeSessions'
 import ManageInterviews from '../pages/Coordinator/ManageInterviews';
 import ManageNewInternships from '../pages/Coordinator/ManageNewInternships';
 import ManageStudentApplications from '../pages/Coordinator/ManageStudentApplications';
-import ManageCompanyHR from '../pages/Coordinator/ManageCompanyHR';
+import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
 import ProfileSettings from '../pages/Coordinator/ProfileSettings';
-
+import HiredStudents from '../pages/Coordinator/HiredStudents';
+import NotHiredStudents from '../pages/Coordinator/NotHiredStudents';
 const COORDINATORRoutes = [
   {
     path: "/coordinator/dashboard",
@@ -28,13 +29,23 @@ const COORDINATORRoutes = [
     roles: ["ROLE_COORDINATOR"], 
   },
   {
+    path: "/coordinator/hired-students",
+    element: <HiredStudents />,
+    roles: ["ROLE_COORDINATOR"], 
+  },
+  {
+    path: "/coordinator/not-hired-students",
+    element: <NotHiredStudents />,
+    roles: ["ROLE_COORDINATOR"], 
+  },
+  {
     path: "/coordinator/manage-student-applications",
     element: <ManageStudentApplications />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/manage-company-hr",
-    element: <ManageCompanyHR />,
+    path: "/coordinator/add-companyhr",
+    element: <AdminAddCompanyhr />,
     roles: ["ROLE_COORDINATOR","ROLE_ADMIN"], 
   },
   {

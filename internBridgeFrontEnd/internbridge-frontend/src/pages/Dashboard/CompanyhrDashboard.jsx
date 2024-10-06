@@ -32,7 +32,7 @@ const CompanyhrDashboard = () => {
 
           </Col>
 	        <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Profile Settings" description=" Student Profile Settings" link="/manage-student"  />
+            <Cards title="Profile Settings" description=" Student Profile Settings" link="/profile-settings"  />
           </Col>
 
         </Row>

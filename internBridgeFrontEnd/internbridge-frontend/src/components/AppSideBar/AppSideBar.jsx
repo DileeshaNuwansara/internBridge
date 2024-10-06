@@ -18,40 +18,42 @@ const AppSideBar = ({ role = 'ROLE_ADMIN' }) => {
 
   const menuItems = {
     ROLE_ADMIN: [
-      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/admin/dashboard' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/admin/dashboard' },
       {
-        label: 'Users', icon: <FaUsersLine size={25}/>, path: '/admin/users',
+        label: 'Users', icon: <FaUsersLine size={20}/>, path: '/admin',
         submenu: [
-          { label: 'Students', path: '/admin/add-students' },
-          { label: 'Admins', path: '/admin/add-admins' },
-          { label: 'Company HRs', path: '/admin/add-companyhrs' },
-          { label: 'Coordinators', path: '/admin/add-coordinators' },
+          { label: 'Students', path: '/add-student' },
+          { label: 'Admins', path: '/add-admin' },
+          { label: 'Company HRs', path: '/add-companyhr' },
+          { label: 'Coordinators', path: '/add-coordinator' },
         ]
       },
-      { label: 'Settings', icon: <MdOutlineSettings size={25}/>, path: '/admin/profile-settings' },
+      { label: 'Settings', icon: <MdOutlineSettings size={20}/>, path: '/admin/profile-settings' },
       // { label: 'Profile', icon: < RiAdminFill size={25} />, path: '/admin/profile-settings' },
     ],
     ROLE_STUDENT: [
-      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/student/dashboard' },
-      { label: 'Interviews', icon: <FaCalendarAlt size={25}/>, path: '/student/interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={25} />, path: '/student/practicesessions' },
-      { label: 'Profile', icon: < FaUserPlus size={25}/>, path: '/student/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/student/dashboard' },
+      { label: 'Internships', icon: <FaFile size={20}/>, path: '/student/manage-new-internships' },
+      { label: 'Interviews', icon: <FaCalendarAlt size={20}/>, path: '/student/manage-interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20} />, path: '/student/manage-practice-sessions' },
+      { label: 'Profile', icon: < FaUserPlus size={20}/>, path: '/student/profile-settings' },
     ],
     ROLE_COORDINATOR: [
-      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/users/coordinator/dashboard' },
-      { label: 'Interviews', icon: <FaCalendarCheck size={25}/>, path: '/users/coordinator/interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={25}/>, path: '/users/coordinator/practicesessions' },
-      { label: 'CV', icon: <FaFile size={25}/>, path: '/users/student/cvs' },
-      { label: 'Applicants', icon: <FaUserCog size={25} />, path: '/users/admin/users/students' },
-      { label: 'Profile', icon: < FaUserPlus size={25} />, path: '/users/coordinator/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/coordinator/dashboard' },
+      { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/coordinator/interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/coordinator/practicesessions' },
+      { label: 'CV', icon: <FaFile size={20}/>, path: '/coordinator/manage-student-applications' },
+      { label: 'Hired Applicants', icon: <FaUserCog size={20} />, path: '/coordinator/hired-students' },
+      { label: 'Still Applicants', icon: <FaUsersLine size={20} />, path: '/coordinator/not-hired-students' },
+      { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/coordinator/profile-settings' },
     ],
     ROLE_COMPANYHR: [
-      { label: 'Dashboard', icon: <MdDashboard size={25}/>, path: '/companyhr/dashboard' },
-      { label: 'Interviews', icon: <FaCalendarCheck size={25}/>, path: '/companyhr/interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={25}/>, path: '/companyhr/practicesessions' },
-      { label: 'CV', icon: <FaFile size={25}/>, path: '/companyhr/cvs' },
-      { label: 'Applicants', icon: <FaUserCog size={25} />, path: '/companyhr/students' },
-      { label: 'Profile', icon: < FaUserPlus size={25} />, path: '/companyhr/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/companyhr/dashboard' },
+      { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/companyhr/interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/companyhr/manage-practice-sessions' },
+      { label: 'CV', icon: <FaFile size={20}/>, path: '/companyhr/manage-cv' },
+      { label: 'Active Interns', icon: <FaUserCog size={20} />, path: '/companyhr/active-interns-status' },
+      { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/companyhr/profile-settings' },
     ],
   };
 
@@ -98,7 +100,7 @@ const AppSideBar = ({ role = 'ROLE_ADMIN' }) => {
 
       <div className="mt-auto">
         <Link to="/logout" className={styles.logout}>
-          <CiLogout className={styles.icon} size={25} /> 
+          <CiLogout className={styles.icon} size={20} /> 
           {sidebarOpen && <span className={styles.lolabel}>Logout</span>}
         </Link>
       </div>

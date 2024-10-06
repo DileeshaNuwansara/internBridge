@@ -37,36 +37,39 @@ const AppNavBar = ({ role='student', notifications }) => {
 
             {role === 'ROLE_ADMIN' && (
               <NavDropdown title="Manage Users" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/admin/users/admins">Manage Admins</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/admin/users/students">Manage Students</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/admin/users/coordinators">Manage Coordinators</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/admin/users/companyhrs">Manage Company-HRs</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/admin/add-admin">Manage Admins</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/admin/add-student">Manage Students</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/admin/add-coordinator">Manage Coordinators</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/users/student/cvs">Students' CVs</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/admin/add-companyhr">Manage Company-HRs</NavDropdown.Item>
+                
+                {/* <NavDropdown.Item as={Link} to="/users/student/cvs">Students' CVs</NavDropdown.Item> */}
               </NavDropdown>
             )}
 
             {role === 'ROLE_STUDENT' && (
               <>
-              <Nav.Link as={Link} to="/student/profile">Profile</Nav.Link>
-              <Nav.Link as={Link} to="/users/student/cvs">Students' CVs</Nav.Link>
+              <Nav.Link as={Link} to="/student/profile-settings">Profile</Nav.Link>
+              <Nav.Link as={Link} to="/student/manage-cv">Students' CVs</Nav.Link>
+              <Nav.Link as={Link} to="/student/manage-new-internships">Internships</Nav.Link>
+                
               </>
             )}
 
             {role === 'ROLE_COORDINATOR' && (
               <>
-                <Nav.Link as={Link} to="/coordinator/applicants">Applicants</Nav.Link>
-                <Nav.Link as={Link} to="/coordinator/interviews">Interviews</Nav.Link>
-                <Nav.Link as={Link} to="/coordinator/practicesessions">Practice Sessions</Nav.Link>
-                <Nav.Link as={Link} to="/users/student/cvs">Students' CVs</Nav.Link>
+                <Nav.Link as={Link} to="/coordinator/manage-new-internships">Internships</Nav.Link>
+                <Nav.Link as={Link} to="/coordinator/mange-interviews">Interviews</Nav.Link>
+                <Nav.Link as={Link} to="/coordinator/manage-practice-sessions">Practice Sessions</Nav.Link>
+                <Nav.Link as={Link} to="/coordinator/manage-student-applications">Students' CVs</Nav.Link>
               </>
             )}
             {role === 'ROLE_COMPANYHR' && (
               <>
-                <Nav.Link as={Link} to="/companyhr/applicants">Applicants</Nav.Link>
-                <Nav.Link as={Link} to="/companyhr/interviews">Interviews</Nav.Link>
-                <Nav.Link as={Link} to="/companyhr/practicesessions">Practice Sessions</Nav.Link>
-                <Nav.Link as={Link} to="/companyhr/cvs">Students' CVs</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/active-interns-status">Active Hired Interns</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/interview-details">Interviews</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/manage-practice-sessions">Practice Sessions</Nav.Link>
+                <Nav.Link as={Link} to="/companyhr/manage-cv">Students' CVs</Nav.Link>
               </>
             )}
           </Nav>
@@ -82,7 +85,7 @@ const AppNavBar = ({ role='student', notifications }) => {
 
 
               <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1)} id="user-dropdown">
-              <NavDropdown.Item as={Link} to={`/${role}/profile`}>Profile</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={`/${role}/profile-settings`}>Profile</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/logout">Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>

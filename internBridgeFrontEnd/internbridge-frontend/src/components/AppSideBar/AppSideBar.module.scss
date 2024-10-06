@@ -8,7 +8,7 @@
   $icon-hover-color: #c6d0d7;
   $hover-text-color: $sidebar-bg-color;  
 
-  width: 260px;
+  width: 230px;
   height: 100vh;
   background-color: $sidebar-bg-color;
   transition: transform 0.3s ease;
@@ -35,7 +35,7 @@
     
     .logo {
       padding: 0;
-      width: 260px;
+      width: 230px;
       height: 90px;
       transition: width 0.3s ease;
     }
@@ -62,7 +62,7 @@
         font-weight: 550;
         display: flex;
         align-items: center;
-        padding: 10px;
+        padding: 8px;
         background-color: $sidebar-bg-color; 
         transition: background-color 0.3s, color 0.3s;
 
@@ -70,7 +70,7 @@
 
        .ii {
           width: auto;
-          margin-right: 10px;
+          margin-right: 8px;
           color: $icon-color;
 
           &:hover {
@@ -113,7 +113,7 @@
       .dropdownMenu {
         background-color: $hover-bg-color;
         list-style: none;
-        padding-left: 20px;
+        padding-left: 15px;
 
         .dropdownItem {
           color: $icon-color;

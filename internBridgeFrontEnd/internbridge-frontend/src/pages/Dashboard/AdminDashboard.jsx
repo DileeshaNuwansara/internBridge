@@ -16,19 +16,19 @@ const AdminDashboard = () => {
       <Container fluid className={styles.dashboardContent}> 
         <Row> 
           <Col xs={12} md={6} lg={4}  className="mb-4"> 
-            <Cards title="Manage Students" description="Manage student details" link="/manage-students"  />
+            <Cards title="Manage Students" description="Manage student details" link="/add-student"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Coordinators" description="Manage coordinators " link="/manage-coordinators"  />
+            <Cards title="Manage Coordinators" description="Manage coordinators " link="/add-coordinator"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Admins" description="Manage administrative access" link="/manage-admins"  />
+            <Cards title="Manage Admins" description="Manage administrative access" link="/add-admin"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Company HR" description="Oversee company HR activities" link="/manage-company-hr"  />
+            <Cards title="Manage Company HR" description="Oversee company HR activities" link="/add-companyhr" />
           </Col>
 	        <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Profile Settings" description=" Admin Profile Settings" link="/manage-admin"  />
+            <Cards title="Profile Settings" description=" Admin Profile Settings" link="/profile-settings" />
           </Col>
 
         </Row>

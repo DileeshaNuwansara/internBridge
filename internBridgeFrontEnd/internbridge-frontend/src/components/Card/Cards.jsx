@@ -13,7 +13,7 @@ const Cards = ({ title, description, link }) => {
 
   return (
     <Card style={{ width: '20rem' }}>
-     <Card.Img variant="top" alt="card image" src={require('../src/assets/imgs/cardimg.png')} />
+     <Card.Img variant="top" alt="card image" src={require('../../assets/imgs/cardimg.png')} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>

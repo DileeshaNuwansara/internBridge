@@ -13,13 +13,13 @@ export default function NoPage() {
         <div className="mt-5 d-flex justify-content-center">
           <Link
             to="/"
-            className="btn btn-primary btn-lg px-4 py-2 mr-3"
+            className="btn btn-primary btn-lg px-4 py-2 mx-3"
           >
             Go back home
           </Link>
           <Link
-            to="/contact"
-            className="btn btn-outline-secondary btn-lg px-4 py-2"
+            to="/contact-us"
+            className="btn btn-outline-secondary btn-lg px-4 py-2 mr-3 py-2"
           >
             Contact support <span aria-hidden="true">&rarr;</span>
           </Link>

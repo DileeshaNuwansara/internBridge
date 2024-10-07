@@ -14,6 +14,8 @@ import COMPANYHRRoutes from './COMPANYHRroutes';
 import COORDINATORRoutes from './COORDINATORroutes';
 import PrivateRoute from './PrivateRoutes';
 import RoleRoute from './RoleRouter';
+// import ForgotPassword from './pages/ForgotPassword';
+// import ResetPassword from './pages/ResetPassword';
 
 const AppRoutes = () => {
     return (
@@ -28,6 +30,8 @@ const AppRoutes = () => {
                 <Route path="/contact-us" element={<Contactus />} />
                 <Route path="/testimonials" element={<Testimonials />} />
                 <Route path="/company" element ={<Company/>} />
+                {/* <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:token" element={<ResetPassword />} /> */}
 
                 {/* Protected Routes */}
                 {ADMINRoutes.map((route) => (

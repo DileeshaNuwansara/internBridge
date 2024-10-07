@@ -9,7 +9,9 @@ import video from '../../assets/videos/sigin.mp4';
 import logo from '../../assets/imgs/internbridge_logo.png';
 
 const Signin = () => {
-    const [formData, setFormData] = useState({ username: '', password: '' });
+    const [formData, setFormData] = useState({ 
+        email: '',
+        password: '' });
   
     const handleChange = (e) => {
       setFormData({
@@ -48,11 +50,11 @@ const Signin = () => {
                 <form className={styles.form}>
                         <span className={styles.showMessage}>Login Status will go here</span>
                         <div className={styles.inputDiv}>
-                    <label htmlFor="username">Username </label>
+                    <label htmlFor="email">Email</label>
                     <div className={`${styles.input} flex`}>
                     <FaUserShield className={styles.icon} />
-                    <input type="text"  id='username' placeholder='Enter Username'
-                    value={formData.username}
+                    <input type="text"  id='email' placeholder='Enter Email'
+                    value={formData.email}
                     onChange={handleChange}
                     />
                     </div>

@@ -5,17 +5,17 @@ import { FaUserShield } from "react-icons/fa";
 import { BsShieldLockFill, BsFillTelephoneFill } from "react-icons/bs";
 import { MdBusiness } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { GoPaperAirplane } from 'react-icons/go'; // Ensure to import GoPaperAirplane
+import { GoPaperAirplane } from 'react-icons/go'; 
 import logo from '../../assets/imgs/internbridge_logo.png';
 
 const Register = () => {
     const [formData, setFormData] = useState({
         email: '',
         name: '',
-        company: '',
+        company: 'UOR',
         phone: '',
         password: '',
-        role: 'admin',
+        role: 'ROLE_ADMIN',
         status: 'pending' 
     });
 

@@ -8,4 +8,4 @@ const AdminAddAdmin = () => {
   )
 }
 
-export default AdminAddAdmin
+export default AdminAddAdmin;

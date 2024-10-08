@@ -6,7 +6,7 @@ import Aboutus from '../pages/Aboutus/Aboutus';
 import Company from '../pages/Company/Company';
 import Testimonials from '../pages/Testimonials/Testimonials';
 import Signin from '../pages/Signin/Signin';
-import Signup from '../pages/Register/Register';
+//import Signup from '../pages/Register/Register';
 import NoPage from '../pages/Nopage/NoPage';
 import ADMINRoutes from './ADMINroutes';
 import STUDENTRoutes from './STUDENTroutes';
@@ -24,7 +24,7 @@ const AppRoutes = () => {
                 {/* Public Routes */}
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/signin" element={<Signin />} />
-                <Route path="/register" element={<Signup/>} />
+                {/* <Route path="/register" element={<Signup/>} /> */}
                 <Route path="/nopage" element={<NoPage />} />
                 <Route path="/about-us" element={<Aboutus />} />
                 <Route path="/contact-us" element={<Contactus />} />

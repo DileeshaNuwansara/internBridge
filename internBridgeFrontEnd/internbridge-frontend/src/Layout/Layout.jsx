@@ -8,12 +8,17 @@ import styles from "./Layout.module.css";
 const Layout = ({ children ,role }) => {
     return (
       <div className={styles.layoutWrapper}>
+
         <AppNavbar role={role} />
+
         <Container fluid className="d-flex">
+
           <AppSidebar role={role} className={styles.sidebar} />
+          
           <main className={styles.mainContent}>
           {children}
           </main>
+
       </Container>
     </div>
   );

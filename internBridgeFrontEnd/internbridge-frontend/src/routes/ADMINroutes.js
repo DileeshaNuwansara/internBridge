@@ -1,10 +1,12 @@
 import userRoles from "../userRoles/userRoles";
 import AdminDashboard from '../pages/Dashboard/AdminDashboard';
 import AdminAddStudent from '../pages/Admin/AdminAddStudent';
-import AdminAddAdmin from '../pages/Admin/AdminAddAdmin';
+//import Register from '../pages/Register/Register';
+
 import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
 import AdminAddCoordinator from '../pages/Admin/AdminAddCoordinator';
 import ProfileSettings from '../pages/Admin/ProfileSettings';
+import AdminAddAdmin from "../pages/Admin/AdminAddAdmin";
 
 const ADMINRoutes = [
     {

@@ -31,7 +31,7 @@ const Landing = () => {
       availablePositions
     };
     try {
-      const response = await axios.post('http://localhost:8080/api/internships', formData);
+      const response = await axios.post('http://localhost:8081/api/internships', formData);
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error submitting form:', error);

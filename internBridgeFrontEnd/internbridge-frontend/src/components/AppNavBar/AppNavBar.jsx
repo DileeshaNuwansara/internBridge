@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './AppNavBar.module.scss';
- 
-
-const AppNavBar = ({ role='student', notifications }) => {
+import { MdDarkMode,MdOutlineDarkMode } from "react-icons/md";
+import { MdNotificationAdd } from "react-icons/md";
+const AppNavBar = ( {role}) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [hasNotifications, setHasNotifications] = useState(false);
   console.log(role);
 
  //toggle  button
@@ -13,8 +14,18 @@ const AppNavBar = ({ role='student', notifications }) => {
     setIsDarkMode(!isDarkMode);
     document.body.classList.toggle('dark-mode', !isDarkMode);   };
 
- //notification mark
-  const hasNotifications = notifications && notifications.length > 0;
+    useEffect(() => {
+      
+      const fetchNotifications = async () => {
+         
+          // const notifications = await new Promise((resolve) =>
+          //     setTimeout(() => resolve(true), 1000) 
+          // );
+          //setHasNotifications(notifications);
+      };
+
+      fetchNotifications();
+  }, []);;
 
   return (
     <div className={styles.AppNavBar}>
@@ -75,12 +86,12 @@ const AppNavBar = ({ role='student', notifications }) => {
           </Nav>
 
           <Nav>
-          <Nav.Link as={Link} to="/notifications" className={`position-relative ${hasNotifications ? styles['notify-dot'] : ''}`}>
-              <i className="bi bi-bell"></i>
-            </Nav.Link>
+          <Nav.Link as={Link} to="#" className={`position-relative ${hasNotifications ? styles['notify-dot'] : ''}`}>
+            <MdNotificationAdd />
+          </Nav.Link>
 
             <Nav.Link as={Button} onClick={toggleTheme} className={styles['theme-toggle']}>
-              {isDarkMode ? <i className="bi bi-brightness-high"></i> : <i className="bi bi-moon"></i>}
+              {isDarkMode ? <MdOutlineDarkMode /> : <MdDarkMode/> }
             </Nav.Link>
 
 

@@ -24,9 +24,12 @@ const Signin = () => {
       e.preventDefault();
 
       try {
-        const response = await axios.post('http://localhost:8080/api/v1/user/login', formData);
-        if (response.data.success) {
+        const response = await axios.post('http://localhost:8081/api/v1/user/login', formData);
+        const data = await response.json();
+
+        if (response.ok && data.status) {
           alert('Login Successful');
+          window.location.href='/admin/dashboard';
 
         } else {
           alert('Login Failed: ' + response.data.message);

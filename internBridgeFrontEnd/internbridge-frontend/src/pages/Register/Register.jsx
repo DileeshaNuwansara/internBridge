@@ -32,7 +32,7 @@ const Register = () => {
         e.preventDefault();
         console.log(formData);
         try{
-            const response = await axios.post('http://localhost:8080/api/v1/user/register', formData);
+            const response = await axios.post('http://localhost:8081/api/v1/user/register', formData);
 
             if (response.status === 201){
                 

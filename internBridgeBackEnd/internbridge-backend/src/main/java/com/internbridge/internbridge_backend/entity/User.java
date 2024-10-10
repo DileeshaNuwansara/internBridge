@@ -2,6 +2,7 @@ package com.internbridge.internbridge_backend.entity;
 
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,8 @@ public class User {
     private String password;
 
 
-//    @Column(name="email",nullable=false,unique=true,length=50)
-//    @NotBlank(message = "Email cannot be blank")
+    @Column(name="email",nullable=false,unique=true,length=80)
+    @NotBlank(message = "Email cannot be blank")
 //    @Email(message = "Please provide a valid email address")
     private String email;
 

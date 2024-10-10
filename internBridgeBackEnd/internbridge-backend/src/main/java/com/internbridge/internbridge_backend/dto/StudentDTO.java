@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class StudentDTO {
+public class StudentDTO extends UserDTO {
 
 
     private String scNumber;

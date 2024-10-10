@@ -22,6 +22,11 @@ public class Internship {
     private String position;
     private LocalDate startDate;
     private int availablePositions;
+    private String company;
+
+    @Lob
+    @Column(name = "image_data",columnDefinition = "MEDIUMBLOB")
+    private byte[] imageData;
 
     @ManyToOne
     private User ROLE_COMPANYHR;

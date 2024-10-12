@@ -65,47 +65,32 @@ public class UserServiceImpl implements UserService {
         // Retrieve the user by email
         User user = userRepository.findByEmail(request.getEmail());
 
+
+
         // Check if user exists and password matches
         if (user != null) {
-            String password1 = request.getPassword();
-            String password2 = passwordEncoder.encode(request.getPassword());
-            Boolean ispwd = passwordEncoder.matches(password1, password2);
-            if(ispwd){
+            // Check if the provided password matches the stored hashed password
+            Boolean ispwd = passwordEncoder.matches(request.getPassword(), user.getPassword());
+
+            if (ispwd) {
                 // Convert User entity to UserDetails
                 CustomUserDetails userDetails = new CustomUserDetails(user);
 
                 // Generate JWT Token using UserDetails
                 String token = jwtUtil.generateToken(userDetails);
+
                 // Return the response with token, role, and a success message
-//                String token="aaa";
-                return new AuthenticationResponse(token, user.getRole(), "Login successful",true);
-            }else {
-                return new AuthenticationResponse(null, null, "Login failed",false);
+                return new AuthenticationResponse(token, user.getRole(), "Login successful", true);
+            } else {
+                // Password doesn't match, return failure response
+                return new AuthenticationResponse(null, null, "Login failed with Incorrect password", false);
             }
-
-
-
         } else {
-            throw new BadCredentialsException("Invalid email or password");
+            // Email not found, throw exception for invalid email
+            throw new BadCredentialsException("Invalid email ");
         }
     }
 
-//    @Override
-//    public LoginResponse loginUser(LoginDTO loginDTO) {
-//        // Retrieve the user based on the email
-//        User user = userRepository.findByEmail(loginDTO.getEmail());
-//
-//        // Check if user exists
-//        if (user != null) {
-//            // Compare passwords (assuming plain text comparison)
-//            if (user.getPassword().equals(loginDTO.getPassword())) {
-//                return new LoginResponse("Login Success", true);
-//            } else {
-//                return new LoginResponse("Password Not Match", false);
-//            }
-//        } else {
-//            return new LoginResponse("Email not exists", false);
-//        }
 //    }
 
     @Override
@@ -130,10 +115,10 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("User not found with id: " + id)
         );
+        user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setCompany(userDTO.getCompany());
-        user.setPhone(userDTO.getPhone());
         user.setPhone(userDTO.getPhone());
         user.setRole(userDTO.getRole());
         user.setStatus(userDTO.getStatus());

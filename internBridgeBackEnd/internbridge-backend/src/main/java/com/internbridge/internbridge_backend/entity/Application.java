@@ -1,10 +1,22 @@
 package com.internbridge.internbridge_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
+@Table(name = "application")
 public class Application {
 
     @Id
@@ -12,13 +24,37 @@ public class Application {
     private Long applicationId;
 
     @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
+    //one application to one student
 
     @ManyToOne
+    @JoinColumn(name = "internship_id", nullable = true)
     private Internship internship;
+    //many application for one internship
 
-    private String status;
+    // Many-to-One: Each application could be for an interview
+    @ManyToOne
+    @JoinColumn(name = "interview_id", nullable = true)
+    private Interview interview;
 
-    private Date appliedDate;
+    //many applictaion to one practice session
+    @ManyToOne
+    @JoinColumn(name = "practiceSessionId", referencedColumnName = "practicesessionId")
+    private PracticeSession practiceSession;
+
+
+
+    public enum ApplicationStatus {
+        APPLIED,
+        INTERVIEWED,
+        ACCEPTED,
+        REJECTED
+    }
+
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus status;
+
+    private LocalDate appliedDate;
 
 }

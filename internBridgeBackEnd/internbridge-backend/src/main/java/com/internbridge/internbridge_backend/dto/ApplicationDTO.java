@@ -1,7 +1,13 @@
 package com.internbridge.internbridge_backend.dto;
 
-import java.util.Date;
+import lombok.*;
 
+import java.util.Date;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class ApplicationDTO {
     private Long applicationId;
 

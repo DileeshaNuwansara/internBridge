@@ -3,16 +3,17 @@ package com.internbridge.internbridge_backend.entity;
 import jakarta.persistence.*;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 //@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
@@ -51,6 +52,13 @@ public class User {
     private String role;
 
     private String status;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Internship> internships;
+
+    @OneToMany(mappedBy = "student")
+    private List<Application> applications;
+
 
     @PrePersist
     protected void onCreate() {

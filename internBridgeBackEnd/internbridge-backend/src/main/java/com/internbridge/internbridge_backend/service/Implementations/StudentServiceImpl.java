@@ -2,73 +2,55 @@ package com.internbridge.internbridge_backend.service.Implementations;
 
 import com.internbridge.internbridge_backend.dto.StudentDTO;
 import com.internbridge.internbridge_backend.entity.Student;
-import com.internbridge.internbridge_backend.entity.User;
+import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.StudentRepository;
 import com.internbridge.internbridge_backend.service.StudentService;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@Transactional
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
-    public StudentDTO getStudentProfile(String email) {
-        Student student = studentRepository.findByEmail(email);
-        if (student == null) {
-            throw new RuntimeException("Student not found with email: " + email);
-        }
-        return mapToDTO(student);
+    public StudentDTO getStudentProfileByUserId(Long userId) {
+        Student student = studentRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
+
+        return modelMapper.map(student, StudentDTO.class);
     }
 
     @Override
-    public StudentDTO updateStudentProfile(String email, StudentDTO studentDTO) {
-        Student student = studentRepository.findByEmail(email);
-        if (student == null) {
-            throw new RuntimeException("Student not found with email: " + email);
+    public StudentDTO updateStudentProfileByUserId(Long userId, StudentDTO studentDTO) {
+        Student student = studentRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
+
+        if (studentDTO.getCv() != null) {
+            student.setCv(studentDTO.getCv());
         }
-        student.setName(student.getName());
-        student.setEmail(student.getEmail());
-        student.setCompany(student.getCompany());
-        student.setPhone(student.getPhone());
-        student.setStatus(student.getStatus());
-        student.setScNumber(studentDTO.getScNumber());
-        student.setGpa(Double.valueOf(Double.valueOf(Double.valueOf(studentDTO.getGpa()))));
-        student.setPosition(studentDTO.getPosition());
-        student.setCv(studentDTO.getCv());
+
+
+        modelMapper.map(studentDTO, student);
+
         studentRepository.save(student);
-        return mapToDTO(student);
+
+        return modelMapper.map(student, StudentDTO.class);
     }
 
-
-
-
     @Override
-    public void deleteStudent(Long id) {
-        // Find the student by ID
-        Student student = studentRepository.findById(id).orElseThrow(() ->
-                new RuntimeException("Student not found with id: " + id)
-        );
+    public void deleteStudentByUserId(Long userId) {
+        Student student = studentRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
 
         studentRepository.delete(student);
     }
-
-    private StudentDTO mapToDTO(Student student) {
-        return new StudentDTO(
-                student.getUserId(),
-                student.getName(),
-                student.getEmail(),
-                student.getPhone(),
-                student.getRole(),
-                student.getScNumber(),
-                student.getGpa(),
-                student.getPosition(),
-                student.getCv()
-        );
-    }
 }
+

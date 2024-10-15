@@ -5,9 +5,9 @@ import com.internbridge.internbridge_backend.dto.StudentDTO;
 import java.util.List;
 
 public interface StudentService {
-    StudentDTO getStudentProfile(String email);
-    StudentDTO updateStudentProfile(String email, StudentDTO studentDTO);
+    StudentDTO getStudentProfileByUserId(Long userId);
+    StudentDTO updateStudentProfileByUserId(Long userId, StudentDTO studentDTO);
+    void deleteStudentByUserId(Long userId);
 
-    void deleteStudent(Long id);
 
 }

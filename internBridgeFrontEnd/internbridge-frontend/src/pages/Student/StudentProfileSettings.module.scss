@@ -1,0 +1,49 @@
+
+.title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2rem;
+    color: #003366; 
+  }
+  
+
+  .profileCard {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+
+  .profileButton {
+    font-size: 1rem;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  
+    svg {
+      font-size: 1.2rem;
+    }
+  
+    &:hover {
+      background-color: #abbf0f;
+    }
+  }
+  
+  // Mobile responsiveness
+  @media (max-width: 576px) {
+    .profileCard {
+      padding: 15px;
+    }
+  
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .profileButton {
+      font-size: 0.9rem;
+    }
+  }
+  

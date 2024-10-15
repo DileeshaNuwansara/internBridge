@@ -4,7 +4,7 @@ import ManageInterviews from '../pages/Coordinator/ManageInterviews';
 import ManageNewInternships from '../pages/Coordinator/ManageNewInternships';
 import ManageStudentApplications from '../pages/Coordinator/ManageStudentApplications';
 import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
-import ProfileSettings from '../pages/Coordinator/ProfileSettings';
+import ProfileSettings from '../pages/Coordinator/CoordinatorProfileSettings';
 import HiredStudents from '../pages/Coordinator/HiredStudents';
 import NotHiredStudents from '../pages/Coordinator/NotHiredStudents';
 const COORDINATORRoutes = [

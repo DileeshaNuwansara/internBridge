@@ -5,7 +5,7 @@ import AdminAddStudent from '../pages/Admin/AdminAddStudent';
 
 import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
 import AdminAddCoordinator from '../pages/Admin/AdminAddCoordinator';
-import ProfileSettings from '../pages/Admin/ProfileSettings';
+import ProfileSettings from '../pages/Admin/AdminProfileSettings';
 import AdminAddAdmin from "../pages/Admin/AdminAddAdmin";
 
 const ADMINRoutes = [

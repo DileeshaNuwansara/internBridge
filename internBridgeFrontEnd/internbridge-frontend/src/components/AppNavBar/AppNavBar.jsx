@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import styles from './AppNavBar.module.scss';
 import { MdDarkMode,MdOutlineDarkMode } from "react-icons/md";
 import { MdNotificationAdd } from "react-icons/md";
-const AppNavBar = ( {role}) => {
+
+import img from '../../assets/imgs/internbridge_logo.png'
+const AppNavBar = ( ) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(false);
+  const role = localStorage.getItem('role');
   console.log(role);
 
  //toggle  button
@@ -30,21 +33,23 @@ const AppNavBar = ( {role}) => {
   return (
     <div className={styles.AppNavBar}>
     <Navbar
-     expand="lg"  className={`${styles.AppNavBar} glass-navbar ${isDarkMode ? 'navbar-dark' : 'navbar-light'} bg-transparent `}>
+     expand="lg"
+     className={`${styles.navbar} glass-navbar ${isDarkMode ? 'navbar-dark' : 'navbar-light'}`}>
+      
       <Container>
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center me-4">
+        {/* <Navbar.Brand as={Link} to="/" className="d-flex align-items-center me-4">
           <img
-            src="./assets/image.png"
+            src={img}
             alt="InternBridge Logo"
             style={{ width: '140px', height: '60px' }}
             className={`${styles['navbar-brand']} d-inline-block align-top me-3`}
           />
          
-        </Navbar.Brand>
+        </Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to={`/${role}/dashboard`}>Dashboard</Nav.Link>
+            <Nav.Link as={Link} to={`/${role}/dashboard`}>{role} Dashboard</Nav.Link>
 
             {role === 'ROLE_ADMIN' && (
               <NavDropdown title="Manage Users" id="basic-nav-dropdown">
@@ -97,7 +102,7 @@ const AppNavBar = ( {role}) => {
 
               <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1)} id="user-dropdown">
               <NavDropdown.Item as={Link} to={`/${role}/profile-settings`}>Profile</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/logout">Sign Out</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/signout">Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

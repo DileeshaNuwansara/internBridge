@@ -4,14 +4,17 @@ import '../../App.scss';
 import { GoPaperAirplane } from "react-icons/go";
 import { BsShieldLockFill } from "react-icons/bs";
 import { FaUserShield } from "react-icons/fa";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import video from '../../assets/videos/sigin.mp4';
 import logo from '../../assets/imgs/internbridge_logo.png';
 import axios from 'axios';
 const Signin = () => {
     const [formData, setFormData] = useState({ 
         email: '',
-        password: '' });
+        password: '' 
+      });
+
+      const navigate = useNavigate();
   
     const handleChange = (e) => {
       setFormData({
@@ -25,19 +28,33 @@ const Signin = () => {
 
       try {
         const response = await axios.post('http://localhost:8081/api/v1/user/login', formData);
-        const data = await response.json();
+        if (response.status === 200) {
+          const { token, role,status,message } = response.data;
 
-        if (response.ok && data.status) {
+          // Store token and role in localStorage
+          localStorage.setItem('token', token);
+          localStorage.setItem('role', role);
+
+        
           alert('Login Successful');
-          window.location.href='/admin/dashboard';
-
+          if (role === 'ROLE_ADMIN') {
+            navigate('/admin/dashboard');
+          } else if (role === 'ROLE_STUDENT') {
+            navigate('/student/dashboard');
+          } else if (role === 'ROLE_COMPANY_HR') {
+            navigate('/companyhr/dashboard');
+          } else if (role === 'ROLE_COORDINATOR') {
+            navigate('/coordinator/dashboard');
+          } else {
+            navigate('/nopage');  // Fallback in case of unknown role
+          }
         } else {
           alert('Login Failed: ' + response.data.message);
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+        alert('Error during login: ' + (error.response?.data?.message || 'Unknown error'));
       }
-  } catch (error) {
-      console.error('Error during login:', error.response.data);
-      alert('Error during login: ' + error.response.data);
-  }
 };
 
   return (

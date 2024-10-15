@@ -1,7 +1,8 @@
 .sidebar {
-  width: 260px;
+  width: 270px;
   height: 100vh;
-  background-color: #343a40;
+  z-index: 200;
+  background-color: #788693;
   transition: transform 0.3s ease;
   position: fixed;
   top: 0;
@@ -24,13 +25,13 @@
 }
 .sidebar .logoContainer .logo {
   padding: 0;
-  width: 260px;
-  height: 90px;
+  width: 270px;
+  height: 65px;
   transition: width 0.3s ease;
 }
 .sidebar .logoContainer .smallLogo {
   width: 80px;
-  height: auto;
+  height: 60px;
   transition: width 0.3s ease;
 }
 .sidebar .nav {
@@ -48,13 +49,13 @@
   font-weight: 550;
   display: flex;
   align-items: center;
-  padding: 10px;
-  background-color: #343a40;
+  padding: 8px;
+  background-color: #788693;
   transition: background-color 0.3s, color 0.3s;
 }
 .sidebar .nav .navItem .navLink .ii {
   width: auto;
-  margin-right: 10px;
+  margin-right: 8px;
   color: #f3f9fa;
 }
 .sidebar .nav .navItem .navLink .ii:hover {
@@ -71,14 +72,14 @@
 }
 .sidebar .nav .navItem .navLink:hover {
   background-color: #f7b747;
-  color: #343a40;
+  color: #788693;
   font-weight: 600;
 }
 .sidebar .nav .navItem .navLink:hover .ii {
-  color: #343a40;
+  color: #788693;
 }
 .sidebar .nav .navItem .navLink:hover .label {
-  color: #343a40;
+  color: #788693;
 }
 .sidebar .nav .navItem .navLink:hover.closed .label {
   display: none;
@@ -89,7 +90,7 @@
 .sidebar .nav .navItem .navLink:hover .dropdownMenu {
   background-color: rgba(226, 242, 247, 0.5);
   list-style: none;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 .sidebar .nav .navItem .navLink:hover .dropdownMenu .dropdownItem {
   color: #f3f9fa;
@@ -98,7 +99,7 @@
   transition: color 0.3s, font-weight 0.3s;
 }
 .sidebar .nav .navItem .navLink:hover .dropdownMenu .dropdownItem:hover {
-  color: #343a40;
+  color: #788693;
   font-weight: 600;
   background-color: #f9f7f4;
 }
@@ -110,7 +111,7 @@
   display: flex;
   align-items: center;
   padding: 5px;
-  background-color: #343a40;
+  background-color: #788693;
   transition: background-color 0.3s, color 0.3s;
 }
 .sidebar .logout .icon {
@@ -121,7 +122,7 @@
   transition: color 0.3s, background-color 0.3s;
 }
 .sidebar .logout .icon:hover {
-  color: #343a40;
+  color: #788693;
   background-color: #f6f6f7;
 }
 .sidebar .logout.closed .icon {
@@ -138,7 +139,7 @@
   transition: color 0.3s, background-color 0.3s;
 }
 .sidebar .logout .lolabel:hover {
-  color: #343a40;
+  color: #788693;
   background-color: #f6aa47;
 }
 .sidebar .logout.closed .lolabel {
@@ -146,15 +147,17 @@
 }
 .sidebar .logout:hover {
   background-color: #f7b747;
-  color: #343a40;
+  color: #788693;
 }
 .sidebar .logout:hover .icon, .sidebar .logout:hover .lolabel {
-  color: #343a40;
+  color: #788693;
 }
 
 @media (max-width: 768px) {
   .sidebar {
-    transform: translateX(-70%);
+    width: 268px;
+    z-index: 250;
+    transform: translateX(-30%);
   }
   .sidebar.open {
     transform: translateX(0);

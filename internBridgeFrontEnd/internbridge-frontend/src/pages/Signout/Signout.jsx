@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGoogleLogout } from 'react-google-login';
+// import { useGoogleLogout } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import styles from './Signout.module.scss';
 
@@ -8,21 +8,22 @@ const Signout = () => {
 
   // Function to handle JWT token 
   const handleJWTSignout = () => {
-    localStorage.removeItem('authToken'); 
-    navigate('/login'); 
+    localStorage.removeItem('token');
+    localStorage.removeItem('role'); 
+    navigate('/signin'); 
   };
 
-  // Google Logout 
-  const { signOut } = useGoogleLogout({
-    clientId: 'YOUR_GOOGLE_CLIENT_ID',
-    onLogoutSuccess: () => {
-      handleJWTSignout();
-    },
-  });
+
+  // const { signOut } = useGoogleLogout({
+  //   clientId: 'YOUR_GOOGLE_CLIENT_ID',
+  //   onLogoutSuccess: () => {
+  //     handleJWTSignout();
+  //   },
+  // });
 
   const handleSignout = () => {
     // If logged in with Google
-    signOut();
+    // signOut();
     // JWT signout
     handleJWTSignout();
   };
@@ -30,10 +31,10 @@ const Signout = () => {
   return (
     <div className={styles.signoutContainer}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Logout</h1>
-        <p className={styles.message}>You have been successfully logged out.</p>
+        <h1 className={styles.title}>Log out</h1>
+        <p className={styles.message}>You have been logged out successfully.</p>
         <button className={styles.btn} onClick={handleSignout}>
-          Click here to continue...
+        Redirecting to login...
         </button>
       </div>
     </div>

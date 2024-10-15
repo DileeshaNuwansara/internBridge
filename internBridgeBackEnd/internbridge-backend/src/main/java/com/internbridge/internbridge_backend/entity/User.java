@@ -2,16 +2,18 @@ package com.internbridge.internbridge_backend.entity;
 
 import jakarta.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 //@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
@@ -33,8 +35,8 @@ public class User {
     private String password;
 
 
-//    @Column(name="email",nullable=false,unique=true,length=50)
-//    @NotBlank(message = "Email cannot be blank")
+    @Column(name="email",nullable=false,unique=true,length=80)
+    @NotBlank(message = "Email cannot be blank")
 //    @Email(message = "Please provide a valid email address")
     private String email;
 
@@ -50,6 +52,13 @@ public class User {
     private String role;
 
     private String status;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Internship> internships;
+
+    @OneToMany(mappedBy = "student")
+    private List<Application> applications;
+
 
     @PrePersist
     protected void onCreate() {

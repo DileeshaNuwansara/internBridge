@@ -1,9 +1,9 @@
 import StudentDashboard from '../pages/Dashboard/StudentDashboard';
 import ManagePracticeSessions from '../pages/Coordinator/ManagePracticeSessions';
-import ManageCV from '../pages/Student/ManageCV';
+import ManageCvPage from '../pages/Student/ManageCvPage';
 import ManageNewInternships from '../pages/Coordinator/ManageNewInternships';
 import ManageInterviews from '../pages/Coordinator/ManageInterviews';
-import ProfileSettings from '../pages/Student/ProfileSettings';
+import ProfileSettings from '../pages/Student/StudentProfileSettings';
 
 const STUDENTRoutes = [
   {
@@ -18,7 +18,7 @@ const STUDENTRoutes = [
   },
   {
     path: "/student/manage-cv",
-    element: <ManageCV />,
+    element: <ManageCvPage />,
     roles: ["ROLE_STUDENT"], 
   },
   {

@@ -3,8 +3,8 @@ import InternshipDetails from '../pages/CompanyHR/InternshipDetails';
 import InterviewDetails from '../pages/CompanyHR/InterviewDetails';
 import ManagePracticeSessions from '../pages/CompanyHR/ManagePracticeSessions';
 import ActiveInternsStatus from '../pages/CompanyHR/ActiveInternsStatus';
-import ProfileSettings from '../pages/CompanyHR/ProfileSettings';
-import ManageCV from '../pages/CompanyHR/ManageCV';
+import ProfileSettings from '../pages/CompanyHR/CompanyHRProfileSettings';
+import ManageCvPage from '../pages/CompanyHR/ManageCvPage';
 
 const COMPANYHRRoutes = [
   {
@@ -39,7 +39,7 @@ const COMPANYHRRoutes = [
   },
   {
     path: "/companyhr/manage-cv",
-    element: <ManageCV />,
+    element: <ManageCvPage />,
     roles: ["ROLE_COMPANY_HR"], 
   },
 ];

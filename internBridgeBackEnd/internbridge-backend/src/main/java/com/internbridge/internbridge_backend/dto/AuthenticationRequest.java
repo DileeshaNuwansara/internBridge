@@ -7,8 +7,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LoginDTO {
-
+public class AuthenticationRequest {
     private String email;
     private String password;
+//    private String token;
+    private String message;
+    private String role;
+
+
 }

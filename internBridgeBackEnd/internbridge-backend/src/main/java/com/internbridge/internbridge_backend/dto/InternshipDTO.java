@@ -19,7 +19,9 @@ public class InternshipDTO {
     private String position;
     private LocalDate startDate;
     private int availablePositions;
-    //private Long roleCompanyHrId;
+    private String company;
+    private byte[] imageData;
+    private Long userId;
     //private List<Long> applicationIds;
 
 }

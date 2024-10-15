@@ -36,7 +36,7 @@ $card-bg: rgba(139, 118, 182, 0.46);
   .overlay {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 70%;
     background-color: rgba(102, 116, 138, 0.6);
     z-index: 1;
     mix-blend-mode: hard-light;
@@ -88,10 +88,10 @@ $card-bg: rgba(139, 118, 182, 0.46);
     .input {
       display: flex;
       align-items: center;
-      background-color: rgba(213, 208, 238, 0.362);
+      background-color: rgba(171, 164, 207, 0.362);
       padding: 0.4rem;
       border-radius: 30px;
-      border: 2px solid rgba(184, 51, 51, 0.335);
+      border: 2px solid rgba(191, 43, 43, 0.335);
 
       input {
         flex: 1;
@@ -99,12 +99,13 @@ $card-bg: rgba(139, 118, 182, 0.46);
         border: none;
         outline: none;
         padding: 0.3rem;
-        color: rgb(7, 75, 112);
+        color: rgb(231, 237, 239);
         font-size: 0.9rem;
+        font-weight: 600;
 
         &::placeholder {
           font-size: 14px;
-          color: #3d20208a;
+          color: #3514148a;
         }
       }
 

@@ -1,0 +1,59 @@
+// Profile.module.scss
+.profile{
+
+
+.modalHeader {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .modalBody {
+    background-color: transparent;
+    padding: 1rem;
+  }
+  
+  .closeButton {
+    background-color: #b64a1c; 
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+    background-color: #d98b25; 
+    transform: scale(1.05); 
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); 
+    }
+}
+  
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    width: fit-content;
+    &:hover {
+      color: #cda52e;
+      cursor: pointer;
+    }
+  }
+  
+
+}
+  @media (max-width: 768px) {
+    .modalBody {
+      font-size: 1rem;
+    }
+  
+    .modalHeader {
+      font-size: 1.5rem;
+    }
+  
+    .closeButton {
+      padding: 0.75rem;
+    }
+  }

@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './AppNavBar.module.scss';
- 
+import { MdDarkMode,MdOutlineDarkMode } from "react-icons/md";
+import { MdNotificationAdd } from "react-icons/md";
 
-const AppNavBar = ({ role='student', notifications }) => {
+import img from '../../assets/imgs/internbridge_logo.png'
+const AppNavBar = ( ) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [hasNotifications, setHasNotifications] = useState(false);
+  const role = localStorage.getItem('role');
   console.log(role);
 
  //toggle  button
@@ -13,27 +17,39 @@ const AppNavBar = ({ role='student', notifications }) => {
     setIsDarkMode(!isDarkMode);
     document.body.classList.toggle('dark-mode', !isDarkMode);   };
 
- //notification mark
-  const hasNotifications = notifications && notifications.length > 0;
+    useEffect(() => {
+      
+      const fetchNotifications = async () => {
+         
+          // const notifications = await new Promise((resolve) =>
+          //     setTimeout(() => resolve(true), 1000) 
+          // );
+          //setHasNotifications(notifications);
+      };
+
+      fetchNotifications();
+  }, []);;
 
   return (
     <div className={styles.AppNavBar}>
     <Navbar
-     expand="lg"  className={`${styles.AppNavBar} glass-navbar ${isDarkMode ? 'navbar-dark' : 'navbar-light'} bg-transparent `}>
+     expand="lg"
+     className={`${styles.navbar} glass-navbar ${isDarkMode ? 'navbar-dark' : 'navbar-light'}`}>
+      
       <Container>
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center me-4">
+        {/* <Navbar.Brand as={Link} to="/" className="d-flex align-items-center me-4">
           <img
-            src="./assets/image.png"
+            src={img}
             alt="InternBridge Logo"
             style={{ width: '140px', height: '60px' }}
             className={`${styles['navbar-brand']} d-inline-block align-top me-3`}
           />
          
-        </Navbar.Brand>
+        </Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to={`/${role}/dashboard`}>Dashboard</Nav.Link>
+            <Nav.Link as={Link} to={`/${role}/dashboard`}>{role} Dashboard</Nav.Link>
 
             {role === 'ROLE_ADMIN' && (
               <NavDropdown title="Manage Users" id="basic-nav-dropdown">
@@ -75,18 +91,18 @@ const AppNavBar = ({ role='student', notifications }) => {
           </Nav>
 
           <Nav>
-          <Nav.Link as={Link} to="/notifications" className={`position-relative ${hasNotifications ? styles['notify-dot'] : ''}`}>
-              <i className="bi bi-bell"></i>
-            </Nav.Link>
+          <Nav.Link as={Link} to="#" className={`position-relative ${hasNotifications ? styles['notify-dot'] : ''}`}>
+            <MdNotificationAdd />
+          </Nav.Link>
 
             <Nav.Link as={Button} onClick={toggleTheme} className={styles['theme-toggle']}>
-              {isDarkMode ? <i className="bi bi-brightness-high"></i> : <i className="bi bi-moon"></i>}
+              {isDarkMode ? <MdOutlineDarkMode /> : <MdDarkMode/> }
             </Nav.Link>
 
 
               <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1)} id="user-dropdown">
               <NavDropdown.Item as={Link} to={`/${role}/profile-settings`}>Profile</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/logout">Sign Out</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/signout">Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

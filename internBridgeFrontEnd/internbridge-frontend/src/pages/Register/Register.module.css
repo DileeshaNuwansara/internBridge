@@ -1,18 +1,19 @@
 .registerPage {
   height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f6f2e9;
+  background-color: #b3ab99;
 }
 .registerPage .rcontainer {
   display: flex;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 95%;
   margin: auto;
   justify-content: space-between;
   border-radius: 15px;
-  background: hsl(45, 38%, 92%);
+  background: hsl(52, 7%, 57%);
   overflow: hidden;
   box-shadow: 0 7px 50px rgba(193, 219, 206, 0.8);
 }
@@ -24,13 +25,13 @@
   overflow: hidden;
 }
 .registerPage .rcontainer .registerDiv h2 {
-  color: #0808ae;
-  font-size: 2rem;
+  color: #0a0ab8;
+  font-size: 1.5rem;
   color: rgba(206, 41, 41, 0.783);
   margin: 1rem;
 }
 .registerPage .rcontainer .registerDiv p {
-  color: #3b3b3b;
+  color: #9e9999;
   font-weight: 650;
   font-size: 1rem;
   margin-bottom: 1.5rem;
@@ -43,41 +44,42 @@
 }
 .registerPage .rcontainer .formDiv {
   flex-basis: 50%;
-  padding: 2rem;
-  margin: 0.5rem;
+  padding: 1.5rem;
+  height: 95%;
+  margin: 0.4rem;
   width: 100%;
   border-radius: 8px;
-  background-color: #f6ead4;
+  background-color: #f0ece2;
 }
 .registerPage .rcontainer .formDiv h3 {
-  color: #0808ae;
-  font-size: 1.6rem;
+  color: #0a0ab8;
+  font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 .registerPage .rcontainer .formDiv .inputGroup {
   display: flex;
   width: 90%;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(101, 99, 99, 0.1);
   border-radius: 10px;
   padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   transition: border-color 0.3s ease;
 }
 .registerPage .rcontainer .formDiv .inputGroup:focus-within {
-  border-color: #f7b747;
+  border-color: #f5b548;
 }
 .registerPage .rcontainer .formDiv .inputGroup .inputIcon {
   margin-right: 0.5rem;
-  color: #f7b747;
+  color: #f5b548;
 }
 .registerPage .rcontainer .formDiv .inputGroup input {
   flex: 1;
   border: none;
   outline: none;
   padding: 0;
-  color: #0808ae;
+  color: #0a0ab8;
   font-size: 1rem;
   background-color: transparent;
 }
@@ -90,12 +92,14 @@
 .registerPage .rcontainer .formDiv label {
   display: block;
   margin-bottom: 0.3rem;
-  color: #0808ae;
+  color: #0a0ab8;
   font-weight: 600;
 }
 .registerPage .rcontainer .formDiv .cbtn {
   display: flex;
   align-items: center;
+  margin: 0.5rem;
+  margin-left: 1rem;
   justify-content: center;
   padding: 0.8rem 2rem;
   background: rgba(200, 168, 10, 0.898);
@@ -125,10 +129,10 @@
 }
 .registerPage .rcontainer .text-center {
   margin-top: 1rem;
-  color: #3b3b3b;
+  color: #9e9999;
 }
 .registerPage .rcontainer .text-center a {
-  color: #f7b747;
+  color: #f5b548;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;

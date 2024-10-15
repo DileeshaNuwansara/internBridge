@@ -22,7 +22,7 @@
 .landingPage .overlay {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 70%;
   background-color: rgba(102, 116, 138, 0.6);
   z-index: 1;
   mix-blend-mode: hard-light;
@@ -67,10 +67,10 @@
 .landingPage .cardDiv .input {
   display: flex;
   align-items: center;
-  background-color: rgba(213, 208, 238, 0.362);
+  background-color: rgba(171, 164, 207, 0.362);
   padding: 0.4rem;
   border-radius: 30px;
-  border: 2px solid rgba(184, 51, 51, 0.335);
+  border: 2px solid rgba(191, 43, 43, 0.335);
 }
 .landingPage .cardDiv .input input {
   flex: 1;
@@ -78,16 +78,17 @@
   border: none;
   outline: none;
   padding: 0.3rem;
-  color: rgb(7, 75, 112);
+  color: rgb(231, 237, 239);
   font-size: 0.9rem;
+  font-weight: 600;
 }
 .landingPage .cardDiv .input input::-moz-placeholder {
   font-size: 14px;
-  color: rgba(61, 32, 32, 0.5411764706);
+  color: rgba(53, 20, 20, 0.5411764706);
 }
 .landingPage .cardDiv .input input::placeholder {
   font-size: 14px;
-  color: rgba(61, 32, 32, 0.5411764706);
+  color: rgba(53, 20, 20, 0.5411764706);
 }
 .landingPage .cardDiv .input .icon {
   font-size: 1.3rem;

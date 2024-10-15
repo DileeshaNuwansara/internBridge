@@ -9,10 +9,10 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+
 
 public class PracticeSessionDTO {
-    private Long sessionId;
+    private Long practicesessionId;
     private String title;
     private String description;
     private LocalDate startDate;

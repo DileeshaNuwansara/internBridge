@@ -7,6 +7,7 @@ import { MdBusiness } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { GoPaperAirplane } from 'react-icons/go'; 
 import logo from '../../assets/imgs/internbridge_logo.png';
+import axios from 'axios';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -15,19 +16,33 @@ const Register = () => {
         company: 'UOR',
         phone: '',
         password: '',
-        role: 'ROLE_ADMIN',
-        status: 'pending' 
+        role: '',
+        status: 'Pending' 
     });
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.id]: e.target.value,
-        });
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(formData);
+        try{
+            const response = await axios.post('http://localhost:8081/api/v1/user/register', formData);
+
+            if (response.status === 201){
+                
+                alert('Registration Successful');
+            }
+        } catch (error) {
+            console.error('Error during registration:', error.response.data);
+            alert('Error during registration: ' + error.response.data);
+        }
+        
         
     };
 
@@ -46,7 +61,7 @@ const Register = () => {
             
                 <Col lg={7} className="d-flex flex-column align-items-center">
                     <div className={styles.formDiv}>
-                        <h3>Let Register as an Admin</h3>
+                        <h4>Let Register Users</h4>
                     
 
                         <Form onSubmit={handleSubmit} className={styles.form}>
@@ -57,6 +72,7 @@ const Register = () => {
                                     <FaUserShield className={styles.inputIcon} />
                                         <Form.Control
                                             type="email"
+                                            name='email'
                                             placeholder="Enter your email"
                                             value={formData.email}
                                             onChange={handleChange}
@@ -72,6 +88,7 @@ const Register = () => {
                                         <FaUserShield className={styles.inputIcon} />
                                         <Form.Control
                                             type="text"
+                                            name="name"
                                             placeholder="Enter your full name"
                                             value={formData.name}
                                             onChange={handleChange}
@@ -87,6 +104,7 @@ const Register = () => {
                                         <MdBusiness className={styles.inputIcon} />
                                         <Form.Control
                                             type="text"
+                                            name="company"
                                             placeholder="Enter your company name"
                                             value={formData.company}
                                             onChange={handleChange}
@@ -101,7 +119,8 @@ const Register = () => {
                                     <div className={styles.inputGroup}>
                                     <BsFillTelephoneFill className={styles.inputIcon} />
                                         <Form.Control
-                                            type="tel"
+                                            type="text"
+                                            name="phone"
                                             placeholder="Enter your phone number"
                                             value={formData.phone}
                                             onChange={handleChange}
@@ -117,6 +136,7 @@ const Register = () => {
                                         <BsShieldLockFill className={styles.inputIcon} />
                                         <Form.Control
                                             type="password"
+                                            name="password"
                                             placeholder="Create a password"
                                             value={formData.password}
                                             onChange={handleChange}
@@ -125,8 +145,42 @@ const Register = () => {
                                     </div>
                                 </Form.Group>
 
-                                {/* Hidden Role */}
-                                <Form.Control type="hidden" id="role" value={formData.role} />
+                                {/* Role Dropdown */}
+                                    <Form.Group controlId="formRole">
+                                        <Form.Label>Role</Form.Label>
+                                        <Form.Control
+                                            as="select"
+                                            name="role"
+                                            value={formData.role}
+                                            onChange={handleChange}
+                                            required
+                                        >
+                                            
+                                            <option value="ROLE_ADMIN">Admin</option>
+                                            <option value="ROLE_STUDENT">Student</option>
+                                            <option value="ROLE_COMPANYHR">Company HR</option>
+                                            <option value="ROLE_COORDINATOR">Coordinator</option>
+                                        </Form.Control>
+                                    </Form.Group>
+
+                                    {/* Status Dropdown */}
+                                        <Form.Group controlId="formStatus">
+                                            <Form.Label>Status</Form.Label>
+                                            <Form.Control
+                                                as="select"
+                                                name="status"
+                                                value={formData.status}
+                                                onChange={handleChange}
+                                                required
+                                            >
+                                               
+                                                <option value="registered">Registered</option>
+                                                <option value="applied">Applied</option>
+                                                <option value="hired">Hired</option>
+                                                <option value="rejected">Rejected</option>
+                                                <option value="interviewed">Interviewed</option>
+                                            </Form.Control>
+                                        </Form.Group>
 
                                 {/* Submit Button */}
                                 <Button type="submit" className={styles.cbtn}>

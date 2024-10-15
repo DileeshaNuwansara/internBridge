@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CiLogout } from "react-icons/ci";
-import { useState } from 'react';
+import { useState,useEffect} from 'react';
 import logo from '../../assets/imgs/internbridge_logo.png';
 import smallLogo from '../../assets/imgs/smallLogo.png';
 import styles from './AppSideBar.module.scss';  // Import the SCSS module
@@ -9,12 +9,49 @@ import { FaUsersLine } from "react-icons/fa6";
 import { FaUserPlus,FaUserCog,FaFile,FaCalendarAlt,FaCalendarCheck } from "react-icons/fa";
 
 
-const AppSideBar = ({ role = 'ROLE_ADMIN' }) => {
+const AppSideBar = () => {
+  const [role, setRole] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+   
+    const fetchRole = async () => {
+      try {
+        const storedRole = localStorage.getItem('role');
+        
+        if (storedRole) {
+          setRole(storedRole);
+        } else {
+          const backendRole = await fetchRoleFromBackend();
+
+          setRole(backendRole);
+        }
+      } catch (error) {
+        console.error('Error fetching role:', error);
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchRole();
+  }, []);
+
+
+
+  console.log("User role:", role);
+  const fetchRoleFromBackend = async () => {
+    
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('ROLE_STUDENT'); 
+      }, 1000); 
+    });
+  };
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
 
   const menuItems = {
     ROLE_ADMIN: [
@@ -57,6 +94,22 @@ const AppSideBar = ({ role = 'ROLE_ADMIN' }) => {
     ],
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+
+  if (!role) {
+    return <p>Error: No role found. Please sign in again.</p>;
+  }
+
+  const items = menuItems[role];
+
+  if (!items) {
+    return <p>No menu available for this role.</p>; // Handle the case where the role is undefined or has no items
+  }
+  
+
   const renderMenuItem = ({ label, icon, path, submenu }) => (
     <li key={path} className={styles.navItem}>
       {submenu ? (
@@ -83,8 +136,15 @@ const AppSideBar = ({ role = 'ROLE_ADMIN' }) => {
     </li>
   );
 
+
+
   return (
+
+  
+
     <nav className={`${styles.sidebar} ${sidebarOpen ? styles.open: styles.closed} nav flex-column`}>
+
+
       <div className={styles.logoContainer} onClick={toggleSidebar}>
         <img
            src={sidebarOpen ? logo : smallLogo}

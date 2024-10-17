@@ -1,10 +1,22 @@
 import React from 'react'
-
+import Layout from '../../Layout/Layout';
 const AdminAddAdmin = () => {
   return (
-    <div>
+    <>
+    <Layout>
+
+
       
-    </div>
+
+
+
+
+
+    </Layout>
+
+  
+      
+    </>
   )
 }
 

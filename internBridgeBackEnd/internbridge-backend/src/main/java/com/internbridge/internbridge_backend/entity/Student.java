@@ -6,6 +6,8 @@ import jakarta.validation.constraints.*;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,8 +31,11 @@ public class Student extends User {
     @Column(length=20)
     private String position;
 
-    @Lob
-    private byte[] cv;
+//    @Lob
+//    private byte[] cv;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Application> applications;
 
 
     protected void onCreate() {

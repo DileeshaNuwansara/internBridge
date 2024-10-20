@@ -57,4 +57,8 @@ public class Application {
 
     private LocalDate appliedDate;
 
+    @Lob
+    @Column(name = "cv", nullable = true)
+    private byte[] cv;
+
 }

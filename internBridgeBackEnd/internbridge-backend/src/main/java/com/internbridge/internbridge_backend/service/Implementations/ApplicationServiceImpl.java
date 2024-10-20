@@ -2,12 +2,15 @@ package com.internbridge.internbridge_backend.service.Implementations;
 
 import com.internbridge.internbridge_backend.dto.ApplicationDTO;
 import com.internbridge.internbridge_backend.entity.*;
+import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.*;
 import com.internbridge.internbridge_backend.service.ApplicationService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +26,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         @Autowired
         private UserRepository userRepository;
+
+        @Autowired
+        private StudentRepository studentRepository;
+
 
         @Autowired
         private InternshipRepository internshipRepository;
@@ -114,4 +121,28 @@ public class ApplicationServiceImpl implements ApplicationService {
         public void deleteApplication(Long applicationId) {
             applicationRepository.deleteById(applicationId);
         }
+
+    @Override
+    public ApplicationDTO uploadCv(Long studentId, MultipartFile file) throws IOException {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+
+        Application application = new Application();
+        application.setStudent(student);
+        application.setCv(file.getBytes());
+
+        applicationRepository.save(application);
+
+        // Use ModelMapper to convert Application to ApplicationDTO
+        return modelMapper.map(application, ApplicationDTO.class);
     }
+
+    @Override
+    public byte[] generateCv(Long studentId) {
+//        String cvContent = "Generated CV for student with ID: " + studentId;
+//        return cvContent.getBytes();
+
+        return new byte[0];
+    }
+
+}

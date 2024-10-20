@@ -4,10 +4,14 @@ package com.internbridge.internbridge_backend.controller;
 import com.internbridge.internbridge_backend.dto.ApplicationDTO;
 import com.internbridge.internbridge_backend.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -61,5 +65,25 @@ public class ApplicationController {
     public ResponseEntity<Void> deleteApplication(@PathVariable Long applicationId) {
         applicationService.deleteApplication(applicationId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("cv/upload")
+    public ResponseEntity<String> uploadCv(@RequestParam("studentId") Long studentId,
+                                           @RequestParam("file") MultipartFile file) {
+        try {
+            applicationService.uploadCv(studentId, file);
+            return ResponseEntity.ok("CV uploaded successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error uploading CV.");
+        }
+    }
+
+    @GetMapping("cv/generate")
+    public ResponseEntity<byte[]> generateCv(@RequestParam("studentId") Long studentId) {
+        byte[] generatedCv = applicationService.generateCv(studentId);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"cv.pdf\"")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(generatedCv);
     }
 }

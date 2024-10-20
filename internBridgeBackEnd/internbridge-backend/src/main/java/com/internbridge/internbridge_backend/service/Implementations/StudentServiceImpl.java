@@ -17,8 +17,14 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+
+    private final ModelMapper modelMapper;
+
     @Autowired
-    private ModelMapper modelMapper;
+    public StudentServiceImpl(StudentRepository studentRepository, ModelMapper modelMapper) {
+        this.studentRepository = studentRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public StudentDTO getStudentProfileByUserId(Long userId) {
@@ -32,10 +38,10 @@ public class StudentServiceImpl implements StudentService {
     public StudentDTO updateStudentProfileByUserId(Long userId, StudentDTO studentDTO) {
         Student student = studentRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
-
-        if (studentDTO.getCv() != null) {
-            student.setCv(studentDTO.getCv());
-        }
+//
+//        if (studentDTO.getCv() != null) {
+//            student.setCv(studentDTO.getCv());
+//        }
 
 
         modelMapper.map(studentDTO, student);

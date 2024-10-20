@@ -18,6 +18,8 @@ public interface UserService {
     StudentDTO createStudent(StudentDTO studentDTO);
     List<StudentDTO> getAllStudents();
 
+    List<UserDTO> getUsersByRole(String role);
+
     //ResponseEntity<Object> createAuthenticationToken(AuthenticationRequest authenticationRequest) throws Exception;
 
 }

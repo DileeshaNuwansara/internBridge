@@ -62,7 +62,7 @@ public class PracticeSessionServiceImpl implements PracticeSessionService {
 
     @Override
     public void deletePracticeSession(Long sessionId, User user) {
-        // Only allow users with the "companyHR" role to delete a practice session
+
         if (!user.getRole().equals("companyHR")) {
             throw new RuntimeException("Unauthorized: Only company HR can delete practice sessions");
         }

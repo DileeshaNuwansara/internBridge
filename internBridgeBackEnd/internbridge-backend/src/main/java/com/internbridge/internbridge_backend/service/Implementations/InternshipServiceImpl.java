@@ -51,7 +51,7 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Override
     public List<InternshipDTO> getAllInternships() {
-        List<Internship> internships = internshipRepository.findAll();
+        List<Internship> internships = internshipRepository.findAllInternshipsSortedByDate();
 
         // Map List<Internship> to List<InternshipDTO>
         return internships.stream()

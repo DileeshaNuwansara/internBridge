@@ -153,6 +153,14 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<UserDTO> getUsersByRole(String role) {
+        List<User> users = userRepository.findByRole(role);
+        return users.stream()
+                .map(user -> modelMapper.map(user, UserDTO.class))
+                .collect(Collectors.toList());
+    }
+
 
 //    public boolean UserExist(String username) {
 //        return this.userRepository.findByUsername(username).isPresent();

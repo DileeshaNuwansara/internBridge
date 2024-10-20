@@ -59,8 +59,41 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/deleteUser/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") long userId) {
+    // Get all Admins
+    @GetMapping("/getAdmins")
+    public ResponseEntity<List<UserDTO>> getAdmins() {
+        List<UserDTO> admins = userService.getUsersByRole("ROLE_ADMIN");
+        return ResponseEntity.ok(admins);
+    }
+
+    // Get all Students
+    @GetMapping("/getStudents")
+    public ResponseEntity<List<UserDTO>> getStudents() {
+        List<UserDTO> students = userService.getUsersByRole("ROLE_STUDENT");
+        return ResponseEntity.ok(students);
+    }
+
+    // Get all Coordinators
+    @GetMapping("/getCoordinators")
+    public ResponseEntity<List<UserDTO>> getCoordinators() {
+        List<UserDTO> coordinators = userService.getUsersByRole("ROLE_COORDINATOR");
+        return ResponseEntity.ok(coordinators);
+    }
+
+    // Get all Company HRs
+    @GetMapping("/getCompanyHRs")
+    public ResponseEntity<List<UserDTO>> getCompanyHRs() {
+        List<UserDTO> hrUsers = userService.getUsersByRole("ROLE_COMPANYHR");
+        return ResponseEntity.ok(hrUsers);
+    }
+
+
+
+
+
+
+    @DeleteMapping("/deleteUser/{userId}")
+    public ResponseEntity<?> deleteUser(@PathVariable("userId") long userId) {
         try {
             userService.deleteUser(userId);
             return ResponseEntity.ok("User deleted successfully.");

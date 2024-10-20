@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import ManageCv from '../../components/ManageCv/ManageCv';
 import UploadCv from '../../components/ManageCv/UploadCv';
 import UploadGeneratedCv from '../../components/ManageCv/UploadGeneratedCv';
-
-const ManageCvPage = () => {
+import Layout from  '../../Layout/Layout';
+const ManageCvPage = ({ role }) => {
   const [activeComponent, setActiveComponent] = useState('manage'); // State to toggle between pages
 
   const renderComponent = () => {
+
+
     switch (activeComponent) {
       case 'upload':
         return <UploadCv />;
@@ -17,7 +19,18 @@ const ManageCvPage = () => {
     }
   };
 
-  return <div>{renderComponent()}</div>;
+  return (
+
+    <Layout role={role}>
+
+      <div>{renderComponent()}</div>;
+
+    </Layout>
+  );
+  
+  
+  
+ 
 };
 
 export default ManageCvPage;

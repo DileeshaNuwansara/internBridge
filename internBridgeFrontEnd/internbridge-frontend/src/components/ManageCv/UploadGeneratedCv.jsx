@@ -4,9 +4,11 @@ import axios from 'axios';
 const UploadGeneratedCv = () => {
   const [message, setMessage] = useState('');
 
+  const studentId = localStorage.getItem('userId');
+
   const handleGenerateCv = async () => {
     try {
-      const response = await axios.get('/api/cv/generate', {
+      const response = await axios.get(`/api/v1/cv/generate?studentId=${studentId}`, {
         responseType: 'blob', // Expecting a PDF file in the response
       });
 

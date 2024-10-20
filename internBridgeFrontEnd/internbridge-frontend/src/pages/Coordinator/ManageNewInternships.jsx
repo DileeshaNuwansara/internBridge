@@ -8,4 +8,4 @@ const ManageNewInternships = () => {
   )
 }
 
-export default ManageNewInternships
+export default ManageNewInternships;

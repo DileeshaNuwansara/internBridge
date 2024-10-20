@@ -5,6 +5,8 @@ const UploadCv = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
 
+  const studentId = localStorage.getItem('userId');
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -18,9 +20,10 @@ const UploadCv = () => {
 
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('studentId', studentId);
 
     try {
-        const response = await axios.post('/api/cv/upload', formData, {
+        const response = await axios.post('/api/v1/cv/upload', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       setMessage('File uploaded successfully.');

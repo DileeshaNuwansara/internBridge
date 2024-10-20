@@ -16,7 +16,7 @@ const StudentNewInternships = () => {
     
     const fetchInternships = async () => {
       try {
-        const response = await axios.get('/api/v1/internships/all');
+        const response = await axios.get('http://localhost:8081/api/v1/internships/all');
         const sortedInternships = response.data.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
         setInternships(sortedInternships);
       } catch (error) {

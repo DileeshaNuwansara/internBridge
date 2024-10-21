@@ -17,7 +17,7 @@ const ManageApplications = () => {
 
   const fetchApplications = async () => {
     try {
-      const response = await axios.get('http://localhost:8081/api/v1/applications');
+      const response = await axios.get(`http://localhost:8081/api/v1/applications`);
       setApplications(response.data);
     } catch (error) {
       console.error('Error fetching applications:', error);
@@ -27,7 +27,7 @@ const ManageApplications = () => {
   const handleDelete = async (applicationId) => {
     if (window.confirm('Are you sure you want to delete this application?')) {
       try {
-        await axios.delete('http://localhost:8081/api/v1/applications/${applicationId}');
+        await axios.delete(`http://localhost:8081/api/v1/applications/${applicationId}`);
         fetchApplications();
       } catch (error) {
         console.error('Error deleting application:', error);
@@ -45,7 +45,7 @@ const ManageApplications = () => {
     const updatedApplication = { ...selectedApplication, status };
 
     try {
-      await axios.put('http://localhost:8081/api/v1/applications/${selectedApplication.applicationId}/status', updatedApplication);
+      await axios.put(`http://localhost:8081/api/v1/applications/${selectedApplication.applicationId}/status`, updatedApplication);
       setShowUpdateModal(false);
       fetchApplications();
     } catch (error) {
@@ -56,27 +56,23 @@ const ManageApplications = () => {
   const handleViewCV = async (applicationId) => {
     try {
       const response = await axios({
-        url: 'http://localhost:8081/api/v1/applications/${applicationId}/cv', 
+        url: `http://localhost:8081/api/v1/applications/${applicationId}/cv`, 
         method: 'GET',
-        responseType: 'blob', 
+        responseType: 'blob',
       });
-
-      
+  
       const fileURL = window.URL.createObjectURL(new Blob([response.data]));
       const fileLink = document.createElement('a');
-      
-      
       fileLink.href = fileURL;
-      fileLink.setAttribute('download', CV_${applicationId}.pdf); 
+      fileLink.setAttribute('download', `CV_${applicationId}.pdf`); 
       document.body.appendChild(fileLink);
       fileLink.click();
       
-      
-
     } catch (error) {
       console.error('Error fetching CV:', error);
     }
   };
+  
 
   
   const indexOfLastApplication = currentPage * applicationsPerPage;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Pagination } from "react-bootstrap";
 import axios from "axios";
 import styles from "./CoordinatorManagePracticeSessions.module.scss";
-import session_image_url from '../../assets/imgs/cardimg.png';
+import session_image_url from '../src/assets/imgs/practiceSessionimg.png';
 
 
 const ManagePracticeSessions = () => {
@@ -12,7 +12,7 @@ const ManagePracticeSessions = () => {
 
   useEffect(() => {
     // Fetch practice sessions from backend
-    axios.get("'http://localhost:8081/api/v1/practice-sessions")
+    axios.get("http://localhost:8081/api/v1/practice-sessions")
       .then(response => {
         setPracticeSessions(response.data);
       })
@@ -28,7 +28,7 @@ const ManagePracticeSessions = () => {
 
   const handleDelete = (sessionId) => {
     // Logic for deleting a practice session
-    axios.delete('http://localhost:8081/api/v1/practice-sessions/${sessionId}')
+    axios.delete(`http://localhost:8081/api/v1/practice-sessions/${sessionId}`)
       .then(() => {
         setPracticeSessions(prevSessions => prevSessions.filter(session => session.id !== sessionId));
       })
@@ -49,15 +49,15 @@ const ManagePracticeSessions = () => {
         {displayedSessions.map(session => (
           <Col key={session.id} sm={12} md={6} lg={4}>
             <Card className={styles.sessionCard}>
-              <Card.Img variant="top" src="session_image_url" alt="Practice Session" />
+              <Card.Img variant="top" src={session_image_url} alt="Practice Session" />
               <Card.Body>
                 <Card.Title>{session.title}</Card.Title>
                 <Card.Text>
                   <strong>Status:</strong> {session.status}
                 </Card.Text>
                 <Card.Text>{session.description}</Card.Text>
-		<Card.Text>{session.startDate}</Card.Text>
-		<Card.Text>{session.startTime}</Card.Text>
+		            <Card.Text>{session.startDate}</Card.Text>
+		            <Card.Text>{session.startTime}</Card.Text>
                 <Button variant="primary" onClick={() => handleUpdate(session.id)}>
                   Update
                 </Button>

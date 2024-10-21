@@ -1,8 +1,8 @@
 import StudentDashboard from '../pages/Dashboard/StudentDashboard';
-import ManagePracticeSessions from '../pages/Coordinator/ManagePracticeSessions';
+import StudentPracticeSessions from '../pages/Student/StudentPracticeSessions';
 import ManageCvPage from '../pages/Student/ManageCvPage';
-import ManageNewInternships from '../pages/Coordinator/ManageNewInternships';
-import ManageInterviews from '../pages/Coordinator/ManageInterviews';
+import StudentNewInternships from '../pages/Student/StudentNewInternships';
+import StudentInterviews from '../pages/Student/StudentInterviews';
 import ProfileSettings from '../pages/Student/StudentProfileSettings';
 
 const STUDENTRoutes = [
@@ -12,9 +12,9 @@ const STUDENTRoutes = [
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/manage-practice-sessions",
-    element: <ManagePracticeSessions />,
-    roles: ["ROLE_STUDENT","ROLE_COORDINATOR"], 
+    path: "/student/student-practice-sessions",
+    element: <StudentPracticeSessions />,
+    roles: ["ROLE_STUDENT"], 
   },
   {
     path: "/student/manage-cv",
@@ -22,14 +22,14 @@ const STUDENTRoutes = [
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/manage-new-internships",
-    element: <ManageNewInternships />,
-    roles: ["ROLE_STUDENT","ROLE_COORDINATOR"], 
+    path: "/student/student-new-internships",
+    element: <StudentNewInternships />,
+    roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/manage-interviews",
-    element: <ManageInterviews />,
-    roles: ["ROLE_STUDENT","ROLE_COORDINATOR"], 
+    path: "/student/student-interviews",
+    element: <StudentInterviews />,
+    roles: ["ROLE_STUDENT"], 
   },
   {
     path: "/student/profile-settings",

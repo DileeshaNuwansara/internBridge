@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Container, Row, Col, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import styles from './InterviewList.module.scss';  
-
+import Layout from '../../Layout/Layout';
 const StudentInterviews = ({ studentId }) => {
   const [interviews, setInterviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,7 +10,7 @@ const StudentInterviews = ({ studentId }) => {
 
   useEffect(() => {
     // Fetch interviews by student ID
-    axios.get(/api/v1/interviews/getInterviewById/${studentId})
+    axios.get(`http://localhost:8081/api/v1/interviews/getInterviewById/${studentId}`)
       .then(response => {
         setInterviews(response.data);
       })
@@ -29,13 +29,14 @@ const StudentInterviews = ({ studentId }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    <Layout>
     <Container className={styles.interviewListContainer}>
       <h2 className={styles.title}>Your Interviews</h2>
       <Row>
         {currentInterviews.map(interview => (
           <Col key={interview.interviewId} md={12} lg={6} className="mb-4">
             <Card className={styles.interviewCard}>
-              <Card.Img variant="top" src={data:image/png;base64,${interview.companyLogo}} className={styles.interviewImage} />
+            <Card.Img variant="top" src="./assets/imgs/interviewsimg.png" alt="Interviews " />
               <Card.Body>
                 <Card.Title>{interview.title}</Card.Title>
                 <Card.Text>
@@ -65,6 +66,7 @@ const StudentInterviews = ({ studentId }) => {
         ))}
       </Pagination>
     </Container>
+    </Layout>
   );
 };
 

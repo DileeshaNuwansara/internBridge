@@ -70,9 +70,9 @@ const AppSideBar = () => {
     ],
     ROLE_STUDENT: [
       { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/student/dashboard' },
-      { label: 'Internships', icon: <FaFile size={20}/>, path: '/student/manage-new-internships' },
-      { label: 'Interviews', icon: <FaCalendarAlt size={20}/>, path: '/student/manage-interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20} />, path: '/student/manage-practice-sessions' },
+      { label: 'Internships', icon: <FaFile size={20}/>, path: '/student/student-new-internships' },
+      { label: 'Interviews', icon: <FaCalendarAlt size={20}/>, path: '/student/student-interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20} />, path: '/student/student-practice-sessions' },
       { label: 'Profile', icon: < FaUserPlus size={20}/>, path: '/student/profile-settings' },
     ],
     ROLE_COORDINATOR: [

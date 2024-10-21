@@ -37,7 +37,7 @@ const StudentPracticeSessionPage = () => {
         {currentSessions.map((session) => (
           <Col key={session.id} md={6} lg={4} className="mb-4">
             <Card className={styles.practiceCard}>
-              <Card.Img variant="top" src="/images/practice-session.jpg" alt="Practice Session" />
+              <Card.Img variant="top" src="./assets/imgs/practiceSession.png" alt="Practice Session" />
               <Card.Body>
                 <Card.Title>{session.title}</Card.Title>
                 <Card.Text>

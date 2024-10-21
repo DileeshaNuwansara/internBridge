@@ -26,7 +26,7 @@ const ManageInterviews = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this interview?')) {
       try {
-        await axios.delete('http://localhost:8081/api/v1/interviews/delete/${id}');
+        await axios.delete(`http://localhost:8081/api/v1/interviews/delete/${id}`);
         fetchInterviews(); 
       } catch (error) {
         console.error('Error deleting interview:', error);
@@ -41,7 +41,7 @@ const ManageInterviews = () => {
 
   const handleUpdateSubmit = async () => {
     try {
-      await axios.put('http://localhost:8081/api/v1/interviews/update/${selectedInterview.id}', selectedInterview);
+      await axios.put(`http://localhost:8081/api/v1/interviews/update/${selectedInterview.id}`, selectedInterview);
       setShowUpdateModal(false);
       fetchInterviews(); 
     } catch (error) {

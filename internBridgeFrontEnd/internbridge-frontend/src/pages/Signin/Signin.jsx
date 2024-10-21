@@ -116,7 +116,7 @@ const Signin = () => {
                     </button>
 
                     <span className={styles.forgotPassword}>
-                        Forgot Your Password? <a href="/">Click here</a>
+                        Forgot Your Password? <a href="/logout">Click here</a>
                     </span>
                 </form>
           </div>

@@ -5,7 +5,6 @@ import Layout from '../../Layout/Layout';
 
 import styles from './CoordinatorManageInternships.module.scss';
 
-
 const ManageNewInternships = () => {
   const [internships, setInternships] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +26,7 @@ const ManageNewInternships = () => {
 
   const handleDelete = async (internshipId) => {
     try {
-      await axios.delete('http://localhost:8081/api/v1/internships/delete/${internshipId}');
+      await axios.delete(`http://localhost:8081/api/v1/internships/delete/${internshipId}`);
       setInternships(internships.filter((internship) => internship.internshipId !== internshipId));
     } catch (error) {
       console.error('Error deleting internship:', error);
@@ -41,34 +40,32 @@ const ManageNewInternships = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-	<Layout>
-    <div className={styles.internshipContainer}>
-      {currentInternships.map((internship) => (
-        <Card className={styles.internshipCard} key={internship.internshipId}>
-          <Card.Img variant="top" src={data:image/jpeg;base64,${internship.imageData}} />
-          <Card.Body>
-            <Card.Title>{internship.title}</Card.Title>
-            <Card.Text>{internship.description}</Card.Text>
-            <Card.Text>{internship.company}</Card.Text>
-	     <Card.Text>{internship.position}</Card.Text>
-
-
-	    <Card.Text>{internship.availablePositions}</Card.Text>
-            <Button variant="success" className={styles.acceptBtn}>Accept</Button>
-            <Button variant="danger" onClick={() => handleDelete(internship.internshipId)}>Delete</Button>
-          </Card.Body>
-        </Card>
-      ))}
-
-      <Pagination className={styles.pagination}>
-        {Array.from({ length: Math.ceil(internships.length / internshipsPerPage) }, (_, i) => (
-          <Pagination.Item key={i + 1} active={i + 1 === currentPage} onClick={() => paginate(i + 1)}>
-            {i + 1}
-          </Pagination.Item>
+    <Layout>
+      <div className={styles.internshipContainer}>
+        {currentInternships.map((internship) => (
+          <Card className={styles.internshipCard} key={internship.internshipId}>
+            <Card.Img variant="top" src={`data:image/jpeg;base64,${internship.imageData}`} />
+            <Card.Body>
+              <Card.Title>{internship.title}</Card.Title>
+              <Card.Text>{internship.description}</Card.Text>
+              <Card.Text>{internship.company}</Card.Text>
+              <Card.Text>{internship.position}</Card.Text>
+              <Card.Text>{internship.availablePositions}</Card.Text>
+              <Button variant="success" className={styles.acceptBtn}>Accept</Button>
+              <Button variant="danger" onClick={() => handleDelete(internship.internshipId)}>Delete</Button>
+            </Card.Body>
+          </Card>
         ))}
-      </Pagination>
-    </div>
-   </Layout>
+
+        <Pagination className={styles.pagination}>
+          {Array.from({ length: Math.ceil(internships.length / internshipsPerPage) }, (_, i) => (
+            <Pagination.Item key={i + 1} active={i + 1 === currentPage} onClick={() => paginate(i + 1)}>
+              {i + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      </div>
+    </Layout>
   );
 };
 

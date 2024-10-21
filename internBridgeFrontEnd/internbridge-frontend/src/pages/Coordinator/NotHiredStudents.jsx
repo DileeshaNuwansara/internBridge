@@ -24,7 +24,7 @@ const NotHiredStudents = () => {
 
   const fetchInterviews = async (studentId) => {
     try {
-      const response = await axios.get('http://localhost:8081/api/interviews/${studentId}');
+      const response = await axios.get(`http://localhost:8081/api/interviews/${studentId}`);
       setInterviews(response.data);
     } catch (error) {
       console.error("Error fetching interviews:", error);
@@ -78,7 +78,7 @@ const NotHiredStudents = () => {
             <p><strong>Phone:</strong> {selectedStudent.phone}</p>
             <hr />
             <h5>CV</h5>
-            <p>
+            {/* <p>
               {selectedStudent.cv ? (
                 <a href={selectedStudent.cv} target="_blank" rel="noopener noreferrer"> // cv liknk ek danna.
                   View CV
@@ -86,7 +86,7 @@ const NotHiredStudents = () => {
               ) : (
                 "CV not available"
               )}
-            </p>
+            </p> */}
             <hr />
             <h5>Interview Details</h5>
             {interviews.length > 0 ? (

@@ -19,7 +19,7 @@ const StudentProfileSettings = ({ role }) => {
     <Layout role={role}>
       <h1 className={styles.title}>Student Profile Settings</h1>
 
-      {/* Bootstrap card for better layout */}
+      
       <Row className="justify-content-center mt-4">
         <Col xs={12} sm={8} md={6}>
           <Card className={styles.profileCard}>
@@ -27,9 +27,9 @@ const StudentProfileSettings = ({ role }) => {
               <Card.Title>Your {role} Profile Settings</Card.Title>
               <Card.Text>Click the button below to view and edit your profile settings.</Card.Text>
 
-              {/* Button inside the card */}
+              
               <Button
-                // variant="primary"
+                
                 className={`d-flex align-items-center justify-content-center ${styles.profileButton}`}
                 onClick={handleOpenProfile}
               >
@@ -61,7 +61,7 @@ const StudentProfileSettings = ({ role }) => {
         </Col>
       </Row>
 
-      {/* Profile Modal */}
+     
       {showProfile && (
         <Profile
           role={role}

@@ -6,6 +6,7 @@ import { MdDarkMode,MdOutlineDarkMode } from "react-icons/md";
 import { MdNotificationAdd } from "react-icons/md";
 
 import img from '../../assets/imgs/internbridge_logo.png'
+
 const AppNavBar = ( ) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(false);
@@ -67,7 +68,7 @@ const AppNavBar = ( ) => {
               <>
               <Nav.Link as={Link} to="/student/profile-settings">Profile</Nav.Link>
               <Nav.Link as={Link} to="/student/manage-cv">Students' CVs</Nav.Link>
-              <Nav.Link as={Link} to="/student/manage-new-internships">Internships</Nav.Link>
+              <Nav.Link as={Link} to="/student/student-new-internships">Internships</Nav.Link>
                 
               </>
             )}

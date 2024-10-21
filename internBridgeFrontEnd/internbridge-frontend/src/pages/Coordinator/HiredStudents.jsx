@@ -15,7 +15,7 @@ const HiredStudents = () => {
 
   const fetchHiredStudents = async () => {
     try {
-      const response = await axios.get("/api/students/hired"); // API for hired students
+      const response = await axios.get("/api/students/hired"); 
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching hired students:", error);
@@ -24,12 +24,13 @@ const HiredStudents = () => {
 
   const fetchInterviews = async (studentId) => {
     try {
-      const response = await axios.get('http://localhost:8081/api/interviews/${studentId}');
+      const response = await axios.get(`http://localhost:8081/api/interviews/${studentId}`);
       setInterviews(response.data);
     } catch (error) {
       console.error("Error fetching interviews:", error);
     }
   };
+  
 
   const handleShowModal = (student) => {
     setSelectedStudent(student);
@@ -78,7 +79,7 @@ const HiredStudents = () => {
             <p><strong>Phone:</strong> {selectedStudent.phone}</p>
             <hr />
             <h5>CV</h5>
-            <p>
+            {/* <p>
               {selectedStudent.cv ? (
                 <a href={selectedStudent.cv} target="_blank" rel="noopener noreferrer">// cv link danna........
                   View CV
@@ -86,7 +87,7 @@ const HiredStudents = () => {
               ) : (
                 "CV not available"
               )}
-            </p>
+            </p> */}
             <hr />
             <h5>Interview Details</h5>
             {interviews.length > 0 ? (

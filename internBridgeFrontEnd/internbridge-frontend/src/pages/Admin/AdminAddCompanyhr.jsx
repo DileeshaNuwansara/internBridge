@@ -5,100 +5,98 @@ import { useHistory } from 'react-router-dom';
 import Layout from '../../Layout/Layout';
 
 const AdminAddCompanyhr = () => {
-
   const [companyhr, setCompanyhr] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const history = useHistory(); 
+  const history = useHistory();
 
-  const userRole = localStorage.getItem("userRole");
-
-   useEffect(() => {
+  // Fetch Company HR data
+  useEffect(() => {
     const fetchCompanyhr = async () => {
-        try {
-            const response = await axios.get('http://localhost:8081/api/v1/user/getCompanyHRs');
-            setCompanyhr(response.data);
-        } catch (err) {
-            setError('Error fetching Companyhr.');
-        } finally {
-            setLoading(false);
-        }
+      try {
+        const response = await axios.get('http://localhost:8081/api/v1/user/getCompanyHRs');
+        setCompanyhr(response.data);
+      } catch (err) {
+        setError('Error fetching Company HR.');
+      } finally {
+        setLoading(false);
+      }
     };
     fetchCompanyhr();
-}, []);
+  }, []);
 
-// Handle delete function
-const deleteCompanyhr = async (userId) => {
+  // Handle delete function
+  const deleteCompanyhr = async (userId) => {
     try {
-        await axios.delete('http://localhost:8081/api/v1/user/deleteUser/${userId}');
-        setCompanyhr(Companyhr.filter(Companyhr => Companyhr.userId !== userId));
+      await axios.delete(`http://localhost:8081/api/v1/user/deleteUser/${userId}`);
+      setCompanyhr(companyhr.filter(hr => hr.userId !== userId));
     } catch (err) {
-        setError('Error deleting Companyhr.');
+      setError('Error deleting Company HR.');
     }
-};
+  };
 
-// Redirect to register page
-const handleAddUser = () => {
+  // Redirect to register page
+  const handleAddUser = () => {
     history.push('/register');
-};
+  };
 
-return (
-  <>
-  <Layout>
-    <Container fluid>
-        <Row className="my-3">
+  return (
+    <>
+      <Layout>
+        <Container fluid>
+          <Row className="my-3">
             <Col className="d-flex justify-content-start">
-                <Button variant="primary" onClick={handleAddUser}>Add Company HR</Button>
+              <Button variant="primary" onClick={handleAddUser}>Add Company HR</Button>
             </Col>
-        </Row>
-        {loading ? (
+          </Row>
+          {loading ? (
             <div className="d-flex justify-content-center">
-                <Spinner animation="border" />
+              <Spinner animation="border" />
             </div>
-        ) : error ? (
+          ) : error ? (
             <Alert variant="danger">{error}</Alert>
-        ) : (
+          ) : (
             <Table striped bordered hover responsive>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-			    <th>Company</th>
-                            <th>Phone</th>
-			     <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Companyhr.length === 0 ? (
-                            <tr>
-                                <td colSpan="5" className="text-center">No Company HR found.</td>
-                            </tr>
-                        ) : (
-                            Companyhr.map(admin => (
-                                <tr key={Companyhr.userId}>
-                                    <td>{Companyhr.userId}</td>
-                                    <td>{Companyhr.name}</td>
-                                    <td>{Companyhr.email}</td>
-				                            <td>{Companyhr.company}</td>
-                                    <td>{Companyhr.phone}</td>
-                                    <td>{Companyhr.status}</td>
-                                    <td>
-
-                                    <Button variant="danger" onClick={() => deleteCompanyhr(Companyhr.userId)}>Delete</Button>
-                                    </td>
-                                
-                            </tr>
-                        ))
-                    )}
-                </tbody>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Company</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {companyhr.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" className="text-center">No Company HR found.</td>
+                  </tr>
+                ) : (
+                  companyhr.map(hr => (
+                    <tr key={hr.userId}>
+                      <td>{hr.userId}</td>
+                      <td>{hr.name}</td>
+                      <td>{hr.email}</td>
+                      <td>{hr.company}</td>
+                      <td>{hr.phone}</td>
+                      <td>{hr.status}</td>
+                      <td>
+                        <Button variant="danger" onClick={() => deleteCompanyhr(hr.userId)}>
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
             </Table>
-        )}
-    </Container>
-    </Layout>
+          )}
+        </Container>
+      </Layout>
     </>
-);
+  );
 };
 
 export default AdminAddCompanyhr;

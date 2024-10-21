@@ -30,12 +30,13 @@ const AdminAddAdmin = () => {
 // Handle delete function
 const deleteAdmin = async (userId) => {
     try {
-        await axios.delete('http://localhost:8081/api/v1/user/deleteUser/${userId}');
+        await axios.delete(`http://localhost:8081/api/v1/user/deleteUser/${userId}`);
         setAdmins(admins.filter(admin => admin.userId !== userId));
     } catch (err) {
         setError('Error deleting admin.');
     }
 };
+
 
 // Redirect to register page
 const handleAddUser = () => {
@@ -44,7 +45,7 @@ const handleAddUser = () => {
 
 return (
   <>
-  <Layout>
+  <Layout role = {userRole}>
     <Container fluid>
         <Row className="my-3">
             <Col className="d-flex justify-content-start">

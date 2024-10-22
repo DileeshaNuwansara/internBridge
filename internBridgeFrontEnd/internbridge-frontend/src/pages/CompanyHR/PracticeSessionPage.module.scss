@@ -1,0 +1,10 @@
+.sessionCard {
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .sessionCard:hover {
+    transform: translateY(-5px);
+  }
+  

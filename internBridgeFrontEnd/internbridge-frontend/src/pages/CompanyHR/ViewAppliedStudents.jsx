@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom"; // Import useParams to get internshipId
 import styles from "./ViewAppliedStudents.module.css"; // Unique styling
+import Layout from "../../Layout/Layout";
 
 const ViewAppliedStudents = () => {
   const { internshipId } = useParams(); // Get internshipId from URL
@@ -30,6 +31,7 @@ const ViewAppliedStudents = () => {
   };
 
   return (
+    <Layout>
     <Container className={styles.applicationContainer}>
       <h2>Applied Students</h2>
       <Row>
@@ -55,6 +57,7 @@ const ViewAppliedStudents = () => {
         ))}
       </Row>
     </Container>
+    </Layout>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import './CoordinatorManageApplications.scss'; // SCSS for styling
+import Layout from '../../Layout/Layout';
 
 const ManageStudentApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -58,28 +59,27 @@ const ManageStudentApplications = () => {
       const response = await axios({
         url: `/api/v1/applications/${applicationId}/cv`, // Backend URL to get the CV
         method: 'GET',
-        responseType: 'blob', // Important: tells axios to treat the response as a binary large object (blob)
+        responseType: 'blob', 
       });
 
       // Create a URL for the fetched PDF
       const fileURL = window.URL.createObjectURL(new Blob([response.data]));
       const fileLink = document.createElement('a');
       
-      // Optional: Trigger download of the PDF
+      
       fileLink.href = fileURL;
       fileLink.setAttribute('download', `CV_${applicationId}.pdf`); // Corrected filename
       document.body.appendChild(fileLink);
       fileLink.click();
       
-      // Optional: Open the PDF in a new tab
-      // window.open(fileURL); 
+   
 
     } catch (error) {
       console.error('Error fetching CV:', error);
     }
   };
 
-  // Pagination logic
+  
   const indexOfLastApplication = currentPage * applicationsPerPage;
   const indexOfFirstApplication = indexOfLastApplication - applicationsPerPage;
   const currentApplications = applications.slice(indexOfFirstApplication, indexOfLastApplication);
@@ -87,6 +87,7 @@ const ManageStudentApplications = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    <Layout>
     <div className="coordinator-applications-container">
       <h2>Manage Applications</h2>
       <Table responsive bordered hover className="applications-table">
@@ -120,7 +121,7 @@ const ManageStudentApplications = () => {
         </tbody>
       </Table>
 
-      {/* Pagination */}
+  
       <Pagination>
         {[...Array(Math.ceil(applications.length / applicationsPerPage)).keys()].map(number => (
           <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => paginate(number + 1)}>
@@ -129,7 +130,7 @@ const ManageStudentApplications = () => {
         ))}
       </Pagination>
 
-      {/* Modal for Updating Application Status */}
+      
       <Modal show={showUpdateModal} onHide={() => setShowUpdateModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Update Application Status</Modal.Title>
@@ -157,6 +158,7 @@ const ManageStudentApplications = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    </Layout>
   );
 };
 

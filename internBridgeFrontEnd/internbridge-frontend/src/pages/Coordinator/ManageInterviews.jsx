@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Modal, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import './CoordinatorInterviews.scss'; 
+import Layout from '../../Layout/Layout';
 
 const ManageInterviews = () => {
   const [interviews, setInterviews] = useState([]);
@@ -55,8 +56,9 @@ const ManageInterviews = () => {
   const currentInterviews = interviews.slice(indexOfFirstInterview, indexOfLastInterview);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  const userRole = localStorage.getItem('role');
   return (
+    <Layout role = {userRole} >
     <div className="interviews-container">
       {currentInterviews.map((interview) => (
         <Card className="interview-card" key={interview.id}>
@@ -131,6 +133,7 @@ const ManageInterviews = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    </Layout>
   );
 };
 

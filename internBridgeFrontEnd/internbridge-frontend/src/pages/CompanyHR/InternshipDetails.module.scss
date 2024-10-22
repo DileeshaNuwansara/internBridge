@@ -1,0 +1,30 @@
+.container {
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.createButton {
+    margin-bottom: 20px;
+}
+
+.internshipsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.internshipCard {
+    width: 350px; 
+    flex: 1;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.spinner {
+    display: block;
+    margin: auto;
+}
+

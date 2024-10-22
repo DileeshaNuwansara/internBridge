@@ -38,10 +38,11 @@ const ManageNewInternships = () => {
   const currentInternships = internships.slice(indexOfFirstInternship, indexOfLastInternship);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const userRole = localStorage.getItem('role');
 
   return (
-    <Layout>
-      <div className={styles.internshipContainer}>
+    <Layout role = {userRole} >
+      <div className={styles.internshipContainer} >
         {currentInternships.map((internship) => (
           <Card className={styles.internshipCard} key={internship.internshipId}>
             <Card.Img variant="top" src={`data:image/jpeg;base64,${internship.imageData}`} />

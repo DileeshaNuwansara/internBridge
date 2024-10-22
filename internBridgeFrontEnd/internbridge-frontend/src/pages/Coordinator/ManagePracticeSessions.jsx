@@ -3,6 +3,7 @@ import { Card, Button, Row, Col, Pagination } from "react-bootstrap";
 import axios from "axios";
 import styles from "./CoordinatorManagePracticeSessions.module.scss";
 import session_image_url from '../src/assets/imgs/practiceSessionimg.png';
+import Layout from "../../Layout/Layout";
 
 
 const ManagePracticeSessions = () => {
@@ -11,7 +12,7 @@ const ManagePracticeSessions = () => {
   const itemsPerPage = 5;
 
   useEffect(() => {
-    // Fetch practice sessions from backend
+    
     axios.get("http://localhost:8081/api/v1/practice-sessions")
       .then(response => {
         setPracticeSessions(response.data);
@@ -22,12 +23,12 @@ const ManagePracticeSessions = () => {
   }, []);
 
   const handleUpdate = (sessionId) => {
-    // Logic for updating a practice session
+    
     console.log("Update clicked for session:", sessionId);
   };
 
   const handleDelete = (sessionId) => {
-    // Logic for deleting a practice session
+    
     axios.delete(`http://localhost:8081/api/v1/practice-sessions/${sessionId}`)
       .then(() => {
         setPracticeSessions(prevSessions => prevSessions.filter(session => session.id !== sessionId));
@@ -43,6 +44,7 @@ const ManagePracticeSessions = () => {
   const displayedSessions = practiceSessions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
+    <Layout>
     <div className={styles.coordinatorManagePracticeSessions}>
       <h2>Manage Practice Sessions</h2>
       <Row>
@@ -78,6 +80,7 @@ const ManagePracticeSessions = () => {
         ))}
       </Pagination>
     </div>
+    </Layout>
   );
 };
 

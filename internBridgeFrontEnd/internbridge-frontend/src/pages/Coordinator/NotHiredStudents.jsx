@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Modal, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
-
+import Layout from "../../Layout/Layout";
 const NotHiredStudents = () => {
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [interviews, setInterviews] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch not hired students
+  
   useEffect(() => {
     fetchNotHiredStudents();
   }, []);
 
   const fetchNotHiredStudents = async () => {
     try {
-      const response = await axios.get("/api/students/nothired"); // API for not hired students
+      const response = await axios.get("/api/students/nothired"); 
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching not hired students:", error);
@@ -43,7 +43,10 @@ const NotHiredStudents = () => {
     setInterviews([]);
   };
 
+  const userRole = localStorage.getItem('role');
+
   return (
+    <Layout role = {userRole}>
     <Container className="mt-4">
       <Row>
         {students.map((student) => (
@@ -110,6 +113,7 @@ const NotHiredStudents = () => {
         </Modal>
       )}
     </Container>
+    </Layout>
   );
 };
 

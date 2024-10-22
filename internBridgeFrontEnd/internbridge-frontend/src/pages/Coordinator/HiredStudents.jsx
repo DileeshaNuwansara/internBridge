@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Modal, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import Layout from "../../Layout/Layout";
+
 
 const HiredStudents = () => {
   const [students, setStudents] = useState([]);
@@ -44,7 +46,10 @@ const HiredStudents = () => {
     setInterviews([]);
   };
 
+
+  const userRole = localStorage.getItem('role');
   return (
+    <Layout role = {userRole}>
     <Container className="mt-4">
       <Row>
         {students.map((student) => (
@@ -111,6 +116,7 @@ const HiredStudents = () => {
         </Modal>
       )}
     </Container>
+    </Layout>
   );
 };
 

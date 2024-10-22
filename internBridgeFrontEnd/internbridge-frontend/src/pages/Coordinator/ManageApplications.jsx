@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import './CoordinatorManageApplications.scss'; 
+import Layout from '../../Layout/Layout';
 
 const ManageApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -80,8 +81,10 @@ const ManageApplications = () => {
   const currentApplications = applications.slice(indexOfFirstApplication, indexOfLastApplication);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const userRole = localStorage.getItem('role');
 
   return (
+    <Layout role ={userRole}>
     <div className="coordinator-applications-container">
       <h2>Manage Applications</h2>
       <Table responsive bordered hover className="applications-table">
@@ -152,6 +155,7 @@ const ManageApplications = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    </Layout>
   );
 };
 

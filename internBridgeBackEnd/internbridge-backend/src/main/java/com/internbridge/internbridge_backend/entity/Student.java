@@ -31,6 +31,10 @@ public class Student extends User {
     @Column(length=20)
     private String position;
 
+    @ManyToOne
+    @JoinColumn(name = "company_hr_id", nullable = false)
+    private User companyHr;
+
 //    @Lob
 //    private byte[] cv;
 

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
@@ -41,6 +43,15 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/companyHr/{companyHrId}")
+    public ResponseEntity<List<StudentDTO>> getStudentsByCompanyHr(@PathVariable Long companyHrId) {
+        List<StudentDTO> students = studentService.getStudentsByCompanyHr(companyHrId);
+        return ResponseEntity.ok(students);
+    }
+
+
+
 
 
     @DeleteMapping("/remove/{userId}")

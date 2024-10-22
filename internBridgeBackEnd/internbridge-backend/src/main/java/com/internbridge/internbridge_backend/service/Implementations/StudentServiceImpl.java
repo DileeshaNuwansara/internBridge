@@ -2,6 +2,7 @@ package com.internbridge.internbridge_backend.service.Implementations;
 
 import com.internbridge.internbridge_backend.dto.StudentDTO;
 import com.internbridge.internbridge_backend.entity.Student;
+import com.internbridge.internbridge_backend.entity.User;
 import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.StudentRepository;
 import com.internbridge.internbridge_backend.service.StudentService;
@@ -9,6 +10,9 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -57,6 +61,15 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
 
         studentRepository.delete(student);
+    }
+
+    @Override
+    public List<StudentDTO> getStudentsByCompanyHr(Long companyHrId) {
+        User companyHr = new User();
+        companyHr.setUserId(companyHrId);
+
+        List<Student> students = studentRepository.findByCompanyHr(companyHr);
+        return students.stream().map(student -> modelMapper.map(student, StudentDTO.class)).collect(Collectors.toList());
     }
 }
 

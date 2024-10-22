@@ -8,6 +8,7 @@ public interface StudentService {
     StudentDTO getStudentProfileByUserId(Long userId);
     StudentDTO updateStudentProfileByUserId(Long userId, StudentDTO studentDTO);
     void deleteStudentByUserId(Long userId);
+    List<StudentDTO> getStudentsByCompanyHr(Long userId);
 
 
 }

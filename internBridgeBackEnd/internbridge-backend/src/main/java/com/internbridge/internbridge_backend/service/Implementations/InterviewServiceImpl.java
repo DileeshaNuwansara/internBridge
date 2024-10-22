@@ -33,7 +33,8 @@ public class InterviewServiceImpl implements InterviewService {
     public InterviewDTO createInterview(InterviewDTO interviewDTO)  {
         try {
             Interview interview = modelMapper.map(interviewDTO, Interview.class);
-            User student = new User();
+            User student = userRepository.findById(interviewDTO.getStudentId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
             student.setUserId(interviewDTO.getStudentId());
             interview.setStudent(student);
 

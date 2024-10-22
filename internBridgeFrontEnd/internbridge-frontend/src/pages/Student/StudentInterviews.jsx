@@ -9,7 +9,7 @@ const StudentInterviews = ({ studentId }) => {
   const [interviewsPerPage] = useState(5);
 
   useEffect(() => {
-    // Fetch interviews by student ID
+    
     axios.get(`http://localhost:8081/api/v1/interviews/getInterviewById/${studentId}`)
       .then(response => {
         setInterviews(response.data);

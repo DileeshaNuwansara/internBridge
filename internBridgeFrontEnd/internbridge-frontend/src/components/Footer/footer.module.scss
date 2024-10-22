@@ -1,13 +1,15 @@
 .footer {
+  top:auto;
   width: 100%;
   bottom:0;
+  margin: 2rem;
   position: relative;
   padding: 2rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto;
-  background-color: #1a1a2e;
+  background-color: #2e213d;
 
 
 .secContent {
@@ -102,7 +104,7 @@
   align-items: flex-start;
   overflow: hidden;
   .footerIntro {
-    //flex-basis: 50%;
+   
     
     justify-content: center;
     align-items: flex-start;
@@ -202,8 +204,9 @@
             justify-content: center;
       
             small {
-              font-size: 12px;
-              color: #ccc;
+              font-size: 10px;
+              color: #e2dfdf;
+              text-decoration: none;
             }
           }
 }

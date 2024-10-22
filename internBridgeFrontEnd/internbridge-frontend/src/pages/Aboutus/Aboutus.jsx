@@ -15,7 +15,7 @@ const Aboutus = () => {
          <NavBar/> 
         
       </section>
-      {/* Page Content */}
+     
       
       <div className={styles['aboutus-page']}>
       <header className={styles.header}>
@@ -75,7 +75,7 @@ const Aboutus = () => {
             alt="Third slide"
           />
           <Carousel.Caption>
-            <h3>Enhance student's employability.</h3>
+            <h3>Enhance student's employability.</h3><br/>
             <p>
             Enhance skills and mindful development with personalized career guidance.
             </p>
@@ -87,7 +87,7 @@ const Aboutus = () => {
         </Row>
         <Row>
         <Col  my={5} md={8}>
-            <h2  className={styles.sectiontitle}>Our InternBridge - Platform to offer an Internships</h2>
+            <h2  className={styles.sectiontitle}>Our InternBridge - Platform to offer an Internships</h2><br/>
             <p className={styles.sectiontext}>
               InternBridge is a platform developed to connect students of the University of Ruhuna with
               leading companies in the tech industry. It provides a gateway for students to gain practical
@@ -102,7 +102,7 @@ const Aboutus = () => {
             <Image src=".\assets\ruhuna_logo.png" fluid alt="University of Ruhuna" />
           </Col>
           <Col md={6}>
-            <h2 className={styles.sectiontitle}>Contact - University of Ruhuna</h2>
+            <h2 className={styles.sectiontitle}>Contact - University of Ruhuna</h2><br/>
             <p className={styles.sectiontext}>
               <strong>University of Ruhuna</strong><br />
               Matara, Sri Lanka<br />
@@ -116,7 +116,7 @@ const Aboutus = () => {
         {/* Section 3: Department Overview */}
         <Row className="mb-5">
           <Col md={12}>
-            <h2 className={styles.sectiontitle}>Department of Computer Science - University of Ruhuna</h2>
+            <h2 className={styles.sectiontitle}>Department of Computer Science - University of Ruhuna</h2><br/>
             <p className={styles.sectiontext}>
               The Department of Computer Science of the University of Ruhuna is the oldest and one of the most esteemed computer science departments in the Sri Lankan university system. Established in 1997, it offers undergraduate, postgraduate, and specialized training programs. The department also provides ICT consultancy services and software solutions, playing a vital role in both academia and the broader community.
             </p>
@@ -126,7 +126,7 @@ const Aboutus = () => {
         {/* Section 4: Software Engineering Opportunities */}
         <Row className="mb-5">
           <Col md={6}>
-            <h2 className={styles.sectiontitle}>Software Engineering & Job Opportunities</h2>
+            <h2 className={styles.sectiontitle}>Software Engineering & Job Opportunities</h2><br/>
             <p className={styles.sectiontext}>
               Software engineering offers extensive job opportunities for our interns. InternBridge enables students to connect with top-tier companies in search of innovative and hardworking individuals. Our students are well-prepared with the latest technical skills and real-world experience.
             </p>
@@ -142,7 +142,7 @@ const Aboutus = () => {
             <Image src="./assets/intern.jpg" fluid alt="Internship Benefits" />
           </Col>
           <Col md={6}>
-            <h2 className={styles.sectiontitle}>Why Companies Should Hire Our Interns</h2>
+            <h2 className={styles.sectiontitle}>Why Companies Should Hire Our Interns</h2><br/><br/>
             <p className={styles.sectiontext}>
               Our students possess excellent coding skills, problem-solving abilities, and practical experience. They can manage relationships with clients and contribute to projects from day one. Many internships turn into full-time positions, making InternBridge a valuable resource for companies seeking top talent.
             </p>
@@ -152,7 +152,7 @@ const Aboutus = () => {
         {/* Section 6: Meet Our Team */}
         <Row className="mb-5">
           <Col>
-            <h2 className={`${styles.sectiontitle} text-center`}>Meet Our Team</h2>
+            <h2 className={`${styles.sectiontitle} text-center`}>Meet Our Team</h2><br/>
             <p className="text-center">
               Behind every successful venture is a team of passionate individuals. Our Computer Science department at the University of Ruhuna thrives because of our dedicated faculty and staff. Get to know the faces behind InternBridge’s success.
             </p>
@@ -162,13 +162,13 @@ const Aboutus = () => {
         {/* Section 7: Vision & Mission */}
         <Row className="mb-5">
           <Col md={6}>
-            <h2 className={styles.sectiontitle}>Our Vision</h2>
+            <h2 className={styles.sectiontitle}>Our Vision</h2><br/><br/>
             <p className={styles.sectiontext}>
               InternBridge envisions a world where every student can achieve their dreams of education and employment. We aim to be the beacon of hope for students on their journey toward success in the tech industry.
             </p>
           </Col>
           <Col md={6}>
-            <h2 className={styles.sectiontitle}>Our Mission</h2>
+            <h2 className={styles.sectiontitle}>Our Mission</h2><br/><br/>
             <p className={styles.sectiontext}>
               Our mission is to provide comprehensive solutions for education, employment, and internship opportunities. We ensure that students not only succeed academically but also grow into valued professionals in the IT industry.
             </p>
@@ -178,7 +178,7 @@ const Aboutus = () => {
         {/* Section 8: FAQ Section */}
         <Row className="mb-5">
           <Col>
-            <h2 className={`${styles.sectiontitle} text-center`}>Frequently Asked Questions</h2>
+            <h2 className={`${styles.sectiontitle} text-center`}>Frequently Asked Questions</h2><br/>
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>What are the key benefits of University Education?</Accordion.Header>
@@ -206,8 +206,8 @@ const Aboutus = () => {
         <Row className="text-center">
           <Col>
             <Card className={`styles['call-to-action']} p-4`}>
-              <h3>Get Involved with InternBridge</h3>
-              <p>
+              <h3>Get Involved with InternBridge</h3><br/><br/>
+              <p><br/>
                 If you're a company looking for talented interns or a student interested in gaining hands-on experience, contact us today to start your journey with InternBridge!
               </p>
               <Button variant="primary" size="lg">Contact Us</Button>
@@ -218,8 +218,8 @@ const Aboutus = () => {
         {/* Section 10: Social Links */}
         <Row className="text-center mt-4">
           <Col>
-            <h4>Connect with Us</h4>
-            <p>Follow the Computer Science Department on:</p>
+            <h4>Connect with Us</h4><br/>
+            <p>Follow the Computer Science Department on:</p><br/><br/>
             <Button variant="outline-primary" className={`{styles.btn} m-2`}>LinkedIn</Button>
             <Button variant="outline-secondary" className={`{styles.btn} m-2`}>YouTube</Button>
             <Button variant="outline-primary" className={`{styles.btn} m-2`}>Facebook</Button>

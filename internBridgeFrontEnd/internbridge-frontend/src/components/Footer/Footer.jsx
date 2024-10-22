@@ -14,7 +14,7 @@ import smallLogo from '../../assets/imgs/smallLogo.png';
 
 const Footer = () => {
 
-  //scrool animation
+
   useEffect(()=>{
     AOS.init({duration:2000})
   },[])
@@ -149,7 +149,7 @@ const Footer = () => {
             <div className="col-12 col-md-6 text-md-right ">
               <ul className="list-inline d-flex my-3 mr-3 justify-content-end">
                 <li className="list-inline-item mr-4 mx-6">
-                  <Link to="/about-us" className="text-white">About Us</Link>
+                  <Link to="/about-us" className="text-white mr-5">About Us</Link>
                 </li>
                 <li className="list-inline-item mr-4 mx-8">
                   <Link to="/contactus" className="text-white mr-4">Contact Us</Link>

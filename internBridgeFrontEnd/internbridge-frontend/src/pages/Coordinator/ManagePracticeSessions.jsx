@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Pagination } from "react-bootstrap";
 import axios from "axios";
-import styles from "./CoordinatorManagePracticeSessions.module.scss";
-import session_image_url from '../src/assets/imgs/practiceSessionimg.png';
+import styles from "./CoordinatorManageInternships.module.scss";
+import sessionImg from '../../assets/imgs/practiceSessionimg.png';
 import Layout from "../../Layout/Layout";
 
 
@@ -51,7 +51,7 @@ const ManagePracticeSessions = () => {
         {displayedSessions.map(session => (
           <Col key={session.id} sm={12} md={6} lg={4}>
             <Card className={styles.sessionCard}>
-              <Card.Img variant="top" src={session_image_url} alt="Practice Session" />
+              <Card.Img variant="top" src={sessionImg} alt="Practice Session" />
               <Card.Body>
                 <Card.Title>{session.title}</Card.Title>
                 <Card.Text>

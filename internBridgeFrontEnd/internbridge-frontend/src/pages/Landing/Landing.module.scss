@@ -1,21 +1,18 @@
-/* Landing.module.scss */
+
 $max-video-width: 900px;
-$secondary-color: #1e272e; 
+$secondary-color: #253542; 
 $primary-color: #ebf525;
-$overlay-color: rgba(38, 43, 58, 0.4);
-$box-shadow: 0 8px 16px rgba(228, 149, 11, 0.522);
-$bg-overlay: rgba(121, 133, 164, 0.594);
+$overlay-color: rgba(30, 35, 52, 0.4);
+$box-shadow: 0 8px 16px rgba(232, 155, 22, 0.522);
+$bg-overlay: rgba(59, 69, 91, 0.594);
 $card-bg: rgba(139, 118, 182, 0.46);
 
 .landingPage {
-  
-  
-
   section .body {
     position: relative;
     font-family: 'Arial', sans-serif;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #bfa8a8;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -23,14 +20,13 @@ $card-bg: rgba(139, 118, 182, 0.46);
 
   video {
     position: absolute;
-    top: 90px;
+    top: 100px;
     left: 0; 
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
     filter: brightness(70%);
-
   }
 
   .overlay {
@@ -72,13 +68,12 @@ $card-bg: rgba(139, 118, 182, 0.46);
   }
 
   .cardDiv {
-
-    display: grid;
+   
+    align-self: center;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
     margin-top: 60rem;
     align-items: center;
-
     margin: 1rem;
     background: $bg-overlay;
     border-radius: 5px;
@@ -117,7 +112,6 @@ $card-bg: rgba(139, 118, 182, 0.46);
         &:hover {
           color: $secondary-color;
         }
-      
       }
     }
 
@@ -144,8 +138,8 @@ $card-bg: rgba(139, 118, 182, 0.46);
     input[type='range'] {
       width: 100%;
       background: #863939;
-
     }
+
     .btnicon {
       width: 30%;
       margin-top: 2rem;
@@ -159,193 +153,194 @@ $card-bg: rgba(139, 118, 182, 0.46);
       border-radius: 2rem;
       gap: 0.5rem;
       transition: background-color 0.2s ease-in-out;
-    
+
       &:hover {
         background-color: #f2870c;
         color: #ffffff;
       }
-    
+
       .icon {
         font-size: 18px;
       }
+    }
   }
 
 
-}
-
-
-
 @media (min-width: 1200px) {
+  section .body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
 
-  
+  .overlay {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background: $overlay-color;
+    mix-blend-mode: hard-light;
+  }
 
-    section .body {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      background-color: #f5f5f5;
+  video {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(60%);
+  }
+
+  .homeContent {
+    position: relative;
+    width: 60%;
+    top: 4px;
+    z-index: 2;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 4rem;
+    color: white;
+
+    .textDiv {
+      margin-top: 3rem;
+      margin-bottom: 5rem;
+
+      .smallText {
+        font-size: 1rem;
+        color: #fbae1f;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .homeTitle {
+        font-size: 3rem;
+        font-weight: 750;
+        margin: 1rem 0;
+        color: #8a0a0a;
+        letter-spacing: 1.5px;
+      }
+    }
+  }
+
+  .pointsContainer{
+    position: relative;
+    display: flex;
+    padding: 3rem 1.5rem;
+    margin: .5rem;
+    align-items: flex-start;
+    background: rgba(221, 225, 191, 0.6);
+    border-radius: 1px;
+
+    .point{
+      padding-right: 0.3rem;
+      color: #e84f13;
+    }
+  }
+
+  .cardDiv {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+    width: 550px;
+    margin: 1rem auto;
+    background: $bg-overlay;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: $box-shadow;
+
+    .input {
       display: flex;
       align-items: center;
-      justify-content: center; 
-      overflow: hidden;
-    }
-
-  
-    .overlay {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
-      background: $overlay-color;
-      mix-blend-mode: hard-light;
-      
-    }
-
-  
-    video {
-      position: absolute;
-      top:95px;
-      left: 0;
-      width: 100%;
-      height: 110%;
-      object-fit:fill; 
-      z-index: -1;
-      filter: brightness(80%);
-    }
-
-  
-  
-    .homeContent {
-      position: relative;
-      width: 60%;
-      top: 4px; 
-      z-index: 2;
+      background-color: rgba(183, 179, 204, 0.362);
       padding: 1rem;
-      text-align: center;
-      margin-top: 4rem; 
-      color: white;
+      border-radius: 20px;
+      border: 2px solid rgba(184, 51, 51, 0.335);
 
-      .textDiv {
-        margin-top: 3rem;
-        margin-bottom: 5rem;
+      input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 2px;
+        color: rgb(221, 237, 246);
+        font-size: 14px;
+        font-weight: 550;
 
-        .smallText {
-          font-size: 1rem;
-          color: #fbae1f;
-          font-weight: 600;
-          text-transform: uppercase;
-        }
-
-        .homeTitle {
-          font-size: 3rem;
-          font-weight: 750;
-          margin: 1rem 0;
-          color: #fff;
-          letter-spacing: 1.5px;
-        }
-      }
-    }
-
-    .cardDiv {
-      display: flex;
-      flex-direction:column;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1rem;
-      width: 600px;
-      margin: 1rem auto;
-      background: $bg-overlay;
-      border-radius: 5px;
-      padding: 1rem;
-      box-shadow: $box-shadow; 
-      
-      .input {
-        display: flex;
-        align-items: center;
-        background-color: rgba(183, 179, 204, 0.362);
-        padding: 1rem; 
-        border-radius: 20px;
-        border: 2px solid rgba(184, 51, 51, 0.335);
-
-        input {
-          flex: 1;
-          background: transparent;
-          border: none;
-          outline: none;
-          padding: 2px; 
-          color: rgb(221, 237, 246);
-          font-size: 14px; 
-          font-weight: 550;
-
-          &::placeholder {
-            font-size: 14px; 
-            color: #2a15158a;
-          }
-        }
-
-        .icon {
-          font-size: 14px; 
-          margin: 0 1rem;
-          color: $primary-color;
-          font-weight: 600;
-          transition: color 0.3s;
-
-          &:hover {
-            color: $secondary-color;
-          }
+        &::placeholder {
+          font-size: 14px;
+          color: #2a15158a;
         }
       }
 
-      label {
-        display: block;
-      color: #f2f754;
-        font-size: 15px;
-        font-weight: 700;
-      }
-
-      h3.total {
-        font-size: 3rem;
-      }
-
-      .companyInput,
-      .emailInput,
-      .positionInput {
-        display: flex;
-        flex-direction: column;
-      }
-
-
-      .input[type=range] {
-        background: #6c6969;
-      }
-
-      .btnicon {
-        width: 30%;
-        margin-top: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #ffffff;
+      .icon {
+        font-size: 14px;
+        margin: 0 1rem;
+        color: $primary-color;
         font-weight: 600;
-        background-color: #636313;
-        padding: 0.75rem 1.5rem;
-        border-radius: 2rem;
-        gap: 0.5rem;
-        transition: background-color 0.2s ease-in-out;
+        transition: color 0.3s;
+
         &:hover {
-          background-color: #f2870c;
-          color: #ffffff;
-        }
-        .icon {
-          font-size: 18px;
+          color: $secondary-color;
         }
       }
     }
 
-  }  
+    label {
+      display: block;
+      color: #f2f754;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    h3.total {
+      font-size: 3rem;
+    }
+
+    .companyInput,
+    .emailInput,
+    .positionInput {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input[type='range'] {
+      background: #6c6969;
+    }
+
+    .btnicon {
+      width: 40%;
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      font-weight: 600;
+      background-color: #636313;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      gap: 0.5rem;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: #f2870c;
+        color: #ffffff;
+      }
+
+      .icon {
+        font-size: 18px;
+      }
+    }
+  }
 }
-  
-    
 
-
-
+}

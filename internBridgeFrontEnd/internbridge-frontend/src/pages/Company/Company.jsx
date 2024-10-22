@@ -12,12 +12,13 @@ export default function Company() {
   
 
 
-
   return (
     <>
     <section>
       <NavBar/>
     </section>
+    <br/>
+    <br/><br/>
     <section id="supported-companies" class="py-5">
     <div class="container">
     <h2 class="text-center mb-4">Our Supported Companies</h2>

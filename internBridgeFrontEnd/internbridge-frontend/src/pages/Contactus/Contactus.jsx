@@ -16,19 +16,26 @@ export default function ContactUs() {
     <>
       <LandingPageNavbar />
 
+      <br/>
+
         <div className={styles.videoContainer}>
         <video className={styles.videoBackground} autoPlay muted loop>
           <source src={backgroundVideo} type="video/mp4" />
          </video>
 
+         <br/>
+
           <div className={styles.contentOverlay}>
           <Container fluid className="text-white py-5">
+          
             <Row className="justify-content-center">
+              <br/><br/>
               <Col lg={6} data-aos="fade-up">
-                <h2 className="text-center mb-4">Get In Touch</h2>
-                <p className="text-center mb-5">
+              <br/><br/>
+                <h2 className="text-center mb-2">Get In Touch With Us</h2><br/>
+                <h5 className="text-center mb-4">
                   We would welcome  you. Please fill out the form below and we’ll get back to you as soon as possible.
-                </p>
+                </h5>
 
                 <Form className={styles.contactContainer}>
                   <Form.Group className="mb-3" controlId="formName">
@@ -52,18 +59,18 @@ export default function ContactUs() {
                   </Form.Group>
 
                   <Button variant="primary" type="submit" className={`${styles.contactFormButton} w-100 py-2`}>
-                    Send Message
+                   Say Hello ..
                   </Button>
                 </Form>
 
-                <div className="text-center mt-4">
+                <div className="text-center mt-4 ">
                   <p>
-                    <strong>Phone:</strong> 070 32 32 888 <br />
-                    <strong>Email:</strong> contactinternbridge@gmail.com
+                    <strong>Phone      :  </strong>  0 7 0   3 2   3 2   8 8 8 <br />
+                    <strong>Email      :  </strong> c o n t a c t i n t e r n b r i d g e @ g m a i l . c o m
                   </p>
                   <p>
-                    <strong>Follow Us:</strong> 
-                    <a href="https://facebook.com/internbridgeUorCs" className="text-primary mx-2">Facebook</a> | 
+                    <strong>Follow Us  :</strong> 
+                    <a href="https://facebook.com/internbridgeUorCs" className="text-primary mx-2">Facebook</a>      |  
                     <a href="https://youtube.com" className="text-primary mx-2">YouTube</a>
                   </p>
                 </div>
@@ -71,7 +78,9 @@ export default function ContactUs() {
             </Row>
           </Container>
         </div>
+        <br/>
       </div>
+      
 
       <Footer />
     </>

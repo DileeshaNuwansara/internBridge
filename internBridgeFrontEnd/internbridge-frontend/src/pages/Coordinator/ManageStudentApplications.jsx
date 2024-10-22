@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Pagination } from 'react-bootstrap';
 import axios from 'axios';
-import './CoordinatorManageApplications.scss'; // SCSS for styling
+import styles from './CoordinatorManageApplications.module.scss'; 
 import Layout from '../../Layout/Layout';
 
 const ManageStudentApplications = () => {
@@ -87,79 +87,80 @@ const ManageStudentApplications = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <Layout>
-    <div className="coordinator-applications-container">
-      <h2>Manage Applications</h2>
-      <Table responsive bordered hover className="applications-table">
-        <thead>
-          <tr>
-            <th>Application ID</th>
-            <th>Student ID</th>
-            <th>Internship ID</th>
-            <th>Status</th>
-            <th>Applied Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentApplications.map(application => (
-            <tr key={application.applicationId}>
-              <td>{application.applicationId}</td>
-              <td>{application.studentId}</td>
-              <td>{application.internshipId}</td>
-              <td>{application.status}</td>
-              <td>{new Date(application.appliedDate).toLocaleDateString()}</td>
-              <td>
-                <Button variant="primary" onClick={() => handleViewCV(application.applicationId)}>
-                  View CV
-                </Button>{' '}
-                <Button variant="warning" onClick={() => handleUpdate(application)}>Update</Button>{' '}
-                <Button variant="danger" onClick={() => handleDelete(application.applicationId)}>Delete</Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
-  
-      <Pagination>
-        {[...Array(Math.ceil(applications.length / applicationsPerPage)).keys()].map(number => (
-          <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => paginate(number + 1)}>
-            {number + 1}
-          </Pagination.Item>
-        ))}
-      </Pagination>
-
-      
-      <Modal show={showUpdateModal} onHide={() => setShowUpdateModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Update Application Status</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="statusSelect">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                as="select"
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-              >
-                <option value="APPLIED">Applied</option>
-                <option value="INTERVIEW_SCHEDULED">Interview Scheduled</option>
-                <option value="OFFER_MADE">Offer Made</option>
-                <option value="REJECTED">Rejected</option>
-              </Form.Control>
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowUpdateModal(false)}>Close</Button>
-          <Button variant="primary" onClick={handleUpdateSubmit}>Save Changes</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-    </Layout>
-  );
-};
+    
+      <Layout>
+        <div className={styles['coordinator-applications-container']}>
+          <h2>Manage Applications</h2>
+          <Table responsive bordered hover className={styles['applications-table']}>
+            <thead>
+              <tr>
+                <th>Application ID</th>
+                <th>Student ID</th>
+                <th>Internship ID</th>
+                <th>Status</th>
+                <th>Applied Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentApplications.map(application => (
+                <tr key={application.applicationId}>
+                  <td>{application.applicationId}</td>
+                  <td>{application.studentId}</td>
+                  <td>{application.internshipId}</td>
+                  <td>{application.status}</td>
+                  <td>{new Date(application.appliedDate).toLocaleDateString()}</td>
+                  <td>
+                    <Button variant="primary" onClick={() => handleViewCV(application.applicationId)}>
+                      View CV
+                    </Button>{' '}
+                    <Button variant="warning" onClick={() => handleUpdate(application)}>Update</Button>{' '}
+                    <Button variant="danger" onClick={() => handleDelete(application.applicationId)}>Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+    
+          {/* Pagination */}
+          <Pagination>
+            {[...Array(Math.ceil(applications.length / applicationsPerPage)).keys()].map(number => (
+              <Pagination.Item key={number + 1} active={number + 1 === currentPage} onClick={() => paginate(number + 1)}>
+                {number + 1}
+              </Pagination.Item>
+            ))}
+          </Pagination>
+    
+          {/* Modal for Updating Application Status */}
+          <Modal show={showUpdateModal} onHide={() => setShowUpdateModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Update Application Status</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group controlId="statusSelect">
+                  <Form.Label>Status</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="APPLIED">Applied</option>
+                    <option value="INTERVIEW_SCHEDULED">Interview Scheduled</option>
+                    <option value="OFFER_MADE">Offer Made</option>
+                    <option value="REJECTED">Rejected</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowUpdateModal(false)}>Close</Button>
+              <Button variant="primary" onClick={handleUpdateSubmit}>Save Changes</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      </Layout>
+    );
+  };
 
 export default ManageStudentApplications;

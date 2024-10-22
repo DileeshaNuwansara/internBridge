@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Modal, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import styles from './PracticeSessionPage.module.css'; 
+import styles from './PracticeSessionPage.module.scss'; 
 import Layout from '../../Layout/Layout';
+import sessionImg from '../../assets/imgs/practiceSessionimg.png';
 
 const ManagePracticeSessions = () => {
   const [practiceSessions, setPracticeSessions] = useState([]);
@@ -96,6 +97,7 @@ const ManagePracticeSessions = () => {
         {practiceSessions.map((session) => (
           <Col key={session.id} md={6} lg={4} className="mb-4">
             <Card className={styles.sessionCard}>
+            <Card.Img variant="top" src={sessionImg} alt="Practice Session" />
               <Card.Body>
                 <Card.Title>{session.title}</Card.Title>
                 <Card.Text>

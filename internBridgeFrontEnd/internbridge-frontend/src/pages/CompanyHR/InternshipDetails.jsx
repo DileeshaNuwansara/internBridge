@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Spinner, Card, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
-import styles from './InternshipDetails.module.scss'; // Import module CSS
+import styles from './InternshipDetails.module.scss'; 
 import Layout from '../../Layout/Layout';
 const InternshipDetails = () => {
   const companyHrId = localStorage.getItem('userId'); 

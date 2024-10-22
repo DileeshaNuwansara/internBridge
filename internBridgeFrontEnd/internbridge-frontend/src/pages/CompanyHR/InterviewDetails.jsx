@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col, Container, Modal, Form } from 'react-bootstrap';
-import styles from './InterviewDetails.module.css'; // Import module CSS
+import styles from './InterviewDetails.module.scss'; 
 import axios from 'axios';
 
 const InterviewDetails = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../../Layout/Layout';
 
 const AdminAddAdmin = () => {
@@ -9,7 +9,7 @@ const AdminAddAdmin = () => {
   const [admins, setAdmins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const history = useHistory(); 
+  const navigate = useNavigate();
 
   const userRole = localStorage.getItem("userRole");
 
@@ -40,7 +40,7 @@ const deleteAdmin = async (userId) => {
 
 // Redirect to register page
 const handleAddUser = () => {
-    history.push('/register');
+    navigate('/register');
 };
 
 return (

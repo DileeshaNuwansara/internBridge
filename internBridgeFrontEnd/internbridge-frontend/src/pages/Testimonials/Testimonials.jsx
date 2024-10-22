@@ -58,10 +58,11 @@ const Testimonials = () => {
             <section>
                 <NavBar/>
             </section>
-            <div className={styles['testimonials-page']}></div>
+            <div className={styles['testimonials-page']}>
             <section id="testimonials" className="py-5 bg-light">
                 <Container>
                     <header className={styles.header}>
+                    
         
                     <h1 className={`${styles.headertitle} text-center `}>Our Alumni Testimonials</h1>
    
@@ -97,6 +98,7 @@ const Testimonials = () => {
                     </Row>
                 </Container>
             </section>
+            </div>
             <div>
                 <Footer/>
             </div>

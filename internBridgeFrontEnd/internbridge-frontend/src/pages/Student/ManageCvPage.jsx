@@ -4,7 +4,7 @@ import UploadCv from '../../components/ManageCv/UploadCv';
 import UploadGeneratedCv from '../../components/ManageCv/UploadGeneratedCv';
 import Layout from  '../../Layout/Layout';
 const ManageCvPage = ({ role }) => {
-  const [activeComponent, setActiveComponent] = useState('manage'); // State to toggle between pages
+  const [activeComponent, setActiveComponent] = useState('manage'); 
 
   const renderComponent = () => {
 

@@ -1,16 +1,16 @@
 // src/components/HRApplications.js
 import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom"; // Import useParams to get internshipId
-import styles from "./ViewAppliedStudents.module.css"; // Unique styling
+import { useParams } from "react-router-dom"; 
+import styles from "./ViewAppliedStudents.module.scss"; 
 import Layout from "../../Layout/Layout";
 
 const ViewAppliedStudents = () => {
-  const { internshipId } = useParams(); // Get internshipId from URL
+  const { internshipId } = useParams(); 
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-    // Fetch applications for the specific internship
+  
     fetch(`/api/v1/applications/internship/${internshipId}`)
       .then((response) => response.json())
       .then((data) => setApplications(data))

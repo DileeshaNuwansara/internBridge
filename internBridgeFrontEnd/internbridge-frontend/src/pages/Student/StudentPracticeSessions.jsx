@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Container, Row, Col, Pagination } from 'react-bootstrap';
 import axios from 'axios';
-import styles from './StudentPracticeSessions.module.scss';
+import styles from './StudentPracticeSession.module.scss';
 import Layout from '../../Layout/Layout';
-
+import sessionImg from '../../assets/imgs/practiceSessionimg.png';
 const StudentPracticeSessionPage = () => {
   const [practiceSessions, setPracticeSessions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,7 +37,7 @@ const StudentPracticeSessionPage = () => {
         {currentSessions.map((session) => (
           <Col key={session.id} md={6} lg={4} className="mb-4">
             <Card className={styles.practiceCard}>
-              <Card.Img variant="top" src="./assets/imgs/practiceSession.png" alt="Practice Session" />
+              <Card.Img variant="top" src={sessionImg} alt="Practice Session" />
               <Card.Body>
                 <Card.Title>{session.title}</Card.Title>
                 <Card.Text>

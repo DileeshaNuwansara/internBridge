@@ -16,7 +16,7 @@ const CompanyhrDashboard = () => {
       <Container fluid className={styles.dashboardContent}> 
         <Row> 
           <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Internship Details" description="View internship details" link="/internship-details" />
+            <Cards title="Internship Details" description="Manage internship details" link="/internship-details" />
 
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
@@ -27,6 +27,11 @@ const CompanyhrDashboard = () => {
             <Cards title="Practice Sessions" description="practice sessions" link="/manage-practice-sessions" />
 
           </Col>
+          <Col xs={12} md={6} lg={4} className="mb-4"> 
+            <Cards title="Applied Students for Internship" description="Manage Student & internship details" link="/manage-student-cv" />
+
+          </Col>
+
           <Col xs={12} md={6} lg={4} className="mb-4"> 
             <Cards title="Active Interns" description="Track intern progress" link="/active-interns-status" />
 

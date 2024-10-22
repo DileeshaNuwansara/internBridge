@@ -5,6 +5,7 @@ import ManagePracticeSessions from '../pages/CompanyHR/ManagePracticeSessions';
 import ActiveInternsStatus from '../pages/CompanyHR/ActiveInternsStatus';
 import ProfileSettings from '../pages/CompanyHR/CompanyHRProfileSettings';
 import ManageCvPage from '../pages/CompanyHR/ManageCvPage';
+import ViewAppliedStudents from '../pages/CompanyHR/ViewAppliedStudents';
 
 const COMPANYHRRoutes = [
   {
@@ -38,8 +39,14 @@ const COMPANYHRRoutes = [
     roles: ["ROLE_COMPANY_HR"], 
   },
   {
-    path: "/companyhr/manage-cv",
+    path: "/companyhr/manage-student-cv",
     element: <ManageCvPage />,
+    roles: ["ROLE_COMPANY_HR"], 
+  },
+
+  {
+    path: "/companyhr/applied-students",
+    element: <ViewAppliedStudents />,
     roles: ["ROLE_COMPANY_HR"], 
   },
 ];

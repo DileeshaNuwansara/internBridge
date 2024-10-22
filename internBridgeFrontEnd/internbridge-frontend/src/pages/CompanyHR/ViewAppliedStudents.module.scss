@@ -1,0 +1,29 @@
+
+.internshipContainer {
+    margin-top: 20px;
+  }
+  
+  .internshipCard {
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .internshipCard:hover {
+    transform: scale(1.05);
+  }
+  
+  
+  .applicationContainer {
+    margin-top: 20px;
+  }
+  
+  .applicationCard {
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .applicationCard:hover {
+    transform: scale(1.02);
+  }
+  

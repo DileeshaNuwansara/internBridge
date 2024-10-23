@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+
 public class UserDTO {
 
 
@@ -18,4 +19,15 @@ public class UserDTO {
     private String phone;
     private String role;
     private String status;
+
+
+    public UserDTO(String name, String password, String email, String company, String phone, String role, String status) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.company = company;
+        this.phone = phone;
+        this.role = role;
+        this.status = status;
+    }
 }

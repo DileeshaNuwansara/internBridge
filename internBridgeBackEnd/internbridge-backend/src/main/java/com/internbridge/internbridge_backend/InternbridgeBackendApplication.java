@@ -27,14 +27,18 @@ public class InternbridgeBackendApplication {
 			mapper.map(User::getRole, StudentDTO::setRole);
 			mapper.map(User::getStatus, StudentDTO::setStatus);
 
-			// If specific fields for Student need mapping:
-			mapper.map(src -> ((Student) src).getScNumber(), StudentDTO::setScNumber);
-			mapper.map(src -> ((Student) src).getGpa(), StudentDTO::setGpa);
-			mapper.map(src -> ((Student) src).getPosition(), StudentDTO::setPosition);
 		});
 
+			modelMapper.typeMap(Student.class, StudentDTO.class).addMappings(mapper -> {
+				mapper.map(Student::getScNumber, StudentDTO::setScNumber);
+				mapper.map(Student::getGpa, StudentDTO::setGpa);
+				mapper.map(Student::getPosition, StudentDTO::setPosition);
+			});
 
 
-		return new ModelMapper();
+		// Optionally map Student to StudentDTO if needed
+		modelMapper.typeMap(Student.class, StudentDTO.class);
+
+		return modelMapper;
 	}
 }

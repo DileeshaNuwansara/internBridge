@@ -5,6 +5,7 @@ import com.internbridge.internbridge_backend.entity.Student;
 import com.internbridge.internbridge_backend.entity.User;
 import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.StudentRepository;
+import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.StudentService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
@@ -21,12 +22,13 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository, ModelMapper modelMapper) {
+    public StudentServiceImpl(StudentRepository studentRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.studentRepository = studentRepository;
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -42,10 +44,8 @@ public class StudentServiceImpl implements StudentService {
     public StudentDTO updateStudentProfileByUserId(Long userId, StudentDTO studentDTO) {
         Student student = studentRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
-//
-//        if (studentDTO.getCv() != null) {
-//            student.setCv(studentDTO.getCv());
-//        }
+
+
 
 
         modelMapper.map(studentDTO, student);

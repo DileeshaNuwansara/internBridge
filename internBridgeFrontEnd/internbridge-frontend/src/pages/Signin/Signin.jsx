@@ -29,14 +29,17 @@ const Signin = () => {
       try {
         const response = await axios.post('http://localhost:8081/api/v1/user/login', formData);
         if (response.status === 200) {
-          const { token, role,status,message } = response.data;
+          const { token, role, status, message } = response.data;
 
           // Store token and role in localStorage
           localStorage.setItem('token', token);
-          localStorage.setItem('role', role);
+          localStorage.setItem('role', response.data.role);
+          localStorage.setItem('status',status);
 
-        
+          setTimeout(() => {
           alert('Login Successful');
+          console.log('User role from localStorage:', localStorage.getItem("role"));
+
           if (role === 'ROLE_ADMIN') {
             navigate('/admin/dashboard');
           } else if (role === 'ROLE_STUDENT') {
@@ -46,14 +49,15 @@ const Signin = () => {
           } else if (role === 'ROLE_COORDINATOR') {
             navigate('/coordinator/dashboard');
           } else {
-            navigate('/nopage');  // Fallback in case of unknown role
+            navigate('/nopage');  
           }
+        }, 100); 
         } else {
           alert('Login Failed: ' + response.data.message);
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('Error during login: ' + (error.response?.data?.message || 'Unknown error'));
+        alert('Error during login: ' + (error.response?.data?.message || ' Login error'));
       }
 };
 
@@ -116,7 +120,7 @@ const Signin = () => {
                     </button>
 
                     <span className={styles.forgotPassword}>
-                        Forgot Your Password? <a href="/logout">Click here</a>
+                        <p>Forgot Your Password? <a href="/forgot-password">Click here</a></p>
                     </span>
                 </form>
           </div>

@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
+
 import { Navigate } from 'react-router-dom';
 
 const RoleRoute = ({ children, allowedRoles }) => {
-  const userRole = localStorage.getItem("role");  // get user role from localStorage or auth context
+  const [userRole, setUserRole] = useState(null);
+  useEffect(() => {
+  const userRole = localStorage.getItem("role");
+  setUserRole(userRole);
+  console.log('User role from localStorage:', localStorage.getItem("role"));
 
+  },[]);
+
+  if (!userRole) {
+    return null;
+  }
+  
+  
   // If the role is not allowed, redirect to NoPage or any other page
   if (!allowedRoles.includes(userRole)) {
     return <Navigate to="/nopage" />;

@@ -1,0 +1,24 @@
+newContacts {
+    padding: 2rem;
+
+
+.contactCard {
+    border-radius: 8px;
+    padding: 1rem;
+    transition: background-color 0.3s ease-in-out;
+
+    &.pending {
+        background-color: #e0f3ff;
+
+    }
+
+    &.approved {
+        background-color: #d4edda;
+    }
+
+    .approvedText {
+        font-weight: bold;
+        color: #28a745;
+    }
+}
+}

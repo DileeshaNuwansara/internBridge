@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Footer from '../../components/Footer/Footer';
 import LandingPageNavbar from '../../components/LandingPageNavbar/LandingPageNavbar';
@@ -6,11 +6,38 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import styles from './Contactus.module.scss';
 import backgroundVideo from '../../assets/videos/video.mp4';  
-
+import axios from 'axios';
 export default function ContactUs() {
+
+  const [contactData, setContactData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    company: ''
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setContactData({ ...contactData, [name]: value });
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+      await axios.post('http://localhost:8081/api/v1/contacts/create', contactData);
+      alert('Your contact request has been submitted.');
+  } catch (error) {
+      console.error('Error submitting contact:', error.response?.data || error.message);
+      alert('Error submitting contact.');
+  }
+};
+
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
+
+
 
   return (
     <>
@@ -37,25 +64,30 @@ export default function ContactUs() {
                   We would welcome  you. Please fill out the form below and we’ll get back to you as soon as possible.
                 </h5>
 
-                <Form className={styles.contactContainer}>
+                <Form  onSubmit={handleSubmit} className={styles.contactContainer}>
                   <Form.Group className="mb-3" controlId="formName">
                     <Form.Label>Contact Name</Form.Label>
-                    <Form.Control className={styles.contactFormInput} type="text" placeholder="Enter name" required />
+                    <Form.Control className={styles.contactFormInput} name="name" type="text" placeholder="Enter name" required onChange={handleChange} />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formCompany">
+                    <Form.Label> Your Company</Form.Label>
+                    <Form.Control className={styles.contactFormInput} name="company" type="text" placeholder="Enter  Company Name" required onChange={handleChange}/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formEmail">
                     <Form.Label> Email</Form.Label>
-                    <Form.Control className={styles.contactFormInput} type="email" placeholder="Enter  email" required />
+                    <Form.Control className={styles.contactFormInput} name="email" type="email" placeholder="Enter  email" required onChange={handleChange}/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formPhone">
                     <Form.Label> Phone No</Form.Label>
-                    <Form.Control className={styles.contactFormInput} type="text" placeholder="Enter phone number" required />
+                    <Form.Control className={styles.contactFormInput} name="phone" type="text" placeholder="Enter phone number" required onChange={handleChange}/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formMessage">
                     <Form.Label> Message</Form.Label>
-                    <Form.Control className={styles.contactFormTextarea} as="textarea" rows={4} placeholder="Enter your message" required />
+                    <Form.Control className={styles.contactFormTextarea} name ="message" as="textarea" rows={4} placeholder="Enter your message" required onChange={handleChange}/>
                   </Form.Group>
 
                   <Button variant="primary" type="submit" className={`${styles.contactFormButton} w-100 py-2`}>
@@ -66,7 +98,7 @@ export default function ContactUs() {
                 <div className="text-center mt-4 ">
                   <p>
                     <strong>Phone      :  </strong>  0 7 0   3 2   3 2   8 8 8 <br />
-                    <strong>Email      :  </strong> c o n t a c t i n t e r n b r i d g e @ g m a i l . c o m
+                    <strong>Email      :  </strong> S a y H e l l o i n t e r n B r i d g e @ g m a i l . c o m
                   </p>
                   <p>
                     <strong>Follow Us  :</strong> 

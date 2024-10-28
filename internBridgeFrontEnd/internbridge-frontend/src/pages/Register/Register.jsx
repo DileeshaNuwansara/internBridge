@@ -150,7 +150,7 @@ const Register = () => {
                                     <Form.Group controlId="formRole">
                                         <Form.Label>Role</Form.Label>
                                         <Form.Control
-                                            as="selectRole"
+                                            as="select"
                                             name="role"
                                             value={formData.role}
                                             onChange={handleChange}

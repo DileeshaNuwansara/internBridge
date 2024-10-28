@@ -7,6 +7,7 @@ import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
 import AdminAddCoordinator from '../pages/Admin/AdminAddCoordinator';
 import ProfileSettings from '../pages/Admin/AdminProfileSettings';
 import AdminAddAdmin from "../pages/Admin/AdminAddAdmin";
+import ApprovedContacts from "../pages/Admin/ApprovedContacts";
 
 const ADMINRoutes = [
     {
@@ -27,6 +28,11 @@ const ADMINRoutes = [
     {
         path:"/admin/add-companyhr",
         element:<AdminAddCompanyhr/>,
+        roles:[userRoles.admin,userRoles.coordinator]
+    },
+    {
+        path:"/admin/add-company",
+        element:<ApprovedContacts/>,
         roles:[userRoles.admin,userRoles.coordinator]
     },
     {

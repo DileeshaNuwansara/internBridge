@@ -25,15 +25,22 @@ const Landing = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const formData = {
+    const contactData = {
       company,
       email,
       availablePositions
     };
+
     try {
-      const response = await axios.post('http://localhost:8081/api/internships', formData);
-      console.log('Response:', response.data);
+      
+        await axios.post('http://localhost:8081/api/v1/contacts/create', contactData);
+        alert('Contact information submitted successfully.');
+        setCompany('');
+        setEmail('');
+        setAvailablePositions(1);
+        
     } catch (error) {
+      alert('Error submitting contact information.');
       console.error('Error submitting form:', error);
     }
   };

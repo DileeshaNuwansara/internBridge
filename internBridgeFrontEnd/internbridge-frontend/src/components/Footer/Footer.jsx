@@ -1,8 +1,10 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import { FiSend } from 'react-icons/fi';
 import styles from  './footer.module.scss';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import logo from '../../assets/imgs/internbridge_logo.png';
+import { CgRename } from 'react-icons/cg';
 import { FiChevronRight } from "react-icons/fi";
 import { SlSocialYoutube } from "react-icons/sl";
 import {TiSocialLinkedin} from "react-icons/ti";
@@ -13,6 +15,27 @@ import 'aos/dist/aos.css';
 import smallLogo from '../../assets/imgs/smallLogo.png';
 
 const Footer = () => {
+
+
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const contactData = {
+      company,
+      email
+    };
+
+    try {
+      await axios.post('http://localhost:8081/api/v1/contacts/create', contactData);
+      alert('Thank you for reaching out. We’ll get back to you soon.');
+      setEmail('');
+    } catch (error) {
+      console.error('Error submitting contact information:', error.response?.data || error.message);
+      alert('Error submitting contact information.');
+    }
+  };
 
 
   useEffect(()=>{
@@ -32,9 +55,34 @@ const Footer = () => {
             </div>
 
             <div className={`${styles.inputDiv} flex`}>
-              <input data-aos="fade-up" type="text" placeholder='Enter Email Address' />
+            <form onSubmit={handleSubmit} className={`${styles.inputDiv} flex`}>
+
+            <label htmlFor="company">Enter Your Company</label>
+            <div className={styles.input}>
+            <input
+              type="text"
+              name="company"
+              placeholder="Your Company Name here.."
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              required
+              data-aos="fade-up"
+            />
+              <CgRename className={styles.icon} />
+            </div>
+
+            <input
+          type="email"
+          placeholder="Enter Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          data-aos="fade-up"
+        />
               <button data-aos="fade-up" className={`${styles.btn} flex`} type="submit" >
-                SEND <FiSend className={styles.icon} /></button>
+                SEND <FiSend className={styles.icon} />
+                </button>
+                </form>
             </div>
           </div>
 

@@ -68,7 +68,7 @@ $input-padding: 0.75rem 1rem;
       margin: .4rem;
       width: 100%;
       border-radius: 8px;
-      background-color: #f0ece2;
+      background-color: #e3e0d7;
      
 
   
@@ -82,7 +82,7 @@ $input-padding: 0.75rem 1rem;
   
 
        .inputGroup {
-         display: flex;
+        display: flex;
         width: 90%;
         align-items: center;
         border: 1px solid $input-border-color;
@@ -102,10 +102,10 @@ $input-padding: 0.75rem 1rem;
          input {
            flex: 1;
            border: none;
-          outline: none;
+           outline: none;
            padding: 0;
            color: $text-color;
-           font-size: 1rem;
+           font-size: .5rem;
            background-color: transparent;
   
            &::placeholder {
@@ -118,7 +118,7 @@ $input-padding: 0.75rem 1rem;
          display: block;
          margin-bottom: 0.3rem;
          color: $text-color;
-         font-weight: 600;
+         font-weight: 500;
        }
   
    
@@ -167,7 +167,7 @@ $input-padding: 0.75rem 1rem;
   
          a {
            color: $primary-color;
-           font-weight: 600;
+           font-weight: 550;
            text-decoration: none;
            transition: color 0.3s ease;
   
@@ -208,7 +208,7 @@ $input-padding: 0.75rem 1rem;
        padding: 1rem;
      }
        h2 {
-       font-size: 1.4rem;
+       font-size: 1.2rem;
      }
   
      .form {

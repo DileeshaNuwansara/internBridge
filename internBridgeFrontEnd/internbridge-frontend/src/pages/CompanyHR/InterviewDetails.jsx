@@ -4,25 +4,24 @@ import styles from './InterviewDetails.module.scss';
 import axios from 'axios';
 
 const InterviewDetails = () => {
-
   const companyHrId = localStorage.getItem('userId'); 
 
+  const [internshipId, setInternshipId] = useState('');
   const [interviews, setInterviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [students, setStudents] = useState([]);
+  const [selectedStudents, setSelectedStudents] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [formData, setFormData] = useState({
     description: '',
-    status: '',
+    status: 'Scheduled',
     startDate: '',
     startTime: '',
     meetingLink: '',
-    studentId: '',
     coordinatorId: '',
     companyHrId: companyHrId,
   });
-
-  
   const [selectedInterviewId, setSelectedInterviewId] = useState(null);
 
   useEffect(() => {
@@ -31,7 +30,17 @@ const InterviewDetails = () => {
       ...prevFormData,
       companyHrId: companyHrId,
     }));
+    fetchInterviews();
   }, []);
+
+  useEffect(() => {
+    if (internshipId) fetchAppliedStudents(internshipId);
+  }, [internshipId]);
+
+  const fetchAppliedStudents = async (internshipId) => {
+    const response = await axios.get(`/api/v1/applications/internship/${internshipId}`);
+    setStudents(response.data);
+  };
 
   const fetchInterviews = async () => {
     try {
@@ -44,14 +53,23 @@ const InterviewDetails = () => {
   };
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
-  const createInterview = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axios.post('/api/v1/interviews/create', formData);
-      setShowCreateModal(false);
-      fetchInterviews(); 
+      const interviewRequest = {
+        ...formData,
+        studentIds: selectedStudents,
+      };
+      await axios.post('/api/v1/interviews/create', interviewRequest);
+      resetForm();
+      fetchInterviews();
     } catch (error) {
       console.error('Error creating interview:', error);
     }
@@ -59,8 +77,12 @@ const InterviewDetails = () => {
 
   const updateInterview = async () => {
     try {
-      await axios.put(`/api/v1/interviews/update/${selectedInterviewId}`, formData);
-      setShowUpdateModal(false);
+      const interviewRequest = {
+        ...formData,
+        studentIds: selectedStudents, // Assuming the selected students can also be updated
+      };
+      await axios.put(`/api/v1/interviews/update/${selectedInterviewId}`, interviewRequest);
+      resetForm();
       fetchInterviews(); 
     } catch (error) {
       console.error('Error updating interview:', error);
@@ -75,10 +97,10 @@ const InterviewDetails = () => {
       startDate: interview.startDate,
       startTime: interview.startTime,
       meetingLink: interview.meetingLink,
-      studentId: interview.studentId,
       coordinatorId: interview.coordinatorId,
-      companyHrId: localStorage.getItem('userId'),
+      companyHrId: companyHrId,
     });
+    setSelectedStudents(interview.studentIds); // Set selected students for the update
     setShowUpdateModal(true);
   };
 
@@ -89,6 +111,27 @@ const InterviewDetails = () => {
     } catch (error) {
       console.error('Error deleting interview:', error);
     }
+  };
+
+  const toggleStudentSelection = (studentId) => {
+    setSelectedStudents(prev =>
+      prev.includes(studentId) ? prev.filter(id => id !== studentId) : [...prev, studentId]
+    );
+  };
+
+  const resetForm = () => {
+    setFormData({
+      description: '',
+      status: 'Scheduled',
+      startDate: '',
+      startTime: '',
+      meetingLink: '',
+      coordinatorId: '',
+      companyHrId: companyHrId,
+    });
+    setSelectedStudents([]);
+    setShowCreateModal(false);
+    setShowUpdateModal(false);
   };
 
   if (loading) return <p>Loading interviews...</p>;
@@ -123,13 +166,12 @@ const InterviewDetails = () => {
         ))}
       </Row>
 
-      
-      <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
+      <Modal show={showCreateModal} onHide={resetForm}>
         <Modal.Header closeButton>
           <Modal.Title>Create New Interview</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formDescription">
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -176,13 +218,19 @@ const InterviewDetails = () => {
               />
             </Form.Group>
             <Form.Group controlId="formStudentId">
-              <Form.Label>Student ID</Form.Label>
-              <Form.Control
-                type="text"
-                name="studentId"
-                value={formData.studentId}
-                onChange={handleInputChange}
-              />
+              <Form.Label>Select Students</Form.Label>
+              <div>
+                {students.map(student => (
+                  <div key={student.studentId}>
+                    <Form.Check
+                      type="checkbox"
+                      label={`${student.name} - ${student.email}`}
+                      checked={selectedStudents.includes(student.studentId)}
+                      onChange={() => toggleStudentSelection(student.studentId)}
+                    />
+                  </div>
+                ))}
+              </div>
             </Form.Group>
             <Form.Group controlId="formCoordinatorId">
               <Form.Label>Coordinator ID</Form.Label>
@@ -193,20 +241,19 @@ const InterviewDetails = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={resetForm}>
+                Cancel
+              </Button>
+              <Button variant="primary" type="submit">
+                Create Interview
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowCreateModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={createInterview}>
-            Create Interview
-          </Button>
-        </Modal.Footer>
       </Modal>
 
-      {/* Update Interview Modal */}
-      <Modal show={showUpdateModal} onHide={() => setShowUpdateModal(false)}>
+      <Modal show={showUpdateModal} onHide={resetForm}>
         <Modal.Header closeButton>
           <Modal.Title>Update Interview</Modal.Title>
         </Modal.Header>
@@ -258,33 +305,30 @@ const InterviewDetails = () => {
               />
             </Form.Group>
             <Form.Group controlId="formStudentId">
-              <Form.Label>Student ID</Form.Label>
-              <Form.Control
-                type="text"
-                name="studentId"
-                value={formData.studentId}
-                onChange={handleInputChange}
-              />
+              <Form.Label>Select Students</Form.Label>
+              <div>
+                {students.map(student => (
+                  <div key={student.studentId}>
+                    <Form.Check
+                      type="checkbox"
+                      label={`${student.name} - ${student.email}`}
+                      checked={selectedStudents.includes(student.studentId)}
+                      onChange={() => toggleStudentSelection(student.studentId)}
+                    />
+                  </div>
+                ))}
+              </div>
             </Form.Group>
-            <Form.Group controlId="formCoordinatorId">
-              <Form.Label>Coordinator ID</Form.Label>
-              <Form.Control
-                type="text"
-                name="coordinatorId"
-                value={formData.coordinatorId}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={resetForm}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={updateInterview}>
+                Update Interview
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowUpdateModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={updateInterview}>
-            Update Interview
-          </Button>
-        </Modal.Footer>
       </Modal>
     </Container>
   );

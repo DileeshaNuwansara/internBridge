@@ -17,6 +17,7 @@ import COMPANYHRRoutes from './COMPANYHRroutes';
 import COORDINATORRoutes from './COORDINATORroutes';
 import PrivateRoute from './PrivateRoutes';
 import RoleRoute from './RoleRouter';
+import GetOtpPage from '../pages/ForgetPassword/GetOtpPage';
 
 
 const AppRoutes = () => {
@@ -31,8 +32,9 @@ const AppRoutes = () => {
                 <Route path="/about-us" element={<Aboutus />} />
                 <Route path="/contact-us" element={<Contactus />} />
                 <Route path="/testimonials" element={<Testimonials />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} /> 
-                <Route path="/reset-password/:token" element={<ResetPassword />} /> 
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/otp-verification" element={<GetOtpPage />} /> 
+                <Route path="/reset-password" element={<ResetPassword />} /> 
                 <Route path="/company" element ={<Company/>} />
                 
 

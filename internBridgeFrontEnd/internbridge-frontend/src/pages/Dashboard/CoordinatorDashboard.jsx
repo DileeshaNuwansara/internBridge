@@ -28,6 +28,10 @@ const CoordinatorDashboard = () => {
 
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
+            <Cards title="New Companies" description="View new Companies connect with internBridge" link="/manage-new-companyies" />
+
+          </Col>
+          <Col xs={12} md={6} lg={4}  className="mb-4">
             <Cards title="Hired Applicants" description="Alredy got an internship and now close ongoing processings with this CVs. " link="/hired-students" />
 
           </Col>

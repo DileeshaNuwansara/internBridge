@@ -27,6 +27,9 @@ const AdminDashboard = () => {
           <Col xs={12} md={6} lg={4}  className="mb-4">
             <Cards title="Manage Company HR" description="Oversee company HR activities" link="/add-companyhr" />
           </Col>
+          <Col xs={12} md={6} lg={4}  className="mb-4">
+            <Cards title="Manage New Company" description="Oversee New companies" link="/add-company" />
+          </Col>
 	        <Col xs={12} md={6} lg={4}  className="mb-4">
             <Cards title="Profile Settings" description=" Admin Profile Settings" link="/profile-settings" />
           </Col>

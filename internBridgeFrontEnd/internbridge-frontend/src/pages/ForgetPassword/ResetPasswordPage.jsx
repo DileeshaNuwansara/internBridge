@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './ResetPassword.module.scss';  
+import LandingPageNavbar from '../../components/LandingPageNavbar/LandingPageNavbar';
+import Footer from '../../components/Footer/Footer';
 
 const ResetPasswordPage = () => {
   const { token } = useParams();  // Get the token from the URL
@@ -18,7 +20,7 @@ const ResetPasswordPage = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:8081/api/v1/user/reset-password/${token}`, { password });
+      const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/changePassword/{email}`, { password });
       if (response.status === 200) {
         setMessage('Password has been reset successfully!');
         navigate('/signin');
@@ -32,6 +34,9 @@ const ResetPasswordPage = () => {
   };
 
   return (
+    <>
+    
+    <LandingPageNavbar/>
     <div className={styles.resetPasswordPage}>
       <h2>Reset Your Password</h2>
       <form onSubmit={handleSubmit}>
@@ -54,7 +59,9 @@ const ResetPasswordPage = () => {
         <button type="submit">Reset Password</button>
       </form>
       {message && <p>{message}</p>}
-    </div>
+    </div><br/>
+    <Footer/>
+    </>
   );
 };
 

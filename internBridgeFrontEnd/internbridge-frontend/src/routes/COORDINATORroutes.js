@@ -7,6 +7,7 @@ import AdminAddCompanyhr from '../pages/Admin/AdminAddCompanyhr';
 import ProfileSettings from '../pages/Coordinator/CoordinatorProfileSettings';
 import HiredStudents from '../pages/Coordinator/HiredStudents';
 import NotHiredStudents from '../pages/Coordinator/NotHiredStudents';
+import NewContacts from '../pages/Coordinator/NewContacts';
 const COORDINATORRoutes = [
   {
     path: "/coordinator/dashboard",
@@ -26,6 +27,11 @@ const COORDINATORRoutes = [
   {
     path: "/coordinator/manage-new-internships",
     element: <ManageNewInternships />,
+    roles: ["ROLE_COORDINATOR"], 
+  },
+  {
+    path: "/coordinator/manage-new-companyies",
+    element: <NewContacts />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {

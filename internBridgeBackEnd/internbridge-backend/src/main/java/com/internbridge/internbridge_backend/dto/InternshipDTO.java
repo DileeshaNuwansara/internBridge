@@ -1,17 +1,10 @@
 package com.internbridge.internbridge_backend.dto;
 
-import lombok.*;
+import lombok.Data;
 import java.time.LocalDate;
-import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-
 public class InternshipDTO {
-
     private Long internshipId;
     private String title;
     private String description;
@@ -22,6 +15,4 @@ public class InternshipDTO {
     private String company;
     private byte[] imageData;
     private Long userId;
-    //private List<Long> applicationIds;
-
 }

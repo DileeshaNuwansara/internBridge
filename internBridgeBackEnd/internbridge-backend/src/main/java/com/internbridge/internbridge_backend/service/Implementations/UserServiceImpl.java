@@ -9,7 +9,9 @@ import com.internbridge.internbridge_backend.entity.User;
 import com.internbridge.internbridge_backend.repository.StudentRepository;
 import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.security.JwtUtil;
+import com.internbridge.internbridge_backend.service.StudentService;
 import com.internbridge.internbridge_backend.service.UserService;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -25,6 +27,10 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    @Lazy
+    private StudentService studentService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -38,6 +44,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRepository UserRepository;
+
 
 
 
@@ -151,6 +161,11 @@ public class UserServiceImpl implements UserService {
         return studentRepository.findAll().stream()
                 .map(student -> modelMapper.map(student, StudentDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateUserPassword(String email, String newPassword) {
+        userRepository.updatePassword(newPassword, email);
     }
 
     @Override

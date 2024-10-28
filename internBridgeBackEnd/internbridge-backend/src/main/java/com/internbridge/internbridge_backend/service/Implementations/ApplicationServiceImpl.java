@@ -110,17 +110,47 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new RuntimeException("Application not found"));
 
-        // Convert the String status from DTO to ApplicationStatus enum
-        Application.ApplicationStatus status = Application.ApplicationStatus.valueOf(applicationDTO.getStatus().toUpperCase());
+        application.setStudent(studentRepository.findById(applicationDTO.getStudentId())
+                .orElseThrow(() -> new RuntimeException("Student not found")));
+        application.setInternship(internshipRepository.findById(applicationDTO.getInternshipId()).orElse(null));
+        application.setInterview(interviewRepository.findById(applicationDTO.getInterviewId()).orElse(null));
+        application.setPracticeSession(practiceSessionRepository.findById(applicationDTO.getPracticeSessionId()).orElse(null));
 
-        application.setStatus(status);
+        // Set status using enum conversion
+        if (applicationDTO.getStatus() != null) {
+            application.setStatus(Application.ApplicationStatus.valueOf(applicationDTO.getStatus().toUpperCase()));
+        }
+
+        application.setAppliedDate(applicationDTO.getAppliedDate());
+        application.setUser(userRepository.findById(applicationDTO.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found")));
+        application.setCv(applicationDTO.getCv());
+
         applicationRepository.save(application);
     }
+
+
+
+
+
+
 
         @Override
         public void deleteApplication(Long applicationId) {
             applicationRepository.deleteById(applicationId);
         }
+
+    @Override
+    public List<ApplicationDTO> getApplicationsByInternshipId(Long internshipId) {
+        Internship internship = internshipRepository.findById(internshipId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid internship ID"));
+
+        List<Application> applications = applicationRepository.findByInternship(internship);
+        return applications.stream()
+                .map(application -> modelMapper.map(application, ApplicationDTO.class))
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public ApplicationDTO uploadCv(Long studentId, MultipartFile file) throws IOException {

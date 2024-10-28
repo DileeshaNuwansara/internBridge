@@ -7,14 +7,14 @@ import com.internbridge.internbridge_backend.exception.ResourceNotFoundException
 import com.internbridge.internbridge_backend.repository.InterviewRepository;
 import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.InterviewService;
-import org.apache.coyote.BadRequestException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Service
 public class InterviewServiceImpl implements InterviewService {
@@ -28,63 +28,45 @@ public class InterviewServiceImpl implements InterviewService {
     @Autowired
     private ModelMapper modelMapper;
 
-
     @Override
-    public InterviewDTO createInterview(InterviewDTO interviewDTO)  {
-        try {
-            Interview interview = modelMapper.map(interviewDTO, Interview.class);
-            User student = userRepository.findById(interviewDTO.getStudentId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
-            student.setUserId(interviewDTO.getStudentId());
-            interview.setStudent(student);
+    @Transactional
+    public List<InterviewDTO> createInterview(InterviewDTO interviewDTO) {
+        List<InterviewDTO> createdInterviews = new ArrayList<>();
 
-            User coordinator = new User();
-            coordinator.setUserId(interviewDTO.getCoordinatorId());
-            interview.setCoordinator(coordinator);
+        Interview interview = modelMapper.map(interviewDTO, Interview.class);
 
-            Interview savedInterview = interviewRepository.save(interview);
-            return modelMapper.map(savedInterview, InterviewDTO.class);
+        // Retrieve list of students by User IDs
+        List<User> students = userRepository.findAllById(interviewDTO.getStudentIds()).stream()
+                .filter(user -> "STUDENT".equals(user.getRole())) // Ensure they are students
+                .collect(Collectors.toList());
 
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Invalid input data: " + e.getMessage());  // Replaced BadRequestException
-        } catch (Exception e) {
-            throw new RuntimeException("Error occurred while creating the interview: " + e.getMessage());
-        }
+        interview.setStudents(students);
+        interviewRepository.save(interview);
+
+        createdInterviews.add(modelMapper.map(interview, InterviewDTO.class));
+        return createdInterviews;
     }
 
-
-
     @Override
-    public InterviewDTO updateInterview(Long id, InterviewDTO interviewDTO) {
-        Interview interview = interviewRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Interview not found with id: " + id));
+    public InterviewDTO updateInterview(Long interviewId, InterviewDTO interviewDTO) {
+        Interview interview = interviewRepository.findById(interviewId)
+                .orElseThrow(() -> new ResourceNotFoundException("Interview not found"));
 
-        try {
-            interview.setStartDate(interviewDTO.getStartDate());
-            interview.setStartTime(interviewDTO.getStartTime());
-            interview.setStatus(interviewDTO.getStatus());
-            interview.setDescription(interviewDTO.getDescription());
-            interview.setMeetingLink(interviewDTO.getMeetingLink());
+        interview.setDescription(interviewDTO.getDescription());
+        interview.setStatus(interviewDTO.getStatus());
+        interview.setStartDate(interviewDTO.getStartDate());
+        interview.setStartTime(interviewDTO.getStartTime());
+        interview.setMeetingLink(interviewDTO.getMeetingLink());
 
-            User student = new User();
-            student.setUserId(interviewDTO.getStudentId());
-            interview.setStudent(student);
+        List<User> students = userRepository.findAllById(interviewDTO.getStudentIds()).stream()
+                .filter(user -> "STUDENT".equals(user.getRole()))
+                .collect(Collectors.toList());
 
-            User coordinator = new User();
-            coordinator.setUserId(interviewDTO.getCoordinatorId());
-            interview.setCoordinator(coordinator);
+        interview.setStudents(students);
+        interviewRepository.save(interview);
 
-            Interview updatedInterview = interviewRepository.save(interview);
-            return modelMapper.map(updatedInterview, InterviewDTO.class);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Invalid input data: " + e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException("Error occurred while updating the interview: " + e.getMessage());
-        }
+        return modelMapper.map(interview, InterviewDTO.class);
     }
-
-
-
 
     @Override
     public void deleteInterview(Long id) {
@@ -94,15 +76,12 @@ public class InterviewServiceImpl implements InterviewService {
         interviewRepository.deleteById(id);
     }
 
-
     @Override
     public InterviewDTO getInterviewById(Long interviewId) {
         Interview interview = interviewRepository.findById(interviewId)
                 .orElseThrow(() -> new ResourceNotFoundException("Interview not found with id: " + interviewId));
         return modelMapper.map(interview, InterviewDTO.class);
     }
-
-
 
     @Override
     public List<InterviewDTO> getAllInterviews() {
@@ -111,11 +90,34 @@ public class InterviewServiceImpl implements InterviewService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public List<InterviewDTO> getInterviewsByStudentId(Long studentId) {
-        return interviewRepository.findByStudentUserId(studentId).stream()
+        return interviewRepository.findByStudents_UserId(studentId).stream()
                 .map(interview -> modelMapper.map(interview, InterviewDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<InterviewDTO> getAllInterviewsByCompanyHR(Long companyHrId) {
+        User companyHr = userRepository.findById(companyHrId)
+                .orElseThrow(() -> new ResourceNotFoundException("Company HR not found"));
+
+        return interviewRepository.findByCompanyHR(companyHr).stream()
+                .map(interview -> modelMapper.map(interview, InterviewDTO.class))
+                .collect(Collectors.toList());
+    }
+
+//    @Override
+//    public List<InterviewDTO> getAllInterviewsByCompanyHR(User companyHr) {
+//        return interviewRepository.findByCompanyHr(companyHr).stream()
+//                .map(interview -> modelMapper.map(interview, InterviewDTO.class))
+//                .collect(Collectors.toList());
+//    }
+
+//    @Override
+//    public List<InterviewDTO> getAllInterviewsByCompanyHR(Long companyHrId) {
+//        return interviewRepository.findByCompanyHR_UserId(companyHrId).stream()
+//                .map(interview -> modelMapper.map(interview, InterviewDTO.class))
+//                .collect(Collectors.toList());
+//    }
 }

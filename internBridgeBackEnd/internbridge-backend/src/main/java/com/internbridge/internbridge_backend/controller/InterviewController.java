@@ -19,9 +19,11 @@ public class InterviewController {
     private InterviewService interviewService;
 
     @PostMapping("/create")
-    public ResponseEntity<InterviewDTO> createInterview(@RequestBody InterviewDTO interviewDTO) {
-        InterviewDTO createdInterview = interviewService.createInterview(interviewDTO);
-        return new ResponseEntity<>(createdInterview, HttpStatus.CREATED);
+    public ResponseEntity<List<InterviewDTO>> createInterview(@RequestBody InterviewDTO interviewDTO) {
+
+
+        List<InterviewDTO> createdInterviews = interviewService.createInterview(interviewDTO);
+        return ResponseEntity.ok(createdInterviews);
     }
 
 
@@ -57,5 +59,13 @@ public class InterviewController {
     public ResponseEntity<List<InterviewDTO>> getAllInterviews() {
         List<InterviewDTO> interviews = interviewService.getAllInterviews();
         return new ResponseEntity<>(interviews, HttpStatus.OK);
+    }
+
+    @GetMapping("/byCompanyHR/{companyHrId}")
+    //@PreAuthorize("hasRole('ROLE_COMPANYHR')")
+    public ResponseEntity<List<InterviewDTO>> getAllInterviewsByCompanyHR(@PathVariable Long companyHrId) {
+        List<InterviewDTO> interviews = interviewService.getAllInterviewsByCompanyHR(companyHrId);
+        return ResponseEntity.ok(interviews);
+
     }
 }

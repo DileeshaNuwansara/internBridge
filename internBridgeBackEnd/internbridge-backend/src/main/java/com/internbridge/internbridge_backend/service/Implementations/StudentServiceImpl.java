@@ -7,9 +7,11 @@ import com.internbridge.internbridge_backend.exception.ResourceNotFoundException
 import com.internbridge.internbridge_backend.repository.StudentRepository;
 import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.StudentService;
+import com.internbridge.internbridge_backend.service.UserService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +20,10 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService {
+
+    @Autowired
+    @Lazy
+    private UserService userService;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -71,5 +77,14 @@ public class StudentServiceImpl implements StudentService {
         List<Student> students = studentRepository.findByCompanyHr(companyHr);
         return students.stream().map(student -> modelMapper.map(student, StudentDTO.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<StudentDTO> getFilteredStudents(String email) {
+        List<Student> students = studentRepository.findByEmail(email); // Assuming this returns a List<Student>
+        return students.stream()
+                .map(student -> modelMapper.map(student, StudentDTO.class)) // Mapping to StudentDTO
+                .collect(Collectors.toList());
+    }
+
 }
 

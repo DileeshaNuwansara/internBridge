@@ -10,13 +10,11 @@ import lombok.*;
 import java.util.List;
 @Getter
 @Setter
-@Data
 @NoArgsConstructor
 @Entity
 public class Student extends User {
 
-    @Column(name="scnumber",  unique=true, length=30)
-//    @ValidScNumber  validator for SC number
+    @Column( unique=true, length=30)
     private String scNumber;
 
 
@@ -31,7 +29,7 @@ public class Student extends User {
     private String position;
 
     @ManyToOne
-    @JoinColumn(name = "company_hr_id", nullable = false)
+    //@JoinColumn(name = "company_hr_id", nullable = false)
     private User companyHr;
 
 //    @Lob

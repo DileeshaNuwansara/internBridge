@@ -1,8 +1,11 @@
 package com.internbridge.internbridge_backend.service.Implementations;
 
+import com.internbridge.internbridge_backend.dto.ApplicationDTO;
 import com.internbridge.internbridge_backend.dto.InternshipDTO;
+import com.internbridge.internbridge_backend.entity.Application;
 import com.internbridge.internbridge_backend.entity.Internship;
 import com.internbridge.internbridge_backend.entity.User;
+import com.internbridge.internbridge_backend.repository.ApplicationRepository;
 import com.internbridge.internbridge_backend.repository.InternshipRepository;
 import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.InternshipService;
@@ -22,6 +25,9 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ApplicationRepository applicationRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -100,4 +106,13 @@ public class InternshipServiceImpl implements InternshipService {
         // Delete the internship
         internshipRepository.delete(internship);
     }
+
+    @Override
+    public List<ApplicationDTO> getApplicationsByInternshipId(Long internshipId) {
+        List<Application> applications = applicationRepository.findByInternshipInternshipId(internshipId);
+        return applications.stream()
+                .map(application -> modelMapper.map(application, ApplicationDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

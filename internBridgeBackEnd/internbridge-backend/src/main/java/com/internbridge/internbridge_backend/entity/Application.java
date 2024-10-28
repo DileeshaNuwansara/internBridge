@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 @Table(name = "application")
 public class Application {
@@ -24,23 +23,23 @@ public class Application {
     private Long applicationId;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    //@JoinColumn(name = "student_id", nullable = false)
     private Student student;
     //one application to one student
 
     @ManyToOne
-    @JoinColumn(name = "internship_id", nullable = true)
+    //@JoinColumn(name = "internship_id", nullable = true)
     private Internship internship;
     //many application for one internship
 
     // Many-to-One: Each application could be for an interview
     @ManyToOne
-    @JoinColumn(name = "interview_id", nullable = true)
+   // @JoinColumn(name = "interview_id", nullable = true)
     private Interview interview;
 
     //many applictaion to one practice session
     @ManyToOne
-    @JoinColumn(name = "practiceSessionId", referencedColumnName = "practicesessionId")
+    //@JoinColumn(name = "practiceSessionId", referencedColumnName = "practicesessionId")
     private PracticeSession practiceSession;
 
 
@@ -57,8 +56,12 @@ public class Application {
 
     private LocalDate appliedDate;
 
+    @ManyToOne
+    //@JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @Lob
-    @Column(name = "cv", nullable = true)
+    //@Column(name = "cv", nullable = true)
     private byte[] cv;
 
 }

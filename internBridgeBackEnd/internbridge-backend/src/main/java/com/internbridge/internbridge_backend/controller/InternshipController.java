@@ -1,6 +1,8 @@
 package com.internbridge.internbridge_backend.controller;
 
+import com.internbridge.internbridge_backend.dto.ApplicationDTO;
 import com.internbridge.internbridge_backend.dto.InternshipDTO;
+import com.internbridge.internbridge_backend.service.ApplicationService;
 import com.internbridge.internbridge_backend.service.InternshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ public class InternshipController {
 
     @Autowired
     private InternshipService internshipService;
+
+    @Autowired
+    private ApplicationService applicationService;
 
     @PostMapping("/create/{companyHrId}")
     public ResponseEntity<InternshipDTO> createInternship(@RequestBody InternshipDTO internshipDTO,
@@ -51,5 +56,11 @@ public class InternshipController {
     public ResponseEntity<Void> deleteInternship(@PathVariable Long internshipId) {
         internshipService.deleteInternship(internshipId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/internship/{internshipId}")
+    public ResponseEntity<List<ApplicationDTO>> getAppliedStudentsByInternship(@PathVariable Long internshipId) {
+        List<ApplicationDTO> applications = applicationService.getApplicationsByInternshipId(internshipId);
+        return ResponseEntity.ok(applications);
     }
 }

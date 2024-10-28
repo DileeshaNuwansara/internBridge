@@ -37,10 +37,16 @@ public class ApplicationController {
         return new ResponseEntity<>(applications, HttpStatus.OK);
     }
 
+//    @GetMapping("/internship/{internshipId}")
+//    public ResponseEntity<List<ApplicationDTO>> getApplicationsForInternship(@PathVariable Long internshipId) {
+//        List<ApplicationDTO> applications = applicationService.getApplicationsForInternship(internshipId);
+//        return new ResponseEntity<>(applications, HttpStatus.OK);
+//    }
+
     @GetMapping("/internship/{internshipId}")
-    public ResponseEntity<List<ApplicationDTO>> getApplicationsForInternship(@PathVariable Long internshipId) {
-        List<ApplicationDTO> applications = applicationService.getApplicationsForInternship(internshipId);
-        return new ResponseEntity<>(applications, HttpStatus.OK);
+    public ResponseEntity<List<ApplicationDTO>> getApplicationsByInternshipId(@PathVariable Long internshipId) {
+        List<ApplicationDTO> applications = applicationService.getApplicationsByInternshipId(internshipId);
+        return ResponseEntity.ok(applications);
     }
 
     @GetMapping("/interview/{interviewId}")

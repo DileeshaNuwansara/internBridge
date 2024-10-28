@@ -1,6 +1,7 @@
 package com.internbridge.internbridge_backend.controller;
 
 import com.internbridge.internbridge_backend.dto.StudentDTO;
+import com.internbridge.internbridge_backend.dto.UserDTO;
 import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,6 @@ public class StudentController {
         }
     }
 
-
     @PutMapping("/update/{userId}")
     public ResponseEntity<StudentDTO> updateStudentProfileByUserId(@PathVariable Long userId, @RequestBody StudentDTO studentDTO) {
         try {
@@ -50,10 +50,6 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
-
-
-
-
     @DeleteMapping("/remove/{userId}")
     public ResponseEntity<Void> deleteStudentByUserId(@PathVariable Long userId) {
         try {
@@ -65,5 +61,12 @@ public class StudentController {
         catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/students/filter")
+    public ResponseEntity<List<StudentDTO>> getFilteredStudents(@RequestParam(required = false) String email,
+                                                                @RequestParam(required = false) String position) {
+        List<StudentDTO> students = studentService.getFilteredStudents(email);
+        return ResponseEntity.ok(students);
     }
 }

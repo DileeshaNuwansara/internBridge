@@ -1,5 +1,6 @@
 package com.internbridge.internbridge_backend.service;
 
+import com.internbridge.internbridge_backend.dto.ApplicationDTO;
 import com.internbridge.internbridge_backend.dto.InternshipDTO;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface InternshipService {
     InternshipDTO updateInternship(Long internshipId, InternshipDTO internshipDTO);
 
     void deleteInternship(Long internshipId);
+
+    List<ApplicationDTO> getApplicationsByInternshipId(Long internshipId);
 }

@@ -11,13 +11,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
-//@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "users")
 public class User {
 
 
@@ -37,7 +35,7 @@ public class User {
     private String password;
 
 
-    @Column(name="email",nullable=false,unique=true,length=80)
+    //@Column(name="email",nullable=false,unique=true,length=80)
     @NotBlank(message = "Email cannot be blank")
 //    @Email(message = "Please provide a valid email address")
     private String email;
@@ -50,6 +48,9 @@ public class User {
 //    @NotBlank(message = "Phone cannot be blank")
 //    @Size(max = 10, message = "Phone number cannot exceed 12 characters")
     private String phone;
+
+    @OneToOne(mappedBy = "user")
+    private ForgotPassword forgotPassword;
 
     private String role;
 

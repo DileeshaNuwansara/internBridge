@@ -16,7 +16,7 @@ import STUDENTRoutes from './STUDENTroutes';
 import COMPANYHRRoutes from './COMPANYHRroutes';
 import COORDINATORRoutes from './COORDINATORroutes';
 import PrivateRoute from './PrivateRoutes';
-import RoleRoute from './RoleRouter';
+import RoleRoute from './RoleRoute';
 import GetOtpPage from '../pages/ForgetPassword/GetOtpPage';
 
 

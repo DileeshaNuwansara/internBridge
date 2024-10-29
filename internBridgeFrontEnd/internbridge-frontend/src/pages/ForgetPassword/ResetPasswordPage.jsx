@@ -6,7 +6,7 @@ import LandingPageNavbar from '../../components/LandingPageNavbar/LandingPageNav
 import Footer from '../../components/Footer/Footer';
 
 const ResetPasswordPage = () => {
-  const { token } = useParams();  // Get the token from the URL
+  const { token } = useParams();  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');

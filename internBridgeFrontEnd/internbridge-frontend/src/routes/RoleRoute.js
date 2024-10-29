@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from 'react-router-dom';
 
 const RoleRoute = ({ children, allowedRoles }) => {
-  const [userRole, setUserRole] = useState(null);
+  const [userRole, setUserRole] = useState(localStorage.getItem("role"));
   useEffect(() => {
   const userRole = localStorage.getItem("role");
   setUserRole(userRole);

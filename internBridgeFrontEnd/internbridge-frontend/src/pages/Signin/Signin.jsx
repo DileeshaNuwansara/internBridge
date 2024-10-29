@@ -31,7 +31,7 @@ const Signin = () => {
         if (response.status === 200) {
           const { token, role, status, message } = response.data;
 
-          // Store token and role in localStorage
+          
           localStorage.setItem('token', token);
           localStorage.setItem('role', response.data.role);
           localStorage.setItem('status',status);
@@ -44,7 +44,7 @@ const Signin = () => {
             navigate('/admin/dashboard');
           } else if (role === 'ROLE_STUDENT') {
             navigate('/student/dashboard');
-          } else if (role === 'ROLE_COMPANY_HR') {
+          } else if (role === 'ROLE_COMPANYHR') {
             navigate('/companyhr/dashboard');
           } else if (role === 'ROLE_COORDINATOR') {
             navigate('/coordinator/dashboard');

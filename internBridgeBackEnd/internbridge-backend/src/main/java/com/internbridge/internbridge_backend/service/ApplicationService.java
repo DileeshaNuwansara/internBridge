@@ -20,5 +20,6 @@ public interface ApplicationService {
 
     public byte[] generateCv(Long studentId);
     ApplicationDTO uploadCv(Long studentId, MultipartFile file) throws IOException;
+    List<byte[]> getCvByStudentId(Long studentId);
 }
 

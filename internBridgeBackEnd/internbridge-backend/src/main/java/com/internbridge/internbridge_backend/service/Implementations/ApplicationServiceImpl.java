@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -165,6 +166,19 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         // Use ModelMapper to convert Application to ApplicationDTO
         return modelMapper.map(application, ApplicationDTO.class);
+    }
+
+    @Override
+    public List<byte[]> getCvByStudentId(Long studentId) {
+        List<Application> applications = applicationRepository.findByStudentUserId(studentId);
+
+        if (applications != null && !applications.isEmpty()) {
+            return applications.stream()
+                    .map(Application::getCv)
+                    .collect(Collectors.toList());
+        }
+
+        return Collections.emptyList();
     }
 
     @Override

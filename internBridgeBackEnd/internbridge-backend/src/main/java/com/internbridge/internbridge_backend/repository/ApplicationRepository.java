@@ -20,5 +20,6 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 
 
 
+
     //List<Application> findByStudentUserIdAndStatus(Long studentId, Application.ApplicationStatus status);
 }

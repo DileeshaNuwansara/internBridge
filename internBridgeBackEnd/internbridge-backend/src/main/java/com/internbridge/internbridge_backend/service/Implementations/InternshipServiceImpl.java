@@ -5,11 +5,13 @@ import com.internbridge.internbridge_backend.dto.InternshipDTO;
 import com.internbridge.internbridge_backend.entity.Application;
 import com.internbridge.internbridge_backend.entity.Internship;
 import com.internbridge.internbridge_backend.entity.User;
+import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.ApplicationRepository;
 import com.internbridge.internbridge_backend.repository.InternshipRepository;
 import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.InternshipService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,12 +87,16 @@ public class InternshipServiceImpl implements InternshipService {
     public InternshipDTO updateInternship(Long internshipId, InternshipDTO internshipDTO) {
         // Find the existing internship by ID
         Internship internship = internshipRepository.findById(internshipId)
-                .orElseThrow(() -> new RuntimeException("Internship not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Internship with ID " + internshipId + " not found"));
 
         // Map the updated details from DTO to the existing Internship entity
+        modelMapper.getConfiguration().setSkipNullEnabled(true);
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        // Map non-null properties from internshipDTO to the existing internship entity
         modelMapper.map(internshipDTO, internship);
 
-        // Save the updated internship
+        // Save the updated internship (should not create a new entry)
         Internship updatedInternship = internshipRepository.save(internship);
 
         // Map updated Internship entity back to DTO
@@ -101,9 +107,8 @@ public class InternshipServiceImpl implements InternshipService {
     public void deleteInternship(Long internshipId) {
         // Find the internship by ID
         Internship internship = internshipRepository.findById(internshipId)
-                .orElseThrow(() -> new RuntimeException("Internship not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Internship with ID " + internshipId + " not found"));
 
-        // Delete the internship
         internshipRepository.delete(internship);
     }
 

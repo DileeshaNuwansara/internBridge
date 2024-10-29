@@ -3,7 +3,9 @@ package com.internbridge.internbridge_backend.controller;
 
 import com.internbridge.internbridge_backend.dto.ApplicationDTO;
 import com.internbridge.internbridge_backend.service.ApplicationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,11 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.core.io.Resource;
+
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/application")
 public class ApplicationController {
 
 
@@ -91,5 +96,17 @@ public class ApplicationController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"cv.pdf\"")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(generatedCv);
+    }
+
+    @GetMapping("/cv/download")
+    public ResponseEntity<List<byte[]>> downloadCv(@RequestParam("studentId") Long studentId) {
+        List<byte[]> cvs = applicationService.getCvByStudentId(studentId);
+
+        if (cvs.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(cvs);
+
     }
 }

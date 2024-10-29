@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class InterviewDTO {
+
     private Long interviewId;
     private LocalDate startDate;
     private LocalTime startTime;

@@ -39,6 +39,7 @@ public class InternbridgeBackendApplication {
 //		});
 
 
+		modelMapper.getConfiguration().setSkipNullEnabled(true); // Skip null values during mapping
 		return modelMapper;
 	}
 }

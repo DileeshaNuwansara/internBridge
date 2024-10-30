@@ -23,6 +23,8 @@ public class Contact {
     private String phone;
     private String message;
     private String company;
+
+    @Column(name = "available_positions")
     private Integer availablePositions;
     private String status = "Pending";
 

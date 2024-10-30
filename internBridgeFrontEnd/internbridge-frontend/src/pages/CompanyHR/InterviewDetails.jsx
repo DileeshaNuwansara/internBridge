@@ -126,8 +126,8 @@ const InterviewDetails = () => {
       startDate: '',
       startTime: '',
       meetingLink: '',
-      coordinatorId: '',
-      companyHrId: companyHrId,
+    
+      companyhrId: companyHrId,
     });
     setSelectedStudents([]);
     setShowCreateModal(false);
@@ -232,12 +232,12 @@ const InterviewDetails = () => {
                 ))}
               </div>
             </Form.Group>
-            <Form.Group controlId="formCoordinatorId">
-              <Form.Label>Coordinator ID</Form.Label>
+            <Form.Group controlId="formCompanyhrid">
+              <Form.Label>Company HR ID</Form.Label>
               <Form.Control
                 type="text"
-                name="coordinatorId"
-                value={formData.coordinatorId}
+                name="companyhrId"
+                value={formData.companyhrId}
                 onChange={handleInputChange}
               />
             </Form.Group>

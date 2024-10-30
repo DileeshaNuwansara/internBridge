@@ -97,4 +97,12 @@ public class PracticeSessionServiceImpl implements PracticeSessionService {
 
         throw new RuntimeException("Unauthorized: You do not have permission to view this practice session");
     }
+
+    @Override
+    public List<PracticeSessionDTO> getPracticeSessionsByHrId(Long hrId) {
+        List<PracticeSession> sessions = practiceSessionRepository.findByCompanyHr_UserId(hrId);
+        return sessions.stream()
+                .map(session -> modelMapper.map(session, PracticeSessionDTO.class))
+                .collect(Collectors.toList());
+    }
 }

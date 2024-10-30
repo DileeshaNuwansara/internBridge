@@ -27,18 +27,33 @@ const Signin = () => {
       e.preventDefault();
 
       try {
-        const response = await axios.post('http://localhost:8081/api/v1/user/login', formData);
+        const response = await axios.post('http://localhost:8081/api/v1/authuser/login', formData,{
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
         if (response.status === 200) {
-          const { token, role, status, message } = response.data;
+          const { token,userId, role, email, message, status } = response.data;
 
           
-          localStorage.setItem('token', token);
-          localStorage.setItem('role', response.data.role);
-          localStorage.setItem('status',status);
 
-          setTimeout(() => {
+            localStorage.setItem('token', token);
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('role', role);
+            localStorage.setItem('email', email);
+            localStorage.setItem('message',message);
+            localStorage.setItem('status', status);
+
+            console.log('Token:', token);
+            console.log('UserId:', userId);
+            console.log('Role:', role);
+            console.log('Status:', status);
+
+          
           alert('Login Successful');
           console.log('User role from localStorage:', localStorage.getItem("role"));
+
+          //navigate(`/${role.toLowerCase()}/dashboard`);
 
           if (role === 'ROLE_ADMIN') {
             navigate('/admin/dashboard');
@@ -49,12 +64,11 @@ const Signin = () => {
           } else if (role === 'ROLE_COORDINATOR') {
             navigate('/coordinator/dashboard');
           } else {
-            navigate('/nopage');  
+            console.log("role : ",role)
+            //navigate('/nopage');  
           }
-        }, 100); 
-        } else {
-          alert('Login Failed: ' + response.data.message);
-        }
+        
+        } 
       } catch (error) {
         console.error('Error during login:', error);
         alert('Error during login: ' + (error.response?.data?.message || ' Login error'));
@@ -124,7 +138,6 @@ const Signin = () => {
                     </span>
                 </form>
           </div>
-
         </div>
       </div>
     </>

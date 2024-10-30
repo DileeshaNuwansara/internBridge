@@ -24,7 +24,7 @@ const ManagePracticeSessions = () => {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const response = await axios.get(`/api/v1/practice-sessions/${companyHrId}`);
+        const response = await axios.get(`/api/v1/practice-sessions/hr/${companyHrId}`);
         setPracticeSessions(response.data);
       } catch (error) {
         console.error('Error fetching practice sessions:', error);

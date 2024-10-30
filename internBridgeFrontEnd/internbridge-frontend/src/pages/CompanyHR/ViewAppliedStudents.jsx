@@ -18,7 +18,7 @@ const ViewAppliedStudents = () => {
   }, [internshipId]);
 
   const handleDownloadCv = (studentId) => {
-    fetch(`/api/v1/applications/downloadCv/${studentId}`)
+    fetch(`/api/v1/application/cv/download?studentId=${studentId}`)
       .then((response) => response.blob())
       .then((blob) => {
         const url = window.URL.createObjectURL(blob);
@@ -38,20 +38,22 @@ const ViewAppliedStudents = () => {
         {applications.map((application) => (
           <Col md={6} key={application.applicationId}>
             <Card className={styles.applicationCard}>
-              <Card.Body>
-                <Card.Title>{application.student.name}</Card.Title>
-                <Card.Text>
-                  GPA: {application.student.gpa} <br />
-                  Position: {application.student.position} <br />
-                  Status: {application.status}
-                </Card.Text>
-                <Button
-                  variant="success"
-                  onClick={() => handleDownloadCv(application.student.userId)}
-                >
-                  Download CV
-                </Button>
-              </Card.Body>
+            <Card.Body>
+                  <Card.Title>Student ID: {application.studentId}</Card.Title>
+                  <Card.Text>
+                    <strong>Application ID:</strong> {application.applicationId} <br />
+                    <strong>Status:</strong> {application.status} <br />
+                    <strong>Applied Date:</strong> {new Date(application.appliedDate).toLocaleDateString()} <br />
+                    <strong>Interview ID:</strong> {application.interviewId || "N/A"} <br />
+                    <strong>Practice Session ID:</strong> {application.practiceSessionId || "N/A"} <br />
+                  </Card.Text>
+                  <Button
+                    variant="success"
+                    onClick={() => handleDownloadCv(application.studentId)}
+                  >
+                    Download CV
+                  </Button>
+                </Card.Body>
             </Card>
           </Col>
         ))}

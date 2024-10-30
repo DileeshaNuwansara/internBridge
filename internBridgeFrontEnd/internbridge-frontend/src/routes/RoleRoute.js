@@ -6,8 +6,11 @@ const RoleRoute = ({ children, allowedRoles }) => {
   const [userRole, setUserRole] = useState(localStorage.getItem("role"));
   useEffect(() => {
   const userRole = localStorage.getItem("role");
-  setUserRole(userRole);
-  console.log('User role from localStorage:', localStorage.getItem("role"));
+  if(userRole){
+    setUserRole(userRole);
+
+  }
+    console.log('User role from localStorage:', localStorage.getItem("role"));
 
   },[]);
 

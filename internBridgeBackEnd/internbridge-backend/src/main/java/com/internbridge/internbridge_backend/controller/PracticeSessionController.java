@@ -47,5 +47,14 @@ public class PracticeSessionController {
     public ResponseEntity<PracticeSessionDTO> getPracticeSessionById(@PathVariable Long id, @AuthenticationPrincipal User user) {
         PracticeSessionDTO session = practiceSessionService.getPracticeSessionById(id, user);
         return new ResponseEntity<>(session, HttpStatus.OK);
+
+
     }
+
+    @GetMapping("/hr/{hrId}")
+    public ResponseEntity<List<PracticeSessionDTO>> getPracticeSessionsByHrId(@PathVariable Long hrId) {
+        List<PracticeSessionDTO> sessions = practiceSessionService.getPracticeSessionsByHrId(hrId);
+        return new ResponseEntity<>(sessions, HttpStatus.OK);
+    }
+
 }

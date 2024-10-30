@@ -19,4 +19,6 @@ public interface PracticeSessionService {
 
     PracticeSessionDTO getPracticeSessionById(Long sessionId, User user);
 
+    List<PracticeSessionDTO> getPracticeSessionsByHrId(Long hrId);
+
 }

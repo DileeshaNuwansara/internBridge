@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Spinner, Card, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 import styles from './InternshipDetails.module.scss'; 
 import Layout from '../../Layout/Layout';
 const InternshipDetails = () => {
   const companyHrId = localStorage.getItem('userId'); 
+  const navigate = useNavigate();
 
     const [internships, setInternships] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -37,6 +39,10 @@ const InternshipDetails = () => {
 
         fetchInternships();
     }, [companyHrId]);
+
+    const handleViewAppliedStudents = (internshipId) => {
+        navigate(`/view-applied-students/${internshipId}`);
+    };
 
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => {
@@ -109,7 +115,7 @@ const InternshipDetails = () => {
                     internships.map((internship) => (
                         <Card key={internship.internshipId} className={styles.internshipCard}>
                             <Card.Body>
-                                <Card.Title>{internship.title}</Card.Title>
+                                <Card.Title>Title : {internship.title}</Card.Title>
                                 <Card.Text>
                                     <strong>Description:</strong> {internship.description}
                                 </Card.Text>
@@ -122,6 +128,9 @@ const InternshipDetails = () => {
                                 <Card.Text>
                                     <strong>Available Positions:</strong> {internship.availablePositions}
                                 </Card.Text>
+                                <Button variant="info" onClick={() => handleViewAppliedStudents(internship.internshipId)}>
+                                    View Applied Students
+                                </Button>
                                 <Button variant="warning" onClick={() => handleEdit(internship)}>
                                     Edit
                                 </Button>

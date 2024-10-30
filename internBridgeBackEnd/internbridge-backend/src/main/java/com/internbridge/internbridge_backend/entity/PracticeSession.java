@@ -34,6 +34,9 @@ public class PracticeSession {
 
     private String meetingLink;
 
+    @ManyToOne
+    private User companyHr;
+
 //    @OneToMany(mappedBy = "practiceSession")
 //    private List<Application> applications;
 

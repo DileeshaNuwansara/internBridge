@@ -6,8 +6,8 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class ContactDTO {
+
     private Long id;
     private String name;
     private String email;

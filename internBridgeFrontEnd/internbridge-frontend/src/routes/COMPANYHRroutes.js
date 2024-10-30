@@ -45,7 +45,7 @@ const COMPANYHRRoutes = [
   },
 
   {
-    path: "/companyhr/applied-students",
+    path: "/companyhr/applied-students:internshipId",
     element: <ViewAppliedStudents />,
     roles: ["ROLE_COMPANY_HR"], 
   },

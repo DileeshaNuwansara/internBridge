@@ -52,6 +52,8 @@ public class InterviewController {
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<List<InterviewDTO>> getInterviewsByStudentId(@PathVariable Long studentId) {
         List<InterviewDTO> interviews = interviewService.getInterviewsByStudentId(studentId);
+        System.out.println("Retrieved interviews for studentId " + studentId + ": " + interviews.size());
+
         return ResponseEntity.ok(interviews);
     }
 

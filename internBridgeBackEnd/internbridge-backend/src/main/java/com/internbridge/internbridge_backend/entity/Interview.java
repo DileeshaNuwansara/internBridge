@@ -32,6 +32,11 @@ public class Interview {
     private List<User> students;
 
     @ManyToOne
+    @JoinTable(
+            name = "interview_students",
+            joinColumns = @JoinColumn(name = "interview_interview_id"),
+            inverseJoinColumns = @JoinColumn(name = "students_user_id")
+    )
     private User companyHR;
 
     @OneToMany(mappedBy = "interview")

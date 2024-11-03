@@ -68,9 +68,11 @@ public class User {
         if (this.company == null) {
             this.company = "UOR";
         }
+
         if (this.status == null) {
             this.status = "registered";
         }
+
 
     }
 }

@@ -92,7 +92,9 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Override
     public List<InterviewDTO> getInterviewsByStudentId(Long studentId) {
-        return interviewRepository.findByStudents_UserId(studentId).stream()
+        List<Interview> interviews = interviewRepository.findByStudents_UserId(studentId);
+        System.out.println("Retrieved interviews for studentId " + studentId + ": " + interviews.size());
+        return interviews.stream()
                 .map(interview -> modelMapper.map(interview, InterviewDTO.class))
                 .collect(Collectors.toList());
     }

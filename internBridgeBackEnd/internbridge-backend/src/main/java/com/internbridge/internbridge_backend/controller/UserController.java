@@ -1,6 +1,8 @@
 package com.internbridge.internbridge_backend.controller;
 
+import com.internbridge.internbridge_backend.dto.MailBody;
 import com.internbridge.internbridge_backend.dto.UserDTO;
+import com.internbridge.internbridge_backend.service.MailService;
 import com.internbridge.internbridge_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MailService mailService;
+
 
 
     //create user register rest api
@@ -27,6 +32,28 @@ public class UserController {
         try {
             // Attempt to register the user
             UserDTO registeredUser = userService.registerUser(userDTO);
+
+            //email sending to welcome the user
+
+            String defaultPassword = "12345678";
+            String subject = "Welcome to InternBridge!";
+            String text = String.format(
+                    "Dear  %s,\n\n" +
+                            "Welcome to InternBridge! \n \n \n We’re excited to have you on board.\n\n" +
+                            "Here’s your username: %s\n" +
+                            "Your default password: %s\n\n" +
+                            "Please change your password to something more secure after logging in.\n\n" +
+                            "Best regards,\nInternBridge Team",
+                    registeredUser.getName(), registeredUser.getName(), defaultPassword
+            );
+
+            MailBody mailBody = MailBody.builder()
+                    .to(registeredUser.getEmail())
+                    .subject(subject)
+                    .text(text)
+                    .build();
+            mailService.sendSimpleMessage(mailBody);
+
             return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             // Handle case where the user already exists or any other validation issues
@@ -38,8 +65,17 @@ public class UserController {
     }
 
     @GetMapping("/getUserById/{userId}")
-    public UserDTO getUserById(@PathVariable String userId) {
-        return userService.getuserByID(userId);
+    public ResponseEntity<?> getUserById(@PathVariable String userId) {
+        try {
+            UserDTO user = userService.getuserByID(userId);
+            if (user != null) {
+                return ResponseEntity.ok(user);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with ID: " + userId);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while fetching the user data.");
+        }
     }
 
     @GetMapping("/getAllUsers")

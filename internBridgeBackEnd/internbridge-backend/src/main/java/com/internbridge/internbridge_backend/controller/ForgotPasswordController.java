@@ -1,5 +1,6 @@
 package com.internbridge.internbridge_backend.controller;
 
+import com.internbridge.internbridge_backend.dto.ForgotPasswordDTO;
 import com.internbridge.internbridge_backend.dto.MailBody;
 import com.internbridge.internbridge_backend.entity.ForgotPassword;
 import com.internbridge.internbridge_backend.entity.User;
@@ -8,6 +9,7 @@ import com.internbridge.internbridge_backend.repository.ForgotPasswordRepository
 import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.MailService;
 import com.internbridge.internbridge_backend.util.ChangePassword;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,38 +38,62 @@ public class ForgotPasswordController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public ForgotPasswordController(UserRepository userRepository, MailService mailService) {
         this.userRepository = userRepository;
         this.mailService = mailService;
     }
 
     @PostMapping("/verifyMail/{email}")
-    public ResponseEntity<String> verifyMail(@PathVariable String email) {
-        User user = userRepository.findByEmail(email);
+    public ResponseEntity<ForgotPasswordDTO> verifyMail(@PathVariable String email) {
+        try {
+            User user = userRepository.findByEmail(email);
 
-        if (user == null) {
-            throw new ResourceNotFoundException("Please provide a valid Email");
-        }
+
+            if (user == null) {
+                throw new ResourceNotFoundException("Please provide a valid Email");
+            }
+
 
         int otp = otpGenerator();
-
-        MailBody mailBody = MailBody.builder()
-                .to(email)
-                .text("This is the OTP for your forgot Password request: " + otp)
-                .subject("OTP for forgot password request")
-                .build();
-
         ForgotPassword fp = ForgotPassword.builder()
                 .otp(otp)
                 .expirationTime(new Date(System.currentTimeMillis() + 70 * 3000))
                 .user(user)
                 .build();
 
-        mailService.sendSimpleMessage(mailBody);
-        forgotPasswordRepository.save(fp);
+        mailService.sendSimpleMessage(
+                MailBody.builder()
+                        .to(email)
+                        .text("Dear user,\n\n\" +\n" +
+                                "We received a request to reset your password. Please use the following otp for  your password. \n" +
+                                "This is the OTP for your forgot password request: " + otp +  "\n\n" + "If you did not request this, please ignore this email.\n\n" +
+                                "Best regards,\n" +
+                                "InternBridge Team"
 
-        return ResponseEntity.ok("Email sent for verification");
+                        )
+                        .subject("OTP for forgot password request")
+                        .build()
+        );
+
+        ForgotPassword savedFp = forgotPasswordRepository.save(fp);
+
+        ForgotPasswordDTO forgotPasswordDTO = modelMapper.map(savedFp, ForgotPasswordDTO.class);
+
+
+        return ResponseEntity.ok(forgotPasswordDTO);
+    } catch(
+    Exception e)
+
+    {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(null);
     }
+}
+
 
     @PostMapping("/verifyotp/{otp}/{email}")
     public ResponseEntity<String> verifyOtp(@PathVariable Integer otp, @PathVariable String email) {

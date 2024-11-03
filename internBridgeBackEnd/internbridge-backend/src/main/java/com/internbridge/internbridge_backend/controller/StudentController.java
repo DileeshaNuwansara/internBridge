@@ -20,7 +20,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/details/{userId}")
     public ResponseEntity<StudentDTO> getStudentProfileByUserId(@PathVariable Long userId) {
         try {
             StudentDTO studentDTO = studentService.getStudentProfileByUserId(userId);

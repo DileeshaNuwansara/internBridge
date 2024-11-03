@@ -10,52 +10,52 @@ import NotHiredStudents from '../pages/Coordinator/NotHiredStudents';
 import NewContacts from '../pages/Coordinator/NewContacts';
 const COORDINATORRoutes = [
   {
-    path: "/coordinator/dashboard",
+    path: "/ROLE_COORDINATOR/dashboard",
     element: <CoordinatorDashboard />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/manage-practice-sessions",
+    path: "/ROLE_COORDINATOR/manage-practice-sessions",
     element: <ManagePracticeSessions />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/manage-interviews",
+    path: "/ROLE_COORDINATOR/manage-interviews",
     element: <ManageInterviews />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/manage-new-internships",
+    path: "/ROLE_COORDINATOR/manage-new-internships",
     element: <ManageNewInternships />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/manage-new-companyies",
+    path: "/ROLE_COORDINATOR/manage-new-companyies",
     element: <NewContacts />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/hired-students",
+    path: "/ROLE_COORDINATOR/hired-students",
     element: <HiredStudents />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/not-hired-students",
+    path: "/ROLE_COORDINATOR/not-hired-students",
     element: <NotHiredStudents />,
-    roles: ["ROLE_COORDINATOR"], 
+    roles: ["ROLE_COORDINATOR","ROLE_ADMIN"], 
   },
   {
-    path: "/coordinator/manage-student-applications",
+    path: "/ROLE_COORDINATOR/manage-student-applications",
     element: <ManageStudentApplications />,
     roles: ["ROLE_COORDINATOR"], 
   },
   {
-    path: "/coordinator/add-companyhr",
+    path: "/ROLE_COORDINATOR/add-companyhr",
     element: <AdminAddCompanyhr />,
     roles: ["ROLE_COORDINATOR","ROLE_ADMIN"], 
   },
   {
-    path: "/coordinator/profile-settings",
+    path: "/ROLE_COORDINATOR/profile-settings",
     element: <ProfileSettings />,
     roles: ["ROLE_COORDINATOR"], 
   },

@@ -7,7 +7,7 @@ import styles from './AppSideBar.module.scss';  // Import the SCSS module
 import { MdOutlineSettings,MdDashboard } from "react-icons/md";
 import { FaUsersLine } from "react-icons/fa6";
 import { FaUserPlus,FaUserCog,FaFile,FaCalendarAlt,FaCalendarCheck } from "react-icons/fa";
-
+import { FaUsersGear } from "react-icons/fa6";
 
 const AppSideBar = () => {
   const [role, setRole] = useState('');
@@ -55,42 +55,51 @@ const AppSideBar = () => {
 
   const menuItems = {
     ROLE_ADMIN: [
-      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/admin/dashboard' },
-      {
-        label: 'Users', icon: <FaUsersLine size={20}/>, path: '/admin',
-        submenu: [
-          { label: 'Students', path: '/add-student' },
-          { label: 'Admins', path: '/add-admin' },
-          { label: 'Company HRs', path: '/add-companyhr' },
-          { label: 'Coordinators', path: '/add-coordinator' },
-        ]
-      },
-      { label: 'Settings', icon: <MdOutlineSettings size={20}/>, path: '/admin/profile-settings' },
-      // { label: 'Profile', icon: < RiAdminFill size={25} />, path: '/admin/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/ROLE_ADMIN/dashboard' },
+      { label: 'Admins',icon: <FaUsersLine size={20}/>, path: 'ROLE_ADMIN/add-Admins' },
+      { label: 'Students',icon: <FaUsersLine size={20}/>, path: 'ROLE_ADMIN/add-student' },
+      { label: 'Still Applicants', icon: <FaUsersLine size={20} />, path: '/ROLE_ADMIN/not-hired-students' },
+      { label: 'Company HRs',icon: <FaUsersLine size={20}/>, path: 'ROLE_ADMIN/add-Company HRs' },
+      { label: 'Coordinators',icon: <FaUsersLine size={20}/>, path: 'ROLE_ADMIN/add-Coordinators' },
+      // {
+      //   label: 'Users', icon: <FaUsersLine size={20}/>,
+      //   submenu: [
+      //     { label: 'Students', path: 'ROLE_ADMIN/add-student' },
+      //     { label: 'Admins', path: 'ROLE_ADMIN/add-admin' },
+      //     { label: 'Company HRs', path: 'ROLE_ADMIN/add-companyhr' },
+      //     { label: 'Coordinators', path: 'ROLE_ADMIN/add-coordinator' },
+      //   ]
+      // },
+      { label: 'My Profile', icon: <  FaUserPlus size={25} />, path: '/ROLE_ADMIN/profile-settings' },
+      { label: 'App Settings', icon: <MdOutlineSettings size={20}/>, path: '/ROLE_ADMIN/app-settings' },
+      
     ],
     ROLE_STUDENT: [
-      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/student/dashboard' },
-      { label: 'Internships', icon: <FaFile size={20}/>, path: '/student/student-new-internships' },
-      { label: 'Interviews', icon: <FaCalendarAlt size={20}/>, path: '/student/student-interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20} />, path: '/student/student-practice-sessions' },
-      { label: 'Profile', icon: < FaUserPlus size={20}/>, path: '/student/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/ROLE_STUDENT/dashboard' },
+      { label: 'Internships', icon: <FaFile size={20}/>, path: '/ROLE_STUDENT/student-new-internships' },
+      { label: 'Interviews', icon: <FaCalendarAlt size={20}/>, path: '/ROLE_STUDENT/student-interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20} />, path: '/ROLE_STUDENT/student-practice-sessions' },
+      { label: 'Profile', icon: < FaUserPlus size={20}/>, path: '/ROLE_STUDENT/profile-settings' },
     ],
     ROLE_COORDINATOR: [
-      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/coordinator/dashboard' },
-      { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/coordinator/interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/coordinator/practicesessions' },
-      { label: 'CV', icon: <FaFile size={20}/>, path: '/coordinator/manage-student-applications' },
-      { label: 'Hired Applicants', icon: <FaUserCog size={20} />, path: '/coordinator/hired-students' },
-      { label: 'Still Applicants', icon: <FaUsersLine size={20} />, path: '/coordinator/not-hired-students' },
-      { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/coordinator/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/ROLE_COORDINATOR/dashboard' },
+      { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COORDINATOR/manage-interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COORDINATOR/manage-practice-sessions' },
+      { label: 'CV', icon: <FaFile size={20}/>, path: '/ROLE_COORDINATOR/manage-student-applications' },
+      { label: 'Hired Applicants', icon: <FaUserCog size={20} />, path: '/ROLE_COORDINATOR/hired-students' },
+      { label: 'Still Applicants', icon: <FaUsersLine size={20} />, path: '/ROLE_COORDINATOR/not-hired-students' },
+      { label: 'New Connections', icon: < FaUsersGear size={20} />, path: '/ROLE_COORDINATOR/manage-new-companyies' },
+      { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/ROLE_COORDINATOR/profile-settings' },
+
     ],
     ROLE_COMPANYHR: [
-      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/companyhr/dashboard' },
-      { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/companyhr/interviews' },
-      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/companyhr/manage-practice-sessions' },
-      { label: 'CV', icon: <FaFile size={20}/>, path: '/companyhr/manage-cv' },
-      { label: 'Active Interns', icon: <FaUserCog size={20} />, path: '/companyhr/active-interns-status' },
-      { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/companyhr/profile-settings' },
+      { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/ROLE_COMPANYHR/dashboard' },
+      { label: 'Internships', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COMPANYHR/internship-details' },
+      { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COMPANYHR/interviews' },
+      { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COMPANYHR/manage-practice-sessions' },
+      { label: 'Applications', icon: <FaFile size={20}/>, path: '/ROLE_COMPANYHR/manage-cv' },
+      { label: 'Active Interns', icon: <FaUserCog size={20} />, path: '/ROLE_COMPANYHR/active-interns-status' },
+      { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/ROLE_COMPANYHR/profile-settings' },
     ],
   };
 
@@ -106,7 +115,7 @@ const AppSideBar = () => {
   const items = menuItems[role];
 
   if (!items) {
-    return <p>No menu available for this role.</p>; // Handle the case where the role is undefined or has no items
+    return <p>No menu available for this role.</p>; 
   }
   
 
@@ -121,7 +130,7 @@ const AppSideBar = () => {
           <ul className={styles.dropdownMenu} >
             {submenu.map((subItem) => (
               <li key={subItem.path}>
-                <Link to={subItem.path} className={styles.dropdownItem}> {sidebarOpen && <span>{subItem.label}</span>}
+                <Link to={subItem.path} className={styles.dropdownItem1}> {sidebarOpen && <span>{subItem.label}</span>}
                 </Link>
               </li>
             ))}
@@ -154,14 +163,14 @@ const AppSideBar = () => {
         />
       </div>
 
-      <div className={`${styles.nav} nav flex-column `}>
+      <div className={`${styles.nav1} nav flex-column `}>
         {menuItems[role].map(renderMenuItem)}
       </div>
 
       <div className="mt-auto">
-        <Link to="/logout" className={styles.logout}>
+        <Link to="/signout" className={styles.logout}>
           <CiLogout className={styles.icon} size={20} /> 
-          {sidebarOpen && <span className={styles.lolabel}>Logout</span>}
+          {sidebarOpen && <span className={styles.lolabel}>Sign Out</span>}
         </Link>
       </div>
     </nav>

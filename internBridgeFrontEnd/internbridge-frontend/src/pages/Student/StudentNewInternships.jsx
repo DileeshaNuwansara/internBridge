@@ -9,7 +9,8 @@ const StudentNewInternships = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const internshipsPerPage = 5;
 
-  const userRole = localStorage.getItem("userRole");
+  //const userRole = localStorage.getItem("userRole");
+  
 
   useEffect(() => {
     const fetchInternships = async () => {
@@ -34,6 +35,8 @@ const StudentNewInternships = () => {
   return (
     <Layout>
       <div className={styles.internshipContainer}>
+
+      <h2 className={styles.title}>Your Internships</h2>
         {currentInternships.map((internship) => (
           <Card className={styles.internshipCard} key={internship.internshipId}>
             <Card.Img variant="top" src={`data:image/jpeg;base64,${internship.imageData}`} />

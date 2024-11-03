@@ -14,7 +14,7 @@ const AdminProfileSettings = () => {
 
   return (
     <Layout role={role}>
-      <h1>Admin Profile Settings</h1>
+      <h2>Admin Profile Settings</h2>
 
       <button
         type="button"

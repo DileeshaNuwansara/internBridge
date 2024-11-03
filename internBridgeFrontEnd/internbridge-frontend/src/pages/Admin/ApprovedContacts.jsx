@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styles from './ApprovedContacts.module.scss';
+import Layout from '../../Layout/Layout';
 
 const ApprovedContacts = () => {
     const [approvedContacts, setApprovedContacts] = useState([]);
@@ -26,12 +27,15 @@ const ApprovedContacts = () => {
     };
 
     return (
+        <Layout>
         <Container className={styles.approvedContacts}>
+         <h2>Approved New Companies</h2>
             <Row>
                 {approvedContacts.map((contact) => (
                     <Col key={contact.id} md={12} className="mb-3">
                         <Card className={`${styles.contactCard} ${styles.approved}`}>
                             <Card.Body className="d-flex justify-content-between align-items-center">
+                                
                                 <div>
                                     <Card.Title>{contact.company}</Card.Title>
                                     <Card.Text><strong>Contact Name:</strong> {contact.name}</Card.Text>
@@ -46,6 +50,7 @@ const ApprovedContacts = () => {
                 ))}
             </Row>
         </Container>
+        </Layout>
     );
 };
 

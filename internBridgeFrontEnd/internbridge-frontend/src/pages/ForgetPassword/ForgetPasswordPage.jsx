@@ -14,7 +14,8 @@ const ForgetPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8081/api/v1/forgotPwd/verifyMail/{email}', { email });
+      const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/verifyMail/${email}`, { email });
+
       if (response.status === 200) {
         setMessage('Password reset link has been sent to your email.');
         navigate('/otp-verification', { state: { email } });

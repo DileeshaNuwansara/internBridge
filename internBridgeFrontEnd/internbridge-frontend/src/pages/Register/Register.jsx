@@ -17,7 +17,7 @@ const Register = () => {
         phone: '',
         password: '',
         role: '',
-        status: 'Pending' 
+        status: '', 
     });
 
     const handleChange = (e) => {
@@ -54,8 +54,8 @@ const Register = () => {
                 <Col lg={5} className="d-flex flex-column align-items-center justify-content-center ">
                     <div className={styles.registerDiv}>
                         <img src={logo} alt="InternBridge Logo" />
-                        <h2>Create an Admin Account</h2>
-                        <p>Join the platform as an admin to manage job opportunities.</p>
+                        <h2>Create an User Account</h2>
+                        <p>Join the platform as an admin to manage Users, New Connections with IT companies for opportunities.</p>
                     </div>
                 </Col>
             
@@ -167,7 +167,7 @@ const Register = () => {
 
                                     {/* Status Dropdown */}
                                         <Form.Group controlId="formStatus">
-                                            <Form.Label>Status</Form.Label>
+                                            <Form.Label>User Status</Form.Label>
                                             <Form.Control
                                                 as="select"
                                                 name="status"
@@ -175,12 +175,13 @@ const Register = () => {
                                                 onChange={handleChange}
                                                 required
                                             >
-                                               
+                                                <option value="" disabled>Select Status</option>
                                                 <option value="registered">Registered</option>
                                                 <option value="applied">Applied</option>
                                                 <option value="hired">Hired</option>
                                                 <option value="rejected">Rejected</option>
                                                 <option value="interviewed">Interviewed</option>
+                                                
                                             </Form.Control>
                                         </Form.Group>
 

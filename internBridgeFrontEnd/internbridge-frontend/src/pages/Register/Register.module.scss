@@ -1,8 +1,8 @@
 $primary-color: #f5b548;
 $primary-hover-color: #cb9010;
-$secondary-color: #9e9999;
+$secondary-color: #9e9898;
 $background-color: #b3a272;
-$text-color: #0a0ab8;
+$text-color: #252592;
 $input-border-color: rgba(191, 185, 185, 0.1);
 $border-radius: 10px;
 $box-shadow: 0 4px 10px rgba(202, 171, 77, 0.1);
@@ -109,7 +109,7 @@ $input-padding: 0.75rem 1rem;
            background-color: transparent;
   
            &::placeholder {
-             color: rgba(64, 63, 63, 0.4);
+             color: rgba(66, 65, 65, 0.4);
            }
          }
        }

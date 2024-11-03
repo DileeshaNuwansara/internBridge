@@ -3,7 +3,10 @@ import { Card, Button, Container, Row, Col, Pagination } from 'react-bootstrap';
 import axios from 'axios';
 import styles from './InterviewList.module.scss';  
 import Layout from '../../Layout/Layout';
-const StudentInterviews = ({ studentId }) => {
+const StudentInterviews = () => {
+
+  const studentId = localStorage.getItem('userId');
+  
   const [interviews, setInterviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [interviewsPerPage] = useState(5);

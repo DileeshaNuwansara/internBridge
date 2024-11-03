@@ -2,7 +2,7 @@
   $primary-color: #f7b747;
   $secondary-color: #f0f41b;
   $hover-bg-color: rgba(226, 242, 247, 0.5);
-  $sidebar-bg-color: #788693;
+  $sidebar-bg-color: rgba(88, 53, 117, 0.913); 
   $nav-link-hover-color: #f5f7fa;
   $icon-color: #f3f9fa;
   $icon-hover-color: #c6d0d7;
@@ -38,20 +38,21 @@
       padding: 0;
       width: 270px;
       height: 65px;
+      border-radius: 0cap;
       transition: width 0.3s ease;
     }
 
     .smallLogo {
       width: 80px; 
-      height: 60px;
+      height: 65px;
       transition: width 0.3s ease;
     }
   }
 
-  .nav {
+  .nav1 {
     flex-direction: column;
     padding: 0rem;
-    font-weight: 550px;
+    font-weight: 600px;
 
     .navItem {
       margin-top: 0px;
@@ -60,7 +61,7 @@
       .navLink {
         color: white;
         width: 100%;
-        font-weight: 550;
+        font-weight: 600;
         display: flex;
         align-items: center;
         padding: 8px;
@@ -114,19 +115,19 @@
       .dropdownMenu {
         background-color: $hover-bg-color;
         list-style: none;
-        padding-left: 15px;
+        padding-left: 18px;
 
-        .dropdownItem {
-          color: $icon-color;
+        .dropdownItem1 {
+          color:#f6f6f7;
           display: block;
           padding: 5px 15px;
-          transition: color 0.3s, font-weight 0.3s;
+          transition: color 0.3s, font-weight 0.4s;
           
 
           &:hover {
 
             color:$sidebar-bg-color;
-            font-weight: 600;
+            font-weight: 625;
             background-color: #f9f7f4;
           }
         }
@@ -173,7 +174,7 @@
 
   &.closed .icon{
     width: 80%;
-    margin-right: 0;
+    margin-right: 1;
     align-items: baseline;
   }
 
@@ -214,7 +215,7 @@
 .sidebar {
   width:  268px;
   z-index:250;
-  transform: translateX(-30%);
+  transform: translateX(-32%);
   &.open {
     transform: translateX(0);
   }

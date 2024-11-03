@@ -50,43 +50,52 @@ const AppNavBar = ( ) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to={`/${role}/dashboard`}>{role} Dashboard</Nav.Link>
+            <Nav.Link as={Link} to={`/${role}/dashboard`} className={styles.navLink}>{role} Dashboard</Nav.Link>
 
             {role === 'ROLE_ADMIN' && (
+              <>
+               
               <NavDropdown title="Manage Users" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/admin/add-admin">Manage Admins</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/admin/add-student">Manage Students</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/admin/add-coordinator">Manage Coordinators</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/ROLE_ADMIN/add-company"className={styles.navLinkdown}>Manage New Companies</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/ROLE_ADMIN/add-admin"className={styles.navLinkdown}>Manage Admins</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/ROLE_ADMIN/add-student"className={styles.navLinkdown}>Manage Students</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/ROLE_ADMIN/add-coordinator"className={styles.navLinkdown}>Manage Coordinators</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/admin/add-companyhr">Manage Company-HRs</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/ROLE_ADMIN/add-companyhr"className={styles.navLinkdown}>Manage Company-HRs</NavDropdown.Item>
                 
                 {/* <NavDropdown.Item as={Link} to="/users/student/cvs">Students' CVs</NavDropdown.Item> */}
               </NavDropdown>
+
+              <Nav.Link as={Link} to="/ROLE_ADMIN/add-company" className={styles.navLink}>Register new Sponsers</Nav.Link>
+
+              </>
+              
             )}
 
             {role === 'ROLE_STUDENT' && (
               <>
-              <Nav.Link as={Link} to="/student/profile-settings">Profile</Nav.Link>
-              <Nav.Link as={Link} to="/student/manage-cv">Students' CVs</Nav.Link>
-              <Nav.Link as={Link} to="/student/student-new-internships">Internships</Nav.Link>
+              {/* <Nav.Link as={Link} to="/student/profile-settings">Profile</Nav.Link> */}
+              <Nav.Link as={Link} to="/ROLE_STUDENT/manage-cv"className={styles.navLink}>Students' CVs</Nav.Link>
+              <Nav.Link as={Link} to="/ROLE_STUDENT/student-new-internships"className={styles.navLink}>Internships</Nav.Link>
                 
               </>
             )}
 
             {role === 'ROLE_COORDINATOR' && (
               <>
-                <Nav.Link as={Link} to="/coordinator/manage-new-internships">Internships</Nav.Link>
-                <Nav.Link as={Link} to="/coordinator/mange-interviews">Interviews</Nav.Link>
-                <Nav.Link as={Link} to="/coordinator/manage-practice-sessions">Practice Sessions</Nav.Link>
-                <Nav.Link as={Link} to="/coordinator/manage-student-applications">Students' CVs</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-new-companyies"className={styles.navLink}>New Companies</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-new-internships"className={styles.navLink}>Internships</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-interviews"className={styles.navLink}>Interviews</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-practice-sessions"className={styles.navLink}>Practice Sessions</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-student-applications" className={styles.navLink}>Students' CVs</Nav.Link>
               </>
             )}
             {role === 'ROLE_COMPANYHR' && (
               <>
-                <Nav.Link as={Link} to="/companyhr/active-interns-status">Active Hired Interns</Nav.Link>
-                <Nav.Link as={Link} to="/companyhr/interview-details">Interviews</Nav.Link>
-                <Nav.Link as={Link} to="/companyhr/manage-practice-sessions">Practice Sessions</Nav.Link>
-                <Nav.Link as={Link} to="/companyhr/manage-cv">Students' CVs</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COMPANYHR/active-interns-status"className={styles.navLink}>Active Hired Interns</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COMPANYHR/interview-details"className={styles.navLink}>Interviews</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COMPANYHR/manage-practice-sessions"className={styles.navLink}>Practice Sessions</Nav.Link>
+                <Nav.Link as={Link} to="/ROLE_COMPANYHR/manage-cv" className={styles.navLink}>Manage Applications</Nav.Link>
               </>
             )}
           </Nav>
@@ -101,9 +110,9 @@ const AppNavBar = ( ) => {
             </Nav.Link>
 
 
-              <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1)} id="user-dropdown">
-              <NavDropdown.Item as={Link} to={`/${role}/profile-settings`}>Profile</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/signout">Sign Out</NavDropdown.Item>
+              <NavDropdown title={role.charAt(0).toUpperCase() + role.slice(1) } id="user-dropdown" >
+              <NavDropdown.Item as={Link} to={`/${role}/profile-settings` } className={styles.navLinkdown} >Profile</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/signout" className={styles.navLinkdown} >Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

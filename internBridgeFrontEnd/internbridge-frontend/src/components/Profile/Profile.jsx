@@ -1,103 +1,72 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Modal, Button, Spinner, Alert,Form } from 'react-bootstrap';
+import { Modal, Button, Spinner, Alert, Form } from 'react-bootstrap';
 import styles from './profile.module.scss';
 
-const Profile = ({ show, handleClose, userId }) => {
+const Profile = ({ show, handleClose, userId, role }) => {
   const [userData, setUserData] = useState(null);
-  const [studentData, setStudentData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
   const [updatedProfile, setUpdatedProfile] = useState(null);
 
-  const token = localStorage.getItem('token');
-  const role = localStorage.getItem('role');
-  const email = localStorage.getItem('email');
-
-
   useEffect(() => {
-    if (!token || !role || !userId) {
-      setError('User is not authenticated or role/userId is missing.');
+    if (!role || !userId) {
+      setError('User role/userId is missing.');
       setLoading(false);
       return;
     }
 
-    if (!role) return;
-
-
     setLoading(true);
+    let apiEndpoint = '';
 
-    let apiEndpoint = '/api/v1/profile';
-
-    if (role === 'ROLE_ADMIN') {
-      apiEndpoint = '/api/v1/admin/profile/'; //  endpoint for Admins
+    if (role === 'ROLE_ADMIN' || role === 'ROLE_COMPANYHR' || role === 'ROLE_COORDINATOR') {
+      apiEndpoint = `/api/v1/user/getUserById/${userId}`; // endpoint for Admin, Company HR, and Coordinator
     } else if (role === 'ROLE_STUDENT') {
-      apiEndpoint = `/api/v1/student/${userId}`; //  endpoint for Students
-    } else if (role === 'ROLE_COMPANY_HR') {
-      apiEndpoint = '/api/v1/companyhr/profile'; //  for CompanyHR
-    } else if (role === 'ROLE_COORDINATOR') {
-      apiEndpoint = '/api/v1/coordinator/profile'; //  for Coordinators
+      apiEndpoint = `/api/v1/student/details/${userId}`; // endpoint for Students
     }
 
-    axios
-    .get(apiEndpoint, {
-        params: { email },
-        headers: { Authorization: `Bearer ${token}` } // Include token if needed
-      })
-    .then((response) => {
-      setUserData(response.data);
-      
-        
-        
-        if (role === 'ROLE_STUDENT') {
-          axios.get(`/api/v1/student/details/${userId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          .then((res) => {
-            setStudentData(res.data);
-          })
-          .catch((err) => {
-            setError('Failed to fetch student-specific data.');
-          });
-        }
+    axios.get(apiEndpoint)
+      .then((response) => {
+        setUserData(response.data);
+        setUpdatedProfile(response.data);
         setLoading(false);
       })
       .catch((error) => {
+        console.error('Error fetching profile data:', error);
         setError('Failed to fetch profile data.');
         setLoading(false);
       });
-    }, [token, role, userId,email]);
+  }, [role, userId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUpdatedProfile({ ...userData, [name]: value });
+    setUpdatedProfile({ ...updatedProfile, [name]: value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    if (role !== 'ROLE_STUDENT') return;
+    e.preventDefault();
     setLoading(true);
-    
-  
-    axios.put(`/api/v1/student/update/${userId}`, updatedProfile, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    })
 
-    .then(response => {
-      setUserData(response.data);
-      setLoading(false);
-      handleClose();
-    })
-    .catch(error => {
-      setError('Failed to update profile data.');
-      setLoading(false);
-    });
+    let updateEndpoint;
+
+    if (role === 'ROLE_STUDENT') {
+      updateEndpoint = `/api/v1/student/update/${userId}`; // endpoint for updating student
+    } else {
+      updateEndpoint = `/api/v1/user/updateUser/${userId}`; // endpoint for updating other users
+    }
+
+    axios.put(updateEndpoint, updatedProfile)
+      .then(response => {
+        setUserData(response.data);
+        setLoading(false);
+        handleClose();
+      })
+      .catch(error => {
+        console.error('Error updating profile data:', error);
+        setError('Failed to update profile data.');
+        setLoading(false);
+      });
   };
-
-
-
 
   if (loading) {
     return (
@@ -118,94 +87,88 @@ const Profile = ({ show, handleClose, userId }) => {
 
   return (
     <div>
-    <Modal show={show} onHide={handleClose} centered className="mt-5">
-      <Modal.Header closeButton className={styles.modalHeader}>
-        <Modal.Title>Profile Information</Modal.Title>
-      </Modal.Header>
+      <Modal show={show} onHide={handleClose} centered className="mt-5">
+        <Modal.Header closeButton className={styles.modalHeader}>
+          <Modal.Title>Profile Information</Modal.Title>
+        </Modal.Header>
 
+        <Modal.Body className={styles.modalBody}>
+          <p><strong>Username:</strong> {userData.name}</p>
+          <p><strong>Your Role:</strong> {userData.role}</p>
 
-		  <Modal.Body className={styles.modalBody}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={updatedProfile.email}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={updatedProfile.password}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Company</Form.Label>
+              <Form.Control
+                type="text"
+                name="company"
+                value={updatedProfile.company}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Phone</Form.Label>
+              <Form.Control
+                type="text"
+                name="phone"
+                value={updatedProfile.phone}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <p><strong>Your status up to now:</strong> {userData.status}</p>
 
-      <p><strong>Username:</strong> {userData.name}</p>
-      <p><strong>Your Role:</strong> {userData.role}</p>
-
-      
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" value={userData.email} readOnly />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label><strong>password:</strong></Form.Label>
-          <Form.Label> {userData.password} </Form.Label>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Comppany</Form.Label>
-          <Form.Control type="text" value={userData.company} readOnly />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Phone</Form.Label>
-          <Form.Control type="text" value={userData.phone} readOnly />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label><strong>Role :</strong></Form.Label>
-          <Form.Label >{userData.email} readOnly </Form.Label>
-        </Form.Group>
-
-
-			  <p><strong>Your status up to now :</strong> {userData.status} </p>
-
-
-
-              {/* If the role is Student, display additional student details */}
-              {role === "ROLE_STUDENT" && studentData && (
-                <>
-                  <h5>Student Specific Information</h5>
-                  <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                     <Form.Control type="email" value={userData.email} readOnly />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>SC Number</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="scNumber"
-                        value={updatedProfile?.scNumber || userData.scNumber}
-                        onChange={handleInputChange}
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>GPA</Form.Label>
-                    <Form.Control
-                        type="number"
-                        step="0.01"
-                        name="gpa"
-                        value={updatedProfile?.gpa || userData.gpa}
-                        onChange={handleInputChange}
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                        <Form.Label>Applied Position</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="position"
-                            value={updatedProfile?.position || userData.position}
-                            onChange={handleInputChange}
-	
-                        />
-                  </Form.Group>
-                </>
-              )}
-
-                  </Form>
-                  </Modal.Body>
-
-                 
-              <Modal.Footer>
-			        <Button className={styles.closeButton} onClick={handleClose}>
-          			  Close
-        		  </Button>
-		      </Modal.Footer>
+            {role === "ROLE_STUDENT" && (
+              <>
+                <h5>Student Specific Information</h5>
+                <Form.Group>
+                  <Form.Label>SC Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="scNumber"
+                    value={updatedProfile.scNumber}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>GPA</Form.Label>
+                  <Form.Control
+                    type="number"
+                    step="0.01"
+                    name="gpa"
+                    value={updatedProfile.gpa}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </>
+            )}
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className={styles.closeButton} onClick={handleClose}>
+            Close
+          </Button>
+          <Button type="submit" className={styles.saveButton} onClick={handleSubmit}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );

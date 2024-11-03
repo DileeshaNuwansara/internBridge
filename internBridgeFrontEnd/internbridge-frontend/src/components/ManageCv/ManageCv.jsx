@@ -3,7 +3,7 @@ import React from 'react';
 const ManageCv = ({ setActiveComponent }) => {
   return (
     <div>
-      <h1>Manage Your CV</h1>
+      <h2>Manage Your CV</h2>
       <p>Select an option:</p>
       <button onClick={() => setActiveComponent('upload')}>Upload Your Own CV</button>
       <button onClick={() => setActiveComponent('generate')}>Generate and Upload CV</button>

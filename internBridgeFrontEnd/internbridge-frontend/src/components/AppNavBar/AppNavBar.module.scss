@@ -1,5 +1,5 @@
-$glass-bg-color: rgba(135, 157, 168, 0.798); 
-$navbar-border-color: rgba(212, 209, 209, 0.3); 
+$glass-bg-color: rgba(88, 53, 117, 0.913);
+$navbar-border-color: rgba(185, 167, 167, 0.3); 
 
 .AppNavBar {
 
@@ -27,15 +27,29 @@ $navbar-border-color: rgba(212, 209, 209, 0.3);
       height: 80px;
     }
 
-    .nav-link {
+    .navLink {
       display: flex;
-      font-size: 1.5rem;
-      font-weight: 650;
-      color: #1f1450 !important;
-      padding: 0.80rem 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e7e1eb !important;
+      padding: 0.4rem 0.3rem;
 
       &:hover {
         color: #ff9800 !important;
+      }
+    }
+
+    .navLinkdown {
+      display: flex;
+      font-size: .8rem;
+      font-weight: 550;
+      color: #3a065d !important;
+      padding: 0.3rem 0.3rem;
+
+      &:hover {
+        color: #8d5707 !important;
+        font-size: 1rem;
+        font-weight: 600;
       }
     }
 

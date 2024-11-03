@@ -38,7 +38,7 @@ const UploadCv = () => {
       <h2>Upload Your Own CV</h2>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
+        <button type="submit" className={"padding: 10px 20px; font-size: 16px;"}>Upload</button>
       </form>
       {message && <p>{message}</p>}
     </div>

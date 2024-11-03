@@ -48,6 +48,7 @@ const NotHiredStudents = () => {
   return (
     <Layout role = {userRole}>
     <Container className="mt-4">
+      <Row><h2>Still Not Hired Students</h2></Row>
       <Row>
         {students.map((student) => (
           <Col key={student.id} sm={12} md={6} lg={4} className="mb-4">

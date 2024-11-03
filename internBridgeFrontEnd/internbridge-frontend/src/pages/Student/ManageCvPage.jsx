@@ -23,7 +23,7 @@ const ManageCvPage = ({ role }) => {
 
     <Layout role={role}>
 
-      <div>{renderComponent()}</div>;
+      <div>{renderComponent()}</div>
 
     </Layout>
   );

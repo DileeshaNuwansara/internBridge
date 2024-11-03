@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import styles from './NewContacts.module.scss';
+import Layout from '../../Layout/Layout';
 
 const NewContacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -53,7 +54,9 @@ const NewContacts = () => {
 
     
     return (
+        <Layout>
         <Container className={styles.newContacts}>
+            <Row><h2>New Connections with Companies</h2></Row>
             <Row>
                 {contacts.map((contact) => (
                     <Col key={contact.id} md={12} className="mb-3">
@@ -82,6 +85,7 @@ const NewContacts = () => {
                 ))}
             </Row>
         </Container>
+        </Layout>
     );
 };
 

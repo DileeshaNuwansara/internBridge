@@ -56,13 +56,13 @@ const Signin = () => {
           //navigate(`/${role.toLowerCase()}/dashboard`);
 
           if (role === 'ROLE_ADMIN') {
-            navigate('/admin/dashboard');
+            navigate('/ROLE_ADMIN/dashboard');
           } else if (role === 'ROLE_STUDENT') {
-            navigate('/student/dashboard');
+            navigate('/ROLE_STUDENT/dashboard');
           } else if (role === 'ROLE_COMPANYHR') {
-            navigate('/companyhr/dashboard');
+            navigate('/ROLE_COMPANYHR/dashboard');
           } else if (role === 'ROLE_COORDINATOR') {
-            navigate('/coordinator/dashboard');
+            navigate('/ROLE_COORDINATOR/dashboard');
           } else {
             console.log("role : ",role)
             //navigate('/nopage');  

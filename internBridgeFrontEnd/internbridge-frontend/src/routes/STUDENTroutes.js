@@ -7,32 +7,32 @@ import ProfileSettings from '../pages/Student/StudentProfileSettings';
 
 const STUDENTRoutes = [
   {
-    path: "/student/dashboard",
+    path: "/ROLE_STUDENT/dashboard",
     element: <StudentDashboard />,
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/student-practice-sessions",
+    path: "/ROLE_STUDENT/student-practice-sessions",
     element: <StudentPracticeSessions />,
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/manage-cv",
+    path: "/ROLE_STUDENT/manage-cv",
     element: <ManageCvPage />,
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/student-new-internships",
+    path: "/ROLE_STUDENT/student-new-internships",
     element: <StudentNewInternships />,
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/student-interviews",
+    path: "/ROLE_STUDENT/student-interviews",
     element: <StudentInterviews />,
     roles: ["ROLE_STUDENT"], 
   },
   {
-    path: "/student/profile-settings",
+    path: "/ROLE_STUDENT/profile-settings",
     element: <ProfileSettings />,
     roles: ["ROLE_STUDENT"], 
   },

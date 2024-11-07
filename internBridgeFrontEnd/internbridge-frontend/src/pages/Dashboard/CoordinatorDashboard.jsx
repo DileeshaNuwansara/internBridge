@@ -27,11 +27,11 @@ const CoordinatorDashboard = () => {
 
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="New Internships" description="View new internships" link={`/${role}/manage-new-internships`} />
+            <Cards title="New Internships " description="View new internships" link={`/${role}/manage-new-internships`} />
 
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="New Companies" description="View new Companies connect with internBridge" link={`/${role}/manage-new-companyies`} />
+            <Cards title="New Companies Handler" description="View new Companies connect with internBridge" link={`/${role}/manage-new-companyies`} />
 
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">

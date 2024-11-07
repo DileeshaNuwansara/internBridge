@@ -66,7 +66,7 @@ const AppNavBar = ( ) => {
                 {/* <NavDropdown.Item as={Link} to="/users/student/cvs">Students' CVs</NavDropdown.Item> */}
               </NavDropdown>
 
-              <Nav.Link as={Link} to="/ROLE_ADMIN/add-company" className={styles.navLink}>Register new Sponsers</Nav.Link>
+              <Nav.Link as={Link} to="/ROLE_ADMIN/add-company" className={styles.navLink}>Register new Sponsors</Nav.Link>
 
               </>
               

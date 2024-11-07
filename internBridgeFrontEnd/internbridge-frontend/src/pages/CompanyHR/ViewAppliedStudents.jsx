@@ -1,7 +1,8 @@
 // src/components/HRApplications.js
 import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom";
+import axios from "axios"; 
 import styles from "./ViewAppliedStudents.module.scss"; 
 import Layout from "../../Layout/Layout";
 
@@ -10,24 +11,29 @@ const ViewAppliedStudents = () => {
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-  
-    fetch(`/api/v1/applications/internship/${internshipId}`)
-      .then((response) => response.json())
-      .then((data) => setApplications(data))
+    axios
+      .get(`/api/v1/applications/internship/${internshipId}`)
+      .then((response) => setApplications(response.data))
       .catch((error) => console.error("Error fetching applications:", error));
   }, [internshipId]);
 
   const handleDownloadCv = (studentId) => {
-    fetch(`/api/v1/application/cv/download?studentId=${studentId}`)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `student_${studentId}_CV.pdf`;
-        a.click();
+    axios
+      .get(`/api/v1/application/cv/download?studentId=${studentId}`, {
+        responseType: "blob",
+      })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `student_${studentId}_CV.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        alert('Student Cv download is successfull.')
       })
       .catch((error) => console.error("Error downloading CV:", error));
+      alert('Student Cv download is unsuccessfull.')
   };
 
   return (

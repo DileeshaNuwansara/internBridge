@@ -49,8 +49,10 @@ const ManageApplications = () => {
       await axios.put(`http://localhost:8081/api/v1/applications/${selectedApplication.applicationId}/status`, updatedApplication);
       setShowUpdateModal(false);
       fetchApplications();
+      alert('Application is updated successfully..')
     } catch (error) {
       console.error('Error updating application status:', error);
+      alert('Error updating..!')
     }
   };
 
@@ -71,6 +73,7 @@ const ManageApplications = () => {
       
     } catch (error) {
       console.error('Error fetching CV:', error);
+      alert('Error fetching cv !')
     }
   };
   

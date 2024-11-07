@@ -14,8 +14,7 @@ public class PracticeSessionDTO {
     private LocalTime startTime;
     private String status;
     private String meetingLink;
-    private String companyHr;
-
+    private Long creatorId;
 
 //    private List<Long> applicationIds;
 }

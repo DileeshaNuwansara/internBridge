@@ -35,6 +35,7 @@ public class PracticeSession {
     private String meetingLink;
 
     @ManyToOne
+    @JoinColumn(name = "company_hr_id")
     private User companyHr;
 
 //    @OneToMany(mappedBy = "practiceSession")

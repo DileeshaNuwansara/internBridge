@@ -70,8 +70,10 @@ const InterviewDetails = () => {
       await axios.post('/api/v1/interviews/create', interviewRequest);
       resetForm();
       fetchInterviews();
+      alert('Created an Interview successfully')
     } catch (error) {
       console.error('Error creating interview:', error);
+      alert("Error when Creating an Interview");
     }
   };
 
@@ -79,13 +81,15 @@ const InterviewDetails = () => {
     try {
       const interviewRequest = {
         ...formData,
-        studentIds: selectedStudents, // Assuming the selected students can also be updated
+        studentIds: selectedStudents, 
       };
       await axios.put(`/api/v1/interviews/update/${selectedInterviewId}`, interviewRequest);
       resetForm();
       fetchInterviews(); 
+      alert('Updated the interview successfully.')
     } catch (error) {
       console.error('Error updating interview:', error);
+      alert('Error when updatingg an interview state');
     }
   };
 
@@ -108,8 +112,10 @@ const InterviewDetails = () => {
     try {
       await axios.delete(`/api/v1/interviews/delete/${id}`);
       setInterviews(interviews.filter((interview) => interview.interviewId !== id));
+      alert('Deleted the Interview successfully.')
     } catch (error) {
       console.error('Error deleting interview:', error);
+      alert('Error when delete the Interview');
     }
   };
 
@@ -183,12 +189,14 @@ const InterviewDetails = () => {
             </Form.Group>
             <Form.Group controlId="formStatus">
               <Form.Label>Status</Form.Label>
-              <Form.Control
-                type="text"
-                name="status"
-                value={formData.status}
-                onChange={handleInputChange}
-              />
+              <Form.Select name="status" value={formData.status || ''} onChange={handleInputChange}>
+                <option value="" disabled>Select Status</option>
+                <option value="Registered">Pending</option>
+                <option value="Applied">Sheduled</option>
+                <option value="Hired">Postponed</option>
+                <option value="Rejected">Cancled</option>
+                <option value="Interviewed">Interviewed</option>
+              </Form.Select>
             </Form.Group>
             <Form.Group controlId="formStartDate">
               <Form.Label>Start Date</Form.Label>

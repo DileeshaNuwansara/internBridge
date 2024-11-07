@@ -19,16 +19,33 @@ public class PracticeSessionController {
     @Autowired
     private PracticeSessionService practiceSessionService;
 
-    @PostMapping
-    public ResponseEntity<PracticeSessionDTO> createPracticeSession(@RequestBody PracticeSessionDTO practiceSessionDTO, @AuthenticationPrincipal User user) {
-        PracticeSessionDTO createdSession = practiceSessionService.createPracticeSession(practiceSessionDTO, user);
-        return new ResponseEntity<>(createdSession, HttpStatus.CREATED);
+    @Autowired
+    public PracticeSessionController(PracticeSessionService practiceSessionService) {
+        this.practiceSessionService = practiceSessionService;
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PracticeSessionDTO> updatePracticeSession(@PathVariable Long id, @RequestBody PracticeSessionDTO practiceSessionDTO, @AuthenticationPrincipal User user) {
-        PracticeSessionDTO updatedSession = practiceSessionService.updatePracticeSession(id, practiceSessionDTO, user);
-        return new ResponseEntity<>(updatedSession, HttpStatus.OK);
+
+    @PostMapping("/create{userId}")
+    public ResponseEntity<PracticeSessionDTO> createPracticeSession(
+            @RequestBody PracticeSessionDTO practiceSessionDTO,
+            @PathVariable Long userId) {
+
+        PracticeSessionDTO createdSession = practiceSessionService.createPracticeSession(practiceSessionDTO, userId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdSession);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<PracticeSessionDTO> updatePracticeSession(
+            @PathVariable Long id,
+            @RequestBody PracticeSessionDTO practiceSessionDTO,
+            @RequestHeader("userId") Long userId) {
+        try {
+            PracticeSessionDTO updatedSession = practiceSessionService.updatePracticeSession(id, practiceSessionDTO, userId);
+            return new ResponseEntity<>(updatedSession, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")

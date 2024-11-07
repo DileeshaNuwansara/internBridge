@@ -70,13 +70,13 @@ public class ContactController {
             contactService.save(contact);
 
             // Send email with login details
-            String defaultPassword = "S@yHellow12345";
+            //String defaultPassword = "S@yHellow123";
             String emailContent = String.format(
-                    "Welcome to InternBridge, %s! Your account has been approved.\n\nUsername: %s\nPassword: %s\nPlease log in and change your password.",
-                    contact.getCompany(), contact.getEmail(), defaultPassword
+                    "Welcome %s, Account is approved !!  \n \n \n Your account has been approved under the Company HR Accounts regulations.\n\n User credentials will be provided to User email: %s\n  \n \n " + "Best regards,\nInternBridge Team",
+                    contact.getCompany(), contact.getEmail()
             );
 
-            mailService.sendSimpleMessage(new MailBody(contact.getEmail(), "InternBridge HR Account Approved", emailContent));
+            mailService.sendSimpleMessage(new MailBody(contact.getEmail(), "InternBridge Account Approved.", emailContent));
 
             return ResponseEntity.ok(contact);
         } catch (Exception e) {

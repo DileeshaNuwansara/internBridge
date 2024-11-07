@@ -16,22 +16,22 @@ const AdminDashboard = () => {
       <Container fluid className={styles.dashboardContent}> 
         <Row> 
           <Col xs={12} md={6} lg={4}  className="mb-4"> 
-            <Cards title="Manage Students" description="Manage student details" link="/add-student"  />
+            <Cards title="Manage Students" description="Manage student details" link="/ROLE_ADMIN/add-student"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Coordinators" description="Manage coordinators " link="/add-coordinator"  />
+            <Cards title="Manage Coordinators" description="Manage coordinators " link="/ROLE_ADMIN/add-coordinator"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Admins" description="Manage administrative access" link="/add-admin"  />
+            <Cards title="Manage Admins" description="Manage administrative access" link="/ROLE_ADMIN/add-admin"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Company HR" description="Oversee company HR activities" link="/add-companyhr" />
+            <Cards title="Manage Company HR" description="Oversee company HR activities" link="/ROLE_ADMIN/add-companyhr" />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage New Company" description="Oversee New companies" link="/add-company" />
+            <Cards title="Manage New Companies" description="Oversee New companies" link="/ROLE_ADMIN/add-company" />
           </Col>
 	        <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Profile Settings" description=" Admin Profile Settings" link="/profile-settings" />
+            <Cards title="Profile Settings" description=" Admin Profile Settings" link="/ROLE_ADMIN/profile-settings" />
           </Col>
 
         </Row>

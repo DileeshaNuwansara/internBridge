@@ -6,7 +6,9 @@ import com.internbridge.internbridge_backend.dto.PracticeSessionDTO;
 import com.internbridge.internbridge_backend.entity.PracticeSession;
 import com.internbridge.internbridge_backend.entity.User;
 
+import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.PracticeSessionRepository;
+import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.PracticeSessionService;
 
 import org.modelmapper.ModelMapper;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -25,39 +28,65 @@ public class PracticeSessionServiceImpl implements PracticeSessionService {
     private PracticeSessionRepository practiceSessionRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
+
     @Override
-    public PracticeSessionDTO createPracticeSession(PracticeSessionDTO practiceSessionDTO, User user) {
+    public PracticeSessionDTO createPracticeSession(PracticeSessionDTO practiceSessionDTO, Long userId) {
+        try {
+            Optional<User> companyHrOpt = userRepository.findById(userId);
+            if (!companyHrOpt.isPresent() || !companyHrOpt.get().getRole().equals("ROLE_COMPANYHR")) {
+                throw new RuntimeException("Unauthorized user");
+            }
 
-        if (!user.getRole().equals("companyHR")) {
-            throw new RuntimeException("Unauthorized: Only company HR can create practice sessions");
+            User companyHr = companyHrOpt.get();
+
+            PracticeSession practiceSession = modelMapper.map(practiceSessionDTO, PracticeSession.class);
+            practiceSession.setCompanyHr(companyHr);
+
+            PracticeSession savedSession = practiceSessionRepository.save(practiceSession);
+
+            return modelMapper.map(savedSession, PracticeSessionDTO.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating practice session: " + e.getMessage(), e);
         }
-
-        PracticeSession practiceSession = modelMapper.map(practiceSessionDTO, PracticeSession.class);
-        PracticeSession savedSession = practiceSessionRepository.save(practiceSession);
-        return modelMapper.map(savedSession, PracticeSessionDTO.class);
     }
 
     @Override
-    public PracticeSessionDTO updatePracticeSession(Long sessionId, PracticeSessionDTO practiceSessionDTO, User user) {
-        // Only allow users with the "companyHR" role to update a practice session
-        if (!user.getRole().equals("companyHR")) {
-            throw new RuntimeException("Unauthorized: Only company HR can update practice sessions");
+    public PracticeSessionDTO updatePracticeSession(Long practiceSessionId, PracticeSessionDTO practiceSessionDTO,Long userId) {
+        try {
+            Optional<PracticeSession> practiceSessionOpt = practiceSessionRepository.findById(practiceSessionId);
+            if (!practiceSessionOpt.isPresent()) {
+                throw new RuntimeException("Practice session not found");
+            }
+
+            PracticeSession practiceSession = practiceSessionOpt.get();
+            Optional<User> companyHrOpt = userRepository.findById(userId);
+            if (!companyHrOpt.isPresent() || !companyHrOpt.get().getRole().equals("ROLE_COMPANYHR")) {
+                throw new RuntimeException("Unauthorized user");
+            }
+
+            User companyHr = companyHrOpt.get();
+
+            // Update the session's details
+            practiceSession.setTitle(practiceSessionDTO.getTitle());
+            practiceSession.setDescription(practiceSessionDTO.getDescription());
+            practiceSession.setStartDate(practiceSessionDTO.getStartDate());
+            practiceSession.setStartTime(practiceSessionDTO.getStartTime());
+            practiceSession.setStatus(practiceSessionDTO.getStatus());
+            practiceSession.setMeetingLink(practiceSessionDTO.getMeetingLink());
+
+            practiceSession.setCompanyHr(companyHr);
+
+            PracticeSession updatedSession = practiceSessionRepository.save(practiceSession);
+
+            return modelMapper.map(updatedSession, PracticeSessionDTO.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating practice session: " + e.getMessage(), e);
         }
-
-        PracticeSession practiceSession = practiceSessionRepository.findById(sessionId)
-                .orElseThrow(() -> new RuntimeException("Practice Session not found"));
-
-        practiceSession.setTitle(practiceSessionDTO.getTitle());
-        practiceSession.setDescription(practiceSessionDTO.getDescription());
-        practiceSession.setStartDate(practiceSessionDTO.getStartDate());
-        practiceSession.setStartTime(practiceSessionDTO.getStartTime());
-        practiceSession.setStatus(practiceSessionDTO.getStatus());
-        practiceSession.setMeetingLink(practiceSessionDTO.getMeetingLink());
-
-        PracticeSession updatedSession = practiceSessionRepository.save(practiceSession);
-        return modelMapper.map(updatedSession, PracticeSessionDTO.class);
     }
 
     @Override

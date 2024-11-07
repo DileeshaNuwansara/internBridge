@@ -49,8 +49,6 @@ public class User {
 //    @Size(max = 10, message = "Phone number cannot exceed 12 characters")
     private String phone;
 
-    @OneToOne(mappedBy = "user")
-    private ForgotPassword forgotPassword;
 
     private String role;
 
@@ -61,6 +59,9 @@ public class User {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Application> applications;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ForgotPassword forgotPassword;
 
 
     @PrePersist

@@ -5,7 +5,6 @@ import { CgProfile } from "react-icons/cg";
 
 const AdminProfileSettings = () => {
   const [showProfile, setShowProfile] = useState(false);
-
   const handleOpenProfile = () => setShowProfile(true);
   const handleCloseProfile = () => setShowProfile(false);
 

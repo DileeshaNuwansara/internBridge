@@ -18,7 +18,7 @@ const AdminAddStudent = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/api/v1/student');
+        const response = await axios.get('http://localhost:8081/api/v1/student/getAll');
         setStudents(response.data);
         setLoading(false);
       } catch (err) {
@@ -66,11 +66,13 @@ const handleChange = (e) => {
 
   const handleUpdateSubmit = async () => {
     try {
-      const response = await axios.put(`http://localhost:8081/api/v1/user/updateUser/${selectedStudent.userId}`, formData);
+      const response = await axios.put(`http://localhost:8081/api/v1/student/update/${selectedStudent.userId}`, formData);
       setStudents(students.map(student => (student.userId === response.data.userId ? response.data : student)));
       setShowUpdateModal(false); 
+      alert('Student updating successfully.')
     } catch (err) {
       setError('Error updating student.');
+      alert('Error updating student.');
     }
   };
 
@@ -110,7 +112,7 @@ const handleChange = (e) => {
           <tbody>
           {students.length === 0 ? (
                 <tr>
-                  <td colSpan="7" className="text-center">No Student found.</td>
+                  <td colSpan="10" className="text-center">No Student found.</td>
                 </tr>
               ) : (
               students.map(student => (
@@ -127,7 +129,7 @@ const handleChange = (e) => {
                 <td>
                 <Button
                     variant="success"
-                    onClick={() => handleUpdate(student.userId)}
+                    onClick={() => handleUpdate(student)}
                   >
                    Update State
                   </Button>
@@ -169,17 +171,24 @@ const handleChange = (e) => {
                 <Form.Label>Phone</Form.Label>
                 <Form.Control type="text" name="phone" value={formData.phone || ''} onChange={handleChange} />
               </Form.Group>
-              <Form.Group controlId="formStatus">
-                <Form.Label>Status</Form.Label>
-                <Form.Control type="text" name="status" value={formData.status || ''} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group controlId="formStatus">
+              <Form.Group controlId="formStatusSelect">
+                  <Form.Label>Status</Form.Label>
+                  <Form.Select name="status" value={formData.status || ''} onChange={handleChange}>
+                    <option value="" disabled>Select Status</option>
+                    <option value="Registered">Registered</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Hired">Hired</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Interviewed">Interviewed</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group controlId="formScNumber">
                 <Form.Label>SC Number</Form.Label>
                 <Form.Control type="text" name="scNumber" value={formData.scNumber || ''} onChange={handleChange} />
               </Form.Group>
-              <Form.Group controlId="formStatus">
+              <Form.Group controlId="formGPA">
                 <Form.Label>GPA</Form.Label>
-                <Form.Control type="text" name="gpa" value={formData.gpa || ''} onChange={handleChange} />
+                <Form.Control type="number" name="gpa" value={formData.gpa || ''} onChange={handleChange} />
               </Form.Group>
 
               <Form.Group controlId="formStatus">

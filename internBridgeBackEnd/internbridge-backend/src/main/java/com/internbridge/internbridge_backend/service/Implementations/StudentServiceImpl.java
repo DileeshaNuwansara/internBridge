@@ -51,10 +51,23 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
 
+        student.setName(studentDTO.getName());
+        student.setEmail(studentDTO.getEmail());
+        student.setCompany(studentDTO.getCompany());
+        student.setPhone(studentDTO.getPhone());
 
+        student.setStatus(studentDTO.getStatus());
+        student.setScNumber(studentDTO.getScNumber());
+        student.setGpa(studentDTO.getGpa());
+        student.setPosition(studentDTO.getPosition());
 
 
         modelMapper.map(studentDTO, student);
+        if (studentDTO.getCompanyHrId() != null) {
+            User companyHr = userRepository.findById(studentDTO.getCompanyHrId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Company HR not found with id " + studentDTO.getCompanyHrId()));
+            student.setCompanyHr(companyHr);
+        }
 
         studentRepository.save(student);
 
@@ -79,10 +92,18 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDTO> getFilteredStudents(String email) {
-        List<Student> students = studentRepository.findByEmail(email); // Assuming this returns a List<Student>
+    public List<StudentDTO> getFilteredStudents(String email,String role) {
+        List<Student> students = studentRepository.findByEmailOrRole(email, role);
         return students.stream()
                 .map(student -> modelMapper.map(student, StudentDTO.class)) // Mapping to StudentDTO
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StudentDTO> getAllStudents() {
+        List<Student> students = studentRepository.findAll();
+        return students.stream()
+                .map(student -> modelMapper.map(student, StudentDTO.class))
                 .collect(Collectors.toList());
     }
 

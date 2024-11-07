@@ -35,14 +35,14 @@ public class UserController {
 
             //email sending to welcome the user
 
-            String defaultPassword = "12345678";
+            String defaultPassword = "S@yHellow123";
             String subject = "Welcome to InternBridge!";
             String text = String.format(
-                    "Dear  %s,\n\n" +
-                            "Welcome to InternBridge! \n \n \n We’re excited to have you on board.\n\n" +
-                            "Here’s your username: %s\n" +
-                            "Your default password: %s\n\n" +
-                            "Please change your password to something more secure after logging in.\n\n" +
+                    "Dear  %s,\n \n" +
+                            "Welcome to InternBridge! \n \n  We’re excited to have you on board.\n\n" +
+                            "Here’s \n username: %s\n" +
+                            "default password: %s\n\n" +
+                            "Please log in and change your password to something more secure after logging in.\n\n\n" +
                             "Best regards,\nInternBridge Team",
                     registeredUser.getName(), registeredUser.getName(), defaultPassword
             );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Spinner } from 'react-bootstrap';
+import { Table, Spinner,Button } from 'react-bootstrap';
 import axios from 'axios';
 import styles from './ActiveInternsStatus.module.scss'; 
 import Layout from '../../Layout/Layout';
@@ -30,6 +30,20 @@ const ActiveInternsStatus = () => {
         fetchStudents();
     }, [companyHrId]);
 
+    const updateStatus = async (userId, currentStatus) => {
+        try {
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            await axios.put(`/api/v1/students/update/${userId}`, { status: newStatus });
+            setStudents(students.map(student =>
+                student.userId === userId ? { ...student, status: newStatus } : student
+            ));
+            alert('student status is updated.');
+        } catch (error) {
+            console.error('Error updating student status:', error);
+            alert('Error updating status..');
+        }
+    };
+
     const userRole = localStorage.getItem('role');
 
     if (loading) {
@@ -49,6 +63,8 @@ const ActiveInternsStatus = () => {
                         <th>SC Number</th>
                         <th>GPA</th>
                         <th>Position</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,6 +77,15 @@ const ActiveInternsStatus = () => {
                                 <td>{student.scNumber}</td>
                                 <td>{student.gpa}</td>
                                 <td>{student.position}</td>
+                                <td>{student.status}</td>
+                                <td>
+                                    <Button
+                                        variant="primary"
+                                        onClick={() => updateStatus(student.userId, student.status)}
+                                    >
+                                        {student.status === 'active' ? 'Deactivate' : 'Activate'}
+                                    </Button>
+                                </td>
                             </tr>
                         ))
                     ) : (

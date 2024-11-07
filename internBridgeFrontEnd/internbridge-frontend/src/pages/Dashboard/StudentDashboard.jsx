@@ -16,24 +16,24 @@ const StudentDashboard = () => {
       <Container fluid className={styles.dashboardContent}> 
         <Row> 
         <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Internship Details" description="View internship details" link="/student-new-internships" />
+            <Cards title="Internship Details" description="View internship details" link={`/${role}/student-new-internships`} />
 
           </Col>
           
           <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Interviews" description="View upcoming interviews" link="/student-interviews" />
+            <Cards title="Interviews" description="View upcoming interviews" link="ROLE_STUDENT/student-interviews" />
 
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
-            <Cards title="Practice Sessions" description="Participate in practice sessions" link="/student-practice-sessions" />
+            <Cards title="Practice Sessions" description="Participate in practice sessions" link="ROLE_STUDENT/student-practice-sessions" />
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
-            <Cards title="Manage CV" description="Upload and manage your CV" link="/manage-cv" />
+            <Cards title="Manage CV" description="Upload and manage your CV" link="ROLE_STUDENT/manage-cv" />
 
           </Col>
           
 	        <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Profile Settings" description=" Student Profile Settings" link="/profile-settings"  />
+            <Cards title="Profile Settings" description=" Student Profile Settings" link="ROLE_STUDENT/profile-settings"  />
           </Col>
 
         </Row>

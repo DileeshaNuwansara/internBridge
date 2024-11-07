@@ -19,8 +19,10 @@ const HiredStudents = () => {
     try {
       const response = await axios.get("/api/students/hired"); 
       setStudents(response.data);
+      alert('Hired Students are fetched..')
     } catch (error) {
       console.error("Error fetching hired students:", error);
+      alert('Error fetching hired students !');
     }
   };
 
@@ -30,6 +32,7 @@ const HiredStudents = () => {
       setInterviews(response.data);
     } catch (error) {
       console.error("Error fetching interviews:", error);
+      alert("Error fetching interviews !")
     }
   };
   

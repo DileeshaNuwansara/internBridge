@@ -11,6 +11,8 @@ public class StudentDTO {
     private String password;
     private String company;
     private String phone;
+    private String address;
+    private String status;
     private String scNumber;
     private Double gpa;
     private String position;

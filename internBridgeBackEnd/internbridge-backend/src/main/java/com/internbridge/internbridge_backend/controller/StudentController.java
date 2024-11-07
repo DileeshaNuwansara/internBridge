@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.internbridge.internbridge_backend.entity.Role.ROLE_STUDENT;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
@@ -65,8 +66,15 @@ public class StudentController {
 
     @GetMapping("/students/filter")
     public ResponseEntity<List<StudentDTO>> getFilteredStudents(@RequestParam(required = false) String email,
-                                                                @RequestParam(required = false) String position) {
-        List<StudentDTO> students = studentService.getFilteredStudents(email);
+                                                                @RequestParam(required = false) String role) {
+        List<StudentDTO> students = studentService.getFilteredStudents(email,role);
+        return ResponseEntity.ok(students);
+    }
+
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<StudentDTO>> getAllStudents() {
+        List<StudentDTO> students = studentService.getAllStudents();
         return ResponseEntity.ok(students);
     }
 }

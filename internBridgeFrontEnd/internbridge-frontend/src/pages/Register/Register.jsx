@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Alert, Row, Col } from 'react-bootstrap';
 import { FaUserShield } from "react-icons/fa";
 import { BsShieldLockFill, BsFillTelephoneFill } from "react-icons/bs";
 import { MdBusiness } from "react-icons/md";
@@ -10,6 +10,7 @@ import logo from '../../assets/imgs/internbridge_logo.png';
 import axios from 'axios';
 
 const Register = () => {
+
     const [formData, setFormData] = useState({
         email: '',
         name: '',
@@ -37,7 +38,7 @@ const Register = () => {
 
             if (response.status === 201){
                 
-                alert('Registration Successful');
+                alert('User created successfully!');
             }
         } catch (error) {
             console.error('Error during registration:', error.response.data);

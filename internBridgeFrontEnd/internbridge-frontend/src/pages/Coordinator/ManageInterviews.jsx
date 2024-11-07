@@ -45,8 +45,10 @@ const ManageInterviews = () => {
       await axios.put(`http://localhost:8081/api/v1/interviews/update/${selectedInterview.id}`, selectedInterview);
       setShowUpdateModal(false);
       fetchInterviews(); 
+      alert("Fetching interview data..")
     } catch (error) {
       console.error('Error updating interview:', error);
+      alert('Error Updating an interview ...!');
     }
   };
 

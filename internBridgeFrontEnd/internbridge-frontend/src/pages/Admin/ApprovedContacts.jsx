@@ -17,8 +17,10 @@ const ApprovedContacts = () => {
         try {
             const response = await axios.get('http://localhost:8081/api/v1/contacts/approved');
             setApprovedContacts(response.data);
+            
         } catch (error) {
             console.error('Error fetching approved contacts:', error);
+            alert('Error fetching approved contacts.');
         }
     };
 

@@ -7,11 +7,14 @@ import java.util.List;
 
 public interface PracticeSessionService {
 
+    PracticeSessionDTO createPracticeSession(PracticeSessionDTO practiceSessionDTO, Long userId);
 
 
-    PracticeSessionDTO createPracticeSession(PracticeSessionDTO practiceSessionDTO, User user);
+    PracticeSessionDTO updatePracticeSession(Long practiceSessionId, PracticeSessionDTO practiceSessionDTO, Long userId);
 
-    PracticeSessionDTO updatePracticeSession(Long sessionId, PracticeSessionDTO practiceSessionDTO, User user);
+
+
+
 
     void deletePracticeSession(Long sessionId, User user);
 

@@ -65,16 +65,20 @@ const InternshipDetails = () => {
         try {
             if (isEditing) {
                 await axios.put(`/api/v1/internships/update/${currentInternship.internshipId}`, formData);
+                alert("Successfully  updated an Internship.");
             } else {
                 await axios.post(`/api/v1/internships/create/${companyHrId}`, formData);
+                alert("Successfully created  an Internship.");
             }
             handleCloseModal();
+            
             setLoading(true); // Refresh the list
             const response = await axios.get(`/api/v1/internships/companyHr/${companyHrId}`);
             setInternships(response.data);
             setLoading(false);
         } catch (error) {
             console.error('Error creating/updating internship:', error);
+            alert("Error creating/updating internship");
         }
     };
 
@@ -88,12 +92,14 @@ const InternshipDetails = () => {
     const handleDelete = async (internshipId) => {
         try {
             await axios.delete(`/api/v1/internships/delete/${internshipId}`);
-            setLoading(true); // Refresh the list
+            setLoading(true); 
             const response = await axios.get(`/api/v1/internships/companyHr/${companyHrId}`);
             setInternships(response.data);
+            alert('Successfully deleted the expired internship.')
             setLoading(false);
         } catch (error) {
             console.error('Error deleting internship:', error);
+            alert('Error with deletion of internship.')
         }
     };
 

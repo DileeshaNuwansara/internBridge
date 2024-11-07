@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface PracticeSessionRepository extends JpaRepository<PracticeSession, Long> {
-    List<PracticeSession> findByPracticesessionId(Long practicesessionId);
+
     List<PracticeSession> findByCompanyHr_UserId(Long hrId);
+
 
 }

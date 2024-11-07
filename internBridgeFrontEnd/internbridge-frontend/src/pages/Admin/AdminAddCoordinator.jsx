@@ -34,6 +34,7 @@ const AdminAddCoordinator = () => {
       await axios.delete(`http://localhost:8081/api/v1/user/deleteUser/${userId}`);
       setCoordinators(coordinators.filter(coordinator => coordinator.userId !== userId));
     } catch (err) {
+      alert('Error deleting Coordinator');
       setError('Error deleting Coordinator.');
     }
   };
@@ -59,6 +60,7 @@ const handleChange = (e) => {
       const response = await axios.put(`http://localhost:8081/api/v1/user/updateUser/${selectedCoordinator.userId}`, formData);
       setCoordinators(coordinators.map(coordinator => (coordinator.userId === response.data.userId ? response.data : coordinator)));
       setShowUpdateModal(false); 
+      alert('Coordinator updated successfully.')
     } catch (err) {
       setError('Error updating coordinator.');
     }

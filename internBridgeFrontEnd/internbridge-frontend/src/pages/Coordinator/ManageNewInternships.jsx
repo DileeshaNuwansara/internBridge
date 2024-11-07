@@ -16,8 +16,10 @@ const ManageNewInternships = () => {
         const response = await axios.get('http://localhost:8081/api/v1/internships/all');
         const sortedInternships = response.data.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
         setInternships(sortedInternships);
+        //alert('Feting new internships..')
       } catch (error) {
         console.error('Error fetching internships:', error);
+        alert('Fetching data error..!')
       }
     };
 
@@ -28,8 +30,10 @@ const ManageNewInternships = () => {
     try {
       await axios.delete(`http://localhost:8081/api/v1/internships/delete/${internshipId}`);
       setInternships(internships.filter((internship) => internship.internshipId !== internshipId));
+      alert('Deleted successfully...')
     } catch (error) {
       console.error('Error deleting internship:', error);
+      alert('Error deleting New internships ... ')
     }
   };
 

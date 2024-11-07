@@ -16,28 +16,28 @@ const CompanyhrDashboard = () => {
       <Container fluid className={styles.dashboardContent}> 
         <Row> 
           <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Internship Details" description="Manage internship details" link="/internship-details" />
+            <Cards title="Internship Details" description="Manage internship details" link="/ROLE_COMPANYHR/internship-details" />
 
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
-            <Cards title="Interview Details" description="Review interview details" link="/interview-details" />
+            <Cards title="Interview Details" description="Review interview details" link="/ROLE_COMPANYHR/interview-details" />
 
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
-            <Cards title="Practice Sessions" description="practice sessions" link="/manage-practice-sessions" />
+            <Cards title="Practice Sessions" description="practice sessions" link="/ROLE_COMPANYHR/manage-practice-sessions" />
 
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Applied Students for Internship" description="Manage Student & internship details" link="/manage-student-cv" />
+            <Cards title="Applied Students for Internship" description="Manage Student & internship details" link="/ROLE_COMPANYHR/manage-student-cv" />
 
           </Col>
 
           <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Active Interns" description="Track intern progress" link="/active-interns-status" />
+            <Cards title="Active Interns" description="Track intern progress" link="/ROLE_COMPANYHR/active-interns-status" />
 
           </Col>
 	        <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Profile Settings" description=" Student Profile Settings" link="/profile-settings"  />
+            <Cards title="Profile Settings" description=" Student Profile Settings" link="/ROLE_COMPANYHR/profile-settings"  />
           </Col>
 
         </Row>

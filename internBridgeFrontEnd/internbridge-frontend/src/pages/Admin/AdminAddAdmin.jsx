@@ -36,8 +36,10 @@ const deleteAdmin = async (userId) => {
     try {
         await axios.delete(`http://localhost:8081/api/v1/user/deleteUser/${userId}`);
         setAdmins(admins.filter(admin => admin.userId !== userId));
+        alert('Deleted Admin.')
     } catch (err) {
         setError('Error deleting admin.');
+        alert('Error deleting admin.');
     }
 };
 
@@ -63,8 +65,10 @@ const handleChange = (e) => {
       const response = await axios.put(`http://localhost:8081/api/v1/user/updateUser/${selectedAdmin.userId}`, formData);
       setAdmins(admins.map(admin => (admin.userId === response.data.userId ? response.data : admin)));
       setShowUpdateModal(false); 
+      alert('Admin details updated.')
     } catch (err) {
       setError('Error updating admin.');
+      alert('Admin details Updating is failed')
     }
   };
 
@@ -113,7 +117,7 @@ return (
                                     <td>{admin.userId}</td>
                                     <td>{admin.name}</td>
                                     <td>{admin.email}</td>
-					                <td>{admin.company}</td>
+					                          <td>{admin.company}</td>
                                     <td>{admin.phone}</td>
                                     <td>{admin.status}</td>
                                     <td>

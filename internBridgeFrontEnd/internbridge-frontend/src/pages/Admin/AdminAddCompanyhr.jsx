@@ -19,8 +19,12 @@ const AdminAddCompanyhr = () => {
       try {
         const response = await axios.get('http://localhost:8081/api/v1/user/getCompanyHRs');
         setCompanyhrs(response.data);
+        
+        
       } catch (err) {
         setError('Error fetching Company HR.');
+        alert('Companyhr fetching uccessfully!');
+       
       } finally {
         setLoading(false);
       }
@@ -33,8 +37,11 @@ const AdminAddCompanyhr = () => {
     try {
       await axios.delete(`http://localhost:8081/api/v1/user/deleteUser/${userId}`);
       setCompanyhrs(companyhrs.filter(hr => hr.userId !== userId));
+      alert('Companyhr deleted successfully!');
+      
     } catch (err) {
       setError('Error deleting Company HR.');
+      alert('Companyhr deleted unsuccessfully!');
     }
   };
 
@@ -47,6 +54,8 @@ const AdminAddCompanyhr = () => {
     setSelectedCompanyhr(companyhr);
     setFormData(companyhr);
     setShowUpdateModal(true);
+    
+    
 };
 
 const handleChange = (e) => {
@@ -59,8 +68,10 @@ const handleChange = (e) => {
       const response = await axios.put(`http://localhost:8081/api/v1/user/updateUser/${selectedCompanyhr.userId}`, formData);
       setCompanyhrs(companyhrs.map(companyhr => (companyhr.userId === response.data.userId ? response.data : companyhr)));
       setShowUpdateModal(false); 
+      alert('Company hr updated successfully!');
     } catch (err) {
       setError('Error updating companyhr.');
+      alert('Error updating companyhr.')
     }
   };
 

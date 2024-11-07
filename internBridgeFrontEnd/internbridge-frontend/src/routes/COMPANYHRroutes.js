@@ -11,43 +11,43 @@ const COMPANYHRRoutes = [
   {
     path: "/ROLE_COMPANYHR/dashboard",
     element: <CompanyhrDashboard />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
   {
     path: "/ROLE_COMPANYHR/internship-details",
     element: <InternshipDetails />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
   {
     path: "/ROLE_COMPANYHR/interview-details",
     element: <InterviewDetails />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
   {
     path: "/ROLE_COMPANYHR/manage-practice-sessions",
     element: <ManagePracticeSessions />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
   {
     path: "/ROLE_COMPANYHR/active-interns-status",
     element: <ActiveInternsStatus />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
   {
     path: "/ROLE_COMPANYHR/profile-settings",
     element: <ProfileSettings />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
   {
     path: "/ROLE_COMPANYHR/manage-student-cv",
     element: <ManageCvPage />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
 
   {
     path: "/ROLE_COMPANYHR/applied-students:internshipId",
     element: <ViewAppliedStudents />,
-    roles: ["ROLE_COMPANY_HR"], 
+    roles: ["ROLE_COMPANYHR"], 
   },
 ];
 

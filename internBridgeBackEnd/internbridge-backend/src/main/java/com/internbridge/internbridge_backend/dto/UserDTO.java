@@ -1,9 +1,11 @@
 package com.internbridge.internbridge_backend.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import java.util.List;
 
 @Data
+
 public class UserDTO {
     private Long userId;
     private String name;

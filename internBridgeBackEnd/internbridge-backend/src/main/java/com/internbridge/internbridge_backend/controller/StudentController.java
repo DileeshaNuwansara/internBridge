@@ -31,8 +31,8 @@ public class StudentController {
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-    }
 
+    }
     @PutMapping("/update/{userId}")
     public ResponseEntity<StudentDTO> updateStudentProfileByUserId(@PathVariable Long userId, @RequestBody StudentDTO studentDTO) {
         try {
@@ -66,15 +66,15 @@ public class StudentController {
 
     @GetMapping("/students/filter")
     public ResponseEntity<List<StudentDTO>> getFilteredStudents(@RequestParam(required = false) String email,
-                                                                @RequestParam(required = false) String role) {
-        List<StudentDTO> students = studentService.getFilteredStudents(email,role);
+                                                                @RequestParam(required = false) String status) {
+        List<StudentDTO> students = studentService.getFilteredStudents(email,status);
         return ResponseEntity.ok(students);
     }
 
 
     @GetMapping("/getAll")
     public ResponseEntity<List<StudentDTO>> getAllStudents() {
-        List<StudentDTO> students = studentService.getAllStudents();
-        return ResponseEntity.ok(students);
+        List<StudentDTO> studentDTOs = studentService.getAllStudents();
+        return ResponseEntity.ok(studentDTOs);
     }
 }

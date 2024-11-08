@@ -39,7 +39,7 @@ public class UserController {
             String subject = "Welcome to InternBridge!";
             String text = String.format(
                     "Dear  %s,\n \n" +
-                            "Welcome to InternBridge! \n \n  We’re excited to have you on board.\n\n" +
+                            "Welcome to InternBridge! \n \nWe’re excited to have you on board.\n\n" +
                             "Here’s \n username: %s\n" +
                             "default password: %s\n\n" +
                             "Please log in and change your password to something more secure after logging in.\n\n\n" +
@@ -83,6 +83,12 @@ public class UserController {
         List<UserDTO> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
 
+    }
+
+    @GetMapping("/nothired")
+    public ResponseEntity<List<UserDTO>> getNotHiredStudents() {
+        List<UserDTO> notHiredStudents = userService.getNotHiredStudents();
+        return new ResponseEntity<>(notHiredStudents, HttpStatus.OK);
     }
 
     @PutMapping("/updateUser/{userId}")

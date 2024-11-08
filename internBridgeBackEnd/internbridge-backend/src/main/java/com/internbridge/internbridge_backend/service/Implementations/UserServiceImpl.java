@@ -174,6 +174,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDTO> getNotHiredStudents() {
+        List<User> notHiredStudents = userRepository.findNotHiredStudents();
+        return notHiredStudents.stream()
+                .map(user -> {
+                    UserDTO dto = new UserDTO();
+                    dto.setUserId(user.getUserId());
+                    dto.setName(user.getName());
+                    dto.setEmail(user.getEmail());
+                    dto.setPhone(user.getPhone());
+                    dto.setStatus(user.getStatus());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<UserDTO> getUsersByRole(String role) {
         List<User> users = userRepository.findByRole(role);
         return users.stream()

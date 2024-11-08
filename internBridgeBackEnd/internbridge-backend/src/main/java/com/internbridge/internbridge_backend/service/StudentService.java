@@ -11,7 +11,7 @@ public interface StudentService {
     StudentDTO updateStudentProfileByUserId(Long userId, StudentDTO studentDTO);
     void deleteStudentByUserId(Long userId);
     List<StudentDTO> getStudentsByCompanyHr(Long userId);
-    List<StudentDTO> getFilteredStudents(String email, String position);
+    List<StudentDTO> getFilteredStudents(String email, String status);
     List<StudentDTO> getAllStudents();
 
 

@@ -19,6 +19,7 @@ public interface UserService {
     StudentDTO createStudent(StudentDTO studentDTO);
     List<StudentDTO> getAllStudents();
     void updateUserPassword(String email, String newPassword);
+    List<UserDTO> getNotHiredStudents();
 
     List<UserDTO> getUsersByRole(String role);
 

@@ -92,18 +92,29 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDTO> getFilteredStudents(String email,String role) {
-        List<Student> students = studentRepository.findByEmailOrRole(email, role);
+    public List<StudentDTO> getFilteredStudents(String email,String status) {
+        List<Student> students = studentRepository.findByEmailOrRole(email, status);
         return students.stream()
-                .map(student -> modelMapper.map(student, StudentDTO.class)) // Mapping to StudentDTO
+                .map(student -> modelMapper.map(student, StudentDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<StudentDTO> getAllStudents() {
         List<Student> students = studentRepository.findAll();
-        return students.stream()
-                .map(student -> modelMapper.map(student, StudentDTO.class))
+        return studentRepository.findAll().stream()
+                .map(student -> StudentDTO.builder()
+                        .userId(student.getUserId())
+                        .name(student.getName())
+                        .email(student.getEmail())
+                        .phone(student.getPhone())
+                        .status(student.getStatus())
+                        .scNumber(student.getScNumber())
+                        .gpa(student.getGpa())
+                        .position(student.getPosition())
+
+                        .build()
+                )
                 .collect(Collectors.toList());
     }
 

@@ -23,7 +23,7 @@ const AdminAddCompanyhr = () => {
         
       } catch (err) {
         setError('Error fetching Company HR.');
-        alert('Companyhr fetching uccessfully!');
+        alert('Companyhr fetching uncessfully!');
        
       } finally {
         setLoading(false);
@@ -81,7 +81,7 @@ const handleChange = (e) => {
         <Container fluid>
           <Row className="my-3">
             <Col className="d-flex justify-content-between">
-              <h2>Comppany HR List</h2>
+              <h2>Company HR List</h2>
               <Button variant="primary" onClick={handleAddUser}>Add Company HR</Button>
             </Col>
           </Row>
@@ -120,8 +120,8 @@ const handleChange = (e) => {
                       <td>{hr.status}</td>
                       <td>
                       <Button
-                                        variant="success"
-                                        onClick={() => handleUpdate(hr)}>Update</Button>
+                          variant="success"
+                          onClick={() => handleUpdate(hr)}>Update</Button>
 
                         <Button variant="danger" onClick={() => deleteCompanyhr(hr.userId)}>
                           Delete
@@ -159,8 +159,19 @@ const handleChange = (e) => {
               </Form.Group>
               <Form.Group controlId="formStatus">
                 <Form.Label>Status</Form.Label>
-                <Form.Control type="text" name="status" value={formData.status || ''} onChange={handleChange} />
+                <Form.Control
+                  as="select"
+                  name="status"
+                  value={formData.status || ''}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Registered">Registered</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Cancelled">Cancelled</option>
+                </Form.Control>
               </Form.Group>
+          
             </Form>
           </Modal.Body>
           <Modal.Footer>

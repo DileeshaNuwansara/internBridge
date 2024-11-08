@@ -46,7 +46,9 @@ const ManageNewInternships = () => {
 
   return (
     <Layout role = {userRole} >
+      <h2> Posted New Internships</h2>
       <div className={styles.internshipContainer} >
+        
         {currentInternships.map((internship) => (
           <Card className={styles.internshipCard} key={internship.internshipId}>
             <Card.Img variant="top" src={`data:image/jpeg;base64,${internship.imageData}`} />

@@ -59,8 +59,8 @@ const AppSideBar = () => {
       { label: 'Admins',icon: <FaUsersLine size={20}/>, path: '/ROLE_ADMIN/add-Admin' },
       { label: 'Students',icon: <FaUsersLine size={20}/>, path: '/ROLE_ADMIN/add-student' },
       { label: 'Still Applicants', icon: <FaUsersLine size={20} />, path: '/ROLE_ADMIN/not-hired-students' },
-      { label: 'Company HRs',icon: <FaUsersLine size={20}/>, path: '/ROLE_ADMIN/add-Company HRs' },
-      { label: 'Coordinators',icon: <FaUsersLine size={20}/>, path: '/ROLE_ADMIN/add-Coordinators' },
+      { label: 'Company HRs',icon: <FaUsersLine size={20}/>, path: '/ROLE_ADMIN/add-companyhr' },
+      { label: 'Coordinators',icon: <FaUsersLine size={20}/>, path: '/ROLE_ADMIN/add-coordinator' },
       // {
       //   label: 'Users', icon: <FaUsersLine size={20}/>,
       //   submenu: [
@@ -98,7 +98,7 @@ const AppSideBar = () => {
       { label: 'Internships', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COMPANYHR/internship-details' },
       { label: 'Interviews', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COMPANYHR/interview-details' },
       { label: 'Practice Sessions', icon: <FaCalendarCheck size={20}/>, path: '/ROLE_COMPANYHR/manage-practice-sessions' },
-      { label: 'Applications', icon: <FaFile size={20}/>, path: '/ROLE_COMPANYHR/manage-cv' },
+      { label: 'Applications', icon: <FaFile size={20}/>, path: '/ROLE_COMPANYHR/manage-student-cv' },
       { label: 'Active Interns', icon: <FaUserCog size={20} />, path: '/ROLE_COMPANYHR/active-interns-status' },
       { label: 'Profile', icon: < FaUserPlus size={20} />, path: '/ROLE_COMPANYHR/profile-settings' },
     ],

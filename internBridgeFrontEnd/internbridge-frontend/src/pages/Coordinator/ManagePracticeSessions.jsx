@@ -98,11 +98,12 @@ const ManagePracticeSessions = () => {
 
   return (
     <Layout>
-    <div className={styles.coordinatorManagePracticeSessions}>
-      <h2>Manage Practice Sessions</h2>
-      <Button variant="success" onClick={handleCreateClick} className="mb-3">
+      <h2>Posted Practice Sessions</h2>
+      <div className={styles.coordinatorManagePracticeSessions}>
+     
+      {/* <Button variant="success" onClick={handleCreateClick} className="mb-3">
           Create Practice Session
-        </Button>
+        </Button> */}
       <Row>
         {displayedSessions.map(session => (
           <Col key={session.id} sm={12} md={6} lg={4}>
@@ -236,9 +237,9 @@ const ManagePracticeSessions = () => {
             <Button variant="secondary" onClick={handleCreateModalClose}>
               Close
             </Button>
-            {/* <Button variant="info" onClick={handleCreateSession}>
+            <Button variant="info" onClick={handleCreateSession}>
               Create Session
-            </Button> */}
+            </Button>
           </Modal.Footer>
         </Modal>
     </Layout>

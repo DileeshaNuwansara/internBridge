@@ -162,7 +162,17 @@ return (
               </Form.Group>
               <Form.Group controlId="formStatus">
                 <Form.Label>Status</Form.Label>
-                <Form.Control type="text" name="status" value={formData.status || ''} onChange={handleChange} />
+                <Form.Control
+                  as="select"
+                  name="status"
+                  value={formData.status || ''}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Registered">Registered</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Cancelled">Cancelled</option>
+                </Form.Control>
               </Form.Group>
             </Form>
           </Modal.Body>

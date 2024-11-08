@@ -34,10 +34,10 @@ const CoordinatorProfileSettings = () => {
 
   return (
     <Layout role={role} userId={userId}>
-      
+       <h2>Coordinator Profile Settings</h2>
 
       <Row className="justify-content-center align-items-center mt-4">
-      <h2>Coordinator Profile Settings</h2>
+     
         <Col xs={12} sm={8} md={6}>
           <Card className={styles.profileCard}>
             <Card.Body className="text-center">

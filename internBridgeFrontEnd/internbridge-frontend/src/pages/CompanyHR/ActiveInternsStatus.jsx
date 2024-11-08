@@ -52,6 +52,7 @@ const ActiveInternsStatus = () => {
 
     return (
       <Layout role ={userRole}>
+        <h2>Active Interns & Employees Now</h2>
         <div className={styles.container}>
             <h2 className={styles.title}>Active Interns</h2>
             <Table responsive bordered hover className={styles.table}>

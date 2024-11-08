@@ -84,6 +84,7 @@ const ManagePracticeSessions = () => {
 
   return (
     <Layout role ={userRole}>
+      <h2>Practice Sessions</h2>
     <Container>
       <Row className="mb-4">
         <Col className="text-end">

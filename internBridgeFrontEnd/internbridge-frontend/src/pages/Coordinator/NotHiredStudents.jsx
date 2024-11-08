@@ -15,7 +15,7 @@ const NotHiredStudents = () => {
 
   const fetchNotHiredStudents = async () => {
     try {
-      const response = await axios.get("/api/students/nothired"); 
+      const response = await axios.get("/api/v1/user/nothired"); 
       setStudents(response.data);
     } catch (error) {
       console.error("Error fetching not hired students:", error);
@@ -47,8 +47,9 @@ const NotHiredStudents = () => {
 
   return (
     <Layout role = {userRole}>
+    <h2>Still Not Hired Students</h2>
     <Container className="mt-4">
-      <Row><h2>Still Not Hired Students</h2></Row>
+      
       <Row>
         {students.map((student) => (
           <Col key={student.id} sm={12} md={6} lg={4} className="mb-4">
@@ -81,7 +82,7 @@ const NotHiredStudents = () => {
             <p><strong>Email:</strong> {selectedStudent.email}</p>
             <p><strong>Phone:</strong> {selectedStudent.phone}</p>
             <hr />
-            <h5>CV</h5>
+            
             {/* <p>
               {selectedStudent.cv ? (
                 <a href={selectedStudent.cv} target="_blank" rel="noopener noreferrer"> // cv liknk ek danna.

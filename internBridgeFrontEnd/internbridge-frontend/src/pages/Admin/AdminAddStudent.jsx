@@ -101,7 +101,7 @@ const handleChange = (e) => {
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Role</th>
+              
               <th>Status</th>
               <th>SC Number</th>
               <th>GPA</th>
@@ -121,7 +121,7 @@ const handleChange = (e) => {
                 <td>{student.name}</td>
                 <td>{student.email}</td>
                 <td>{student.phone}</td>
-                <td>{student.role}</td>
+                
                 <td>{student.status}</td>
                 <td>{student.scNumber}</td>
                 <td>{student.gpa}</td>
@@ -163,10 +163,7 @@ const handleChange = (e) => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" name="email" value={formData.email || ''} onChange={handleChange} />
               </Form.Group>
-              <Form.Group controlId="formCompany">
-                <Form.Label>Company</Form.Label>
-                <Form.Control type="text" name="company" value={formData.company || ''} onChange={handleChange} />
-              </Form.Group>
+            
               <Form.Group controlId="formPhone">
                 <Form.Label>Phone</Form.Label>
                 <Form.Control type="text" name="phone" value={formData.phone || ''} onChange={handleChange} />

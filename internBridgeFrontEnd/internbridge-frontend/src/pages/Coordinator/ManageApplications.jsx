@@ -89,8 +89,9 @@ const ManageApplications = () => {
   return (
    
       <Layout role={userRole}>
-        <div className={styles['coordinator-applications-container']}>
           <h2>Manage Applications</h2>
+        <div className={styles['coordinator-applications-container']}>
+        
           <Table responsive bordered hover className={styles['applications-table']}>
             <thead>
               <tr>

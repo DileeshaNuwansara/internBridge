@@ -38,6 +38,7 @@ const ViewAppliedStudents = () => {
 
   return (
     <Layout>
+      <h2>Currently Applied Applicants</h2>
     <Container className={styles.applicationContainer}>
       <h2>Applied Students</h2>
       <Row>

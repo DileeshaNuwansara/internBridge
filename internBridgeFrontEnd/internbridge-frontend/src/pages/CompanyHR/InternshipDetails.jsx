@@ -72,12 +72,12 @@ const InternshipDetails = () => {
             }
             handleCloseModal();
             
-            setLoading(true); // Refresh the list
+            setLoading(true); 
             const response = await axios.get(`/api/v1/internships/companyHr/${companyHrId}`);
             setInternships(response.data);
             setLoading(false);
         } catch (error) {
-            console.error('Error creating/updating internship:', error);
+            console.error('Error creating internship:', error);
             alert("Error creating/updating internship");
         }
     };
@@ -111,8 +111,9 @@ const InternshipDetails = () => {
 
     return (
         <Layout role = {userRole}>
+            <h2>Internship Details</h2>
         <div className={styles.container}>
-            <h2 className={styles.title}>Manage Internships</h2>
+            
             <Button variant="primary" className={styles.createButton} onClick={handleShowModal}>
                 Create New Internship
             </Button>

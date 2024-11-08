@@ -89,8 +89,9 @@ const ManageStudentApplications = () => {
   return (
     
       <Layout>
+        <h2>Manage Applications</h2>
         <div className={styles['coordinator-applications-container']}>
-          <h2>Manage Applications</h2>
+        
           <Table responsive bordered hover className={styles['applications-table']}>
             <thead>
               <tr>

@@ -30,8 +30,9 @@ const ApprovedContacts = () => {
 
     return (
         <Layout>
+        <h2>Approved New Companies</h2>
         <Container className={styles.approvedContacts}>
-         <h2>Approved New Companies</h2>
+        
             <Row>
                 {approvedContacts.map((contact) => (
                     <Col key={contact.id} md={12} className="mb-3">

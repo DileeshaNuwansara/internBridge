@@ -18,8 +18,9 @@ const CompanyHRProfileSettings = () => {
 
   return (
     <Layout role={role}>
-      <Row className="justify-content-center mt-4">
       <h2>Company HR Profile Settings</h2>
+      <Row className="justify-content-center mt-4">
+    
         <Col xs={12} sm={8} md={6}>
           <Card className={styles.profileCard}>
             <Card.Body className="text-center">

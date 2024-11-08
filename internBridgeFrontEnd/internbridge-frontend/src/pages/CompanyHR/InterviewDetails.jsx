@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col, Container, Modal, Form } from 'react-bootstrap';
 import styles from './InterviewDetails.module.scss'; 
 import axios from 'axios';
+import Layout from '../../Layout/Layout';
 
 const InterviewDetails = () => {
   const companyHrId = localStorage.getItem('userId'); 
@@ -104,7 +105,7 @@ const InterviewDetails = () => {
       coordinatorId: interview.coordinatorId,
       companyHrId: companyHrId,
     });
-    setSelectedStudents(interview.studentIds); // Set selected students for the update
+    setSelectedStudents(interview.studentIds); 
     setShowUpdateModal(true);
   };
 
@@ -143,9 +144,12 @@ const InterviewDetails = () => {
   if (loading) return <p>Loading interviews...</p>;
 
   return (
+    <Layout>
+    <h2>InterView Details</h2>
     <Container>
+
       <div className={styles.header}>
-        <h2>Manage Interviews</h2>
+       
         <Button className={styles.createButton} onClick={() => setShowCreateModal(true)}>
           Create New Interview
         </Button>
@@ -278,12 +282,14 @@ const InterviewDetails = () => {
             </Form.Group>
             <Form.Group controlId="formStatus">
               <Form.Label>Status</Form.Label>
-              <Form.Control
-                type="text"
-                name="status"
-                value={formData.status}
-                onChange={handleInputChange}
-              />
+              <Form.Select name="status" value={formData.status || ''} onChange={handleInputChange}>
+                <option value="" disabled>Select Status</option>
+                <option value="Registered">Pending</option>
+                <option value="Applied">Sheduled</option>
+                <option value="Hired">Postponed</option>
+                <option value="Rejected">Cancled</option>
+                <option value="Interviewed">Interviewed</option>
+              </Form.Select>
             </Form.Group>
             <Form.Group controlId="formStartDate">
               <Form.Label>Start Date</Form.Label>
@@ -339,6 +345,7 @@ const InterviewDetails = () => {
         </Modal.Body>
       </Modal>
     </Container>
+    </Layout>
   );
 };
 

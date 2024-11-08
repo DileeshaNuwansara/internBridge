@@ -63,6 +63,7 @@ const handleChange = (e) => {
       alert('Coordinator updated successfully.')
     } catch (err) {
       setError('Error updating coordinator.');
+      alert('Error updating coordinator.');
     }
   };
 
@@ -114,7 +115,7 @@ const handleChange = (e) => {
                         variant="success"
                         onClick={() => handleUpdate(coordinator.userId)}
                     >
-                       Update State
+                       Update
                       </Button>
                       <Button variant="danger" onClick={() => deleteCoordinator(coordinator.userId)}>Delete</Button>
                     </td>
@@ -151,9 +152,20 @@ const handleChange = (e) => {
 
               <Form.Group controlId="formStatus">
                 <Form.Label>Status</Form.Label>
-                <Form.Control type="text" name="status" value={formData.status || ''} onChange={handleChange} />
+                <Form.Control
+                  as="select"
+                  name="status"
+                  value={formData.status || ''}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Registered">Registered</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Cancelled">Cancelled</option>
+                </Form.Control>
               </Form.Group>
             </Form>
+           
           </Modal.Body>
           <Modal.Footer>
 

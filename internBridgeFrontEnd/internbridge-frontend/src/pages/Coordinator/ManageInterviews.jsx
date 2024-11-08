@@ -61,7 +61,9 @@ const ManageInterviews = () => {
   const userRole = localStorage.getItem('role');
   return (
     <Layout role = {userRole} >
+    <h2>Interviews</h2>
     <div className="interviews-container">
+      
       {currentInterviews.map((interview) => (
         <Card className="interview-card" key={interview.id}>
           <Card.Body>

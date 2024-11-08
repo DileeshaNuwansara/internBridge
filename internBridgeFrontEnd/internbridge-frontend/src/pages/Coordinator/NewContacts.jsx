@@ -55,8 +55,9 @@ const NewContacts = () => {
     
     return (
         <Layout>
+        <h2>New Connections with Companies</h2>
         <Container className={styles.newContacts}>
-            <Row><h2>New Connections with Companies</h2></Row>
+            
             <Row>
                 {contacts.map((contact) => (
                     <Col key={contact.id} md={12} className="mb-3">

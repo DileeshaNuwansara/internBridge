@@ -19,10 +19,10 @@ const HiredStudents = () => {
     try {
       const response = await axios.get("/api/students/hired"); 
       setStudents(response.data);
-      alert('Hired Students are fetched..')
+      
     } catch (error) {
       console.error("Error fetching hired students:", error);
-      alert('Error fetching hired students !');
+      
     }
   };
 
@@ -32,7 +32,7 @@ const HiredStudents = () => {
       setInterviews(response.data);
     } catch (error) {
       console.error("Error fetching interviews:", error);
-      alert("Error fetching interviews !")
+      
     }
   };
   
@@ -53,9 +53,9 @@ const HiredStudents = () => {
   const userRole = localStorage.getItem('role');
   return (
     <Layout role = {userRole}>
-
+      <h2>Hired Students</h2>
     <Container className="mt-4">
-      <Row><h2>Hired Students</h2></Row>
+     
       <Row>
         {students.map((student) => (
           <Col key={student.id} sm={12} md={6} lg={4} className="mb-4">

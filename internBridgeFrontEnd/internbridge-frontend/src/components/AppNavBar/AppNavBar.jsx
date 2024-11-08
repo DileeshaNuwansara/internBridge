@@ -87,7 +87,7 @@ const AppNavBar = ( ) => {
                 <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-new-internships"className={styles.navLink}>Internships</Nav.Link>
                 <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-interviews"className={styles.navLink}>Interviews</Nav.Link>
                 <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-practice-sessions"className={styles.navLink}>Practice Sessions</Nav.Link>
-                <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-student-applications" className={styles.navLink}>Students' CVs</Nav.Link>
+                {/* <Nav.Link as={Link} to="/ROLE_COORDINATOR/manage-student-applications" className={styles.navLink}>Students' CVs</Nav.Link> */}
               </>
             )}
             {role === 'ROLE_COMPANYHR' && (

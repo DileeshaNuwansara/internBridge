@@ -4,6 +4,7 @@ import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./ViewAppliedStudents.module.scss"; 
+import Layout from "../../Layout/Layout";
 const ManageCvPage = () => {
 
   const [internships, setInternships] = useState([]);
@@ -27,8 +28,10 @@ const ManageCvPage = () => {
 
 
   return (
+    <Layout>
+     <h2>Student Applications</h2>
     <Container className={styles.internshipContainer}>
-      <h2>Posted Internships</h2>
+      
       <Row>
         {internships.map((internship) => (
           <Col md={4} key={internship.internshipId}>
@@ -51,6 +54,7 @@ const ManageCvPage = () => {
         ))}
       </Row>
     </Container>
+    </Layout>
   );
 };
 

@@ -12,14 +12,14 @@ const ViewAppliedStudents = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/v1/applications/internship/${internshipId}`)
+      .get(`http://localhost:8081/api/v1/applications/internship/${internshipId}`)
       .then((response) => setApplications(response.data))
       .catch((error) => console.error("Error fetching applications:", error));
   }, [internshipId]);
 
   const handleDownloadCv = (studentId) => {
     axios
-      .get(`/api/v1/application/cv/download?studentId=${studentId}`, {
+      .get(`http://localhost:8081/api/v1/application/cv/download?studentId=${studentId}`, {
         responseType: "blob",
       })
       .then((response) => {
@@ -30,17 +30,17 @@ const ViewAppliedStudents = () => {
         document.body.appendChild(link);
         link.click();
         link.remove();
-        alert('Student Cv download is successfull.')
+        alert('Student Cv download is successfull.');
       })
       .catch((error) => console.error("Error downloading CV:", error));
-      alert('Student Cv download is unsuccessfull.')
+       alert('Student Cv download is unsuccessfull.');
   };
 
   return (
     <Layout>
       <h2>Currently Applied Applicants</h2>
     <Container className={styles.applicationContainer}>
-      <h2>Applied Students</h2>
+      
       <Row>
         {applications.map((application) => (
           <Col md={6} key={application.applicationId}>
@@ -60,7 +60,7 @@ const ViewAppliedStudents = () => {
                   >
                     Download CV
                   </Button>
-                </Card.Body>
+            </Card.Body>
             </Card>
           </Col>
         ))}

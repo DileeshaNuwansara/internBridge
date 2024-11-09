@@ -21,19 +21,19 @@ const StudentDashboard = () => {
           </Col>
           
           <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Interviews" description="View upcoming interviews" link="ROLE_STUDENT/student-interviews" />
+            <Cards title="Interviews" description="View upcoming interviews" link="/ROLE_STUDENT/student-interviews" />
 
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
-            <Cards title="Practice Sessions" description="Participate in practice sessions" link="ROLE_STUDENT/student-practice-sessions" />
+            <Cards title="Practice Sessions" description="Participate in practice sessions" link="/ROLE_STUDENT/student-practice-sessions" />
           </Col>
           <Col xs={12} md={6} lg={4} className="mb-4">
-            <Cards title="Manage CV" description="Upload and manage your CV" link="ROLE_STUDENT/manage-cv" />
+            <Cards title="Manage CV" description="Upload and manage your CV" link="/ROLE_STUDENT/manage-cv" />
 
           </Col>
           
 	        <Col xs={12} md={6} lg={4} className="mb-4"> 
-            <Cards title="Profile Settings" description=" Student Profile Settings" link="ROLE_STUDENT/profile-settings"  />
+            <Cards title="Profile Settings" description=" Student Profile Settings" link="/ROLE_STUDENT/profile-settings"  />
           </Col>
 
         </Row>

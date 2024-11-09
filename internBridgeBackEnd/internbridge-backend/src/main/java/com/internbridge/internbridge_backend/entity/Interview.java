@@ -28,7 +28,7 @@ public class Interview {
     private String description;
     private String meetingLink;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<User> students;
 
     @ManyToOne

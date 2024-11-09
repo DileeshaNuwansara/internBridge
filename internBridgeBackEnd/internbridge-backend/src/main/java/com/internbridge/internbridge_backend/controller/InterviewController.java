@@ -26,30 +26,33 @@ public class InterviewController {
         return ResponseEntity.ok(createdInterviews);
     }
 
+    //@PreAuthorize("hasRole('ROLE_COMPANYHR')")
 
     @PutMapping("/update/{interviewId}")
-    @PreAuthorize("hasRole('ROLE_COMPANYHR')")
     public ResponseEntity<InterviewDTO> updateInterview(@PathVariable Long interviewId, @RequestBody InterviewDTO interviewDTO) {
+        System.out.println("Received interviewId: " + interviewId);
+        System.out.println("Received interviewDTO: " + interviewDTO);
+
         InterviewDTO updatedInterview = interviewService.updateInterview(interviewId, interviewDTO);
         return ResponseEntity.ok(updatedInterview);
     }
 
+    //@PreAuthorize("hasRole('ROLE_COMPANYHR')")
     @DeleteMapping("/delete/{interviewId}")
-    @PreAuthorize("hasRole('ROLE_COMPANYHR')")
     public ResponseEntity<Void> deleteInterview(@PathVariable Long interviewId) {
         interviewService.deleteInterview(interviewId);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{interviewId}")
-    @PreAuthorize("hasAnyRole('ROLE_COMPANYHR', 'ROLE_STUDENT')")
+    //@PreAuthorize("hasAnyRole('ROLE_COMPANYHR', 'ROLE_STUDENT')")
     public ResponseEntity<InterviewDTO> getInterviewById(@PathVariable Long interviewId) {
         InterviewDTO interview = interviewService.getInterviewById(interviewId);
         return ResponseEntity.ok(interview);
     }
 
     @GetMapping("/getInterviewById/{studentId}")
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
+    //@PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<List<InterviewDTO>> getInterviewsByStudentId(@PathVariable Long studentId) {
         List<InterviewDTO> interviews = interviewService.getInterviewsByStudentId(studentId);
         System.out.println("Retrieved interviews for studentId " + studentId + ": " + interviews.size());

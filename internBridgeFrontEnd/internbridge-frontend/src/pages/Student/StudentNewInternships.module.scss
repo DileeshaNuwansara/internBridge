@@ -2,14 +2,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
+  background-color:  #f8f9fa;
 }
 
 .internshipCard {
   width: 100%;
   max-width: 400px;
   margin-bottom: 2rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius:12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  background-color: white;
+}
+
+.internshipCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.internshipCard .card-body {
+  padding: 1.5rem;
 }
 
 .internshipCard img {

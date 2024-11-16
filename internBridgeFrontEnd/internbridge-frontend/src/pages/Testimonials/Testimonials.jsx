@@ -80,14 +80,14 @@ const Testimonials = () => {
                                     <Card.Body className="card-body">
                                         <Card.Title className="card-title">{testimonial.name}</Card.Title>
                                         <Card.Text className="card-text">
-                                            "I am deeply grateful to the InternBridge program for helping me secure my internship offer. As a student,
-                                            InternBridge made the process smooth and guided me every step of the way. Thanks to this incredible platform, I was able to connect with leading companies and showcase my skills."
+                                            "I am deeply grateful to the InternBridge program for helping me 
+                                            InternBridge made the process smooth and guided me every step of the way. Thanks to this incredible platform"
                                         </Card.Text>
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
-                                        <ListGroup.Item>I highly encourage hiring students through InternBridge. Students bring fresh perspectives, enthusiasm, and the latest technical knowledge.</ListGroup.Item>
-                                        <ListGroup.Item>Member of InternBridge</ListGroup.Item>
-                                        <ListGroup.Item>Member of {testimonial.position}</ListGroup.Item>
+                                        <ListGroup.Item>I highly encourage hiring students through InternBridge. Students bring fresh perspectives.</ListGroup.Item>
+                                        {/* <ListGroup.Item>Member of InternBridge</ListGroup.Item> */}
+                                        <ListGroup.Item> {testimonial.position}</ListGroup.Item>
                                     </ListGroup>
                                     <Card.Body>
                                         <Card.Link href="/">"Thanks to the opportunities InternBridge provided."</Card.Link>

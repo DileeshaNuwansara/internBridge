@@ -370,6 +370,9 @@ const InterviewDetails = () => {
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showCandidatesModal, setShowCandidatesModal] = useState(false);
+  const [candidatesInterviewId, setCandidatesInterviewId] = useState(null);
+
   const [formData, setFormData] = useState({
     description: '',
     status: 'Scheduled',
@@ -381,10 +384,10 @@ const InterviewDetails = () => {
   const [selectedInterviewId, setSelectedInterviewId] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch Interviews and Applied Students
+
   useEffect(() => {
     fetchInterviews();
-    if (internshipId) fetchAppliedStudents(internshipId);
+    if (internshipId) openCandidatesModal(internshipId);
   }, [internshipId]);
 
   const fetchInterviews = async () => {
@@ -397,14 +400,19 @@ const InterviewDetails = () => {
     }
   };
 
-  const fetchAppliedStudents = async (internshipId) => {
+  const openCandidatesModal = async (interviewId) => {
+    setCandidatesInterviewId(interviewId);
     try {
       const response = await axios.get(`${API_BASE_URL}/applications/internship/${internshipId}`);
       setStudents(response.data);
+      setShowCandidatesModal(true);
+      alert('Students selecting successfully.');
     } catch (error) {
-      console.error('Error fetching applied students:', error);
+      console.error('Error assigning students to interview:', error);
+      alert('Failed to assign students to interview. Please try again.');
     }
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -464,6 +472,17 @@ const InterviewDetails = () => {
     setShowUpdateModal(true);
   };
   
+  const assignStudentsToInterview = async () => {
+    try {
+      await axios.post(`${API_BASE_URL}/interviews/${candidatesInterviewId}/addStudents`, selectedStudents);
+      setShowCandidatesModal(false);
+      alert('Students assigned successfully');
+      fetchInterviews();
+    } catch (error) {
+      console.error('Error assigning students to interview:', error);
+      alert('Failed to assign students to interview. Please try again.');
+    }
+  };
 
   
 
@@ -519,6 +538,10 @@ const InterviewDetails = () => {
                   <Card.Text>Start Date: {interview.startDate}</Card.Text>
                   <Card.Text>Start Time: {interview.startTime}</Card.Text>
                   <Card.Text>Meeting Link: {interview.meetingLink}</Card.Text>
+                  <Button variant="info" onClick={() => openCandidatesModal(interview.interviewId)}>
+                      Add Candidates
+                  </Button>
+
                   <Button variant="primary" onClick={() => openUpdateModal(interview)}>
                     Update
                   </Button>{' '}
@@ -686,6 +709,36 @@ const InterviewDetails = () => {
             </Form>
           </Modal.Body>
         </Modal>
+
+        <Modal show={showCandidatesModal} onHide={() => setShowCandidatesModal(false)}>
+  <Modal.Header closeButton>
+    <Modal.Title>Assign Students to Interview</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <Form>
+      {students.map((student) => (
+        <Form.Check
+          key={student.studentId}
+          type="checkbox"
+          label={`${student.name} - ${student.email}`}
+          checked={selectedStudents.includes(student.studentId)}
+          onChange={() => toggleStudentSelection(student.studentId)}
+        />
+      ))}
+    </Form>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => setShowCandidatesModal(false)}>
+      Cancel
+    </Button>
+    <Button variant="primary" onClick={assignStudentsToInterview}>
+      Add Student List
+    </Button>
+  </Modal.Footer>
+</Modal>
+
+
+
       </Container>
     </Layout>
   );

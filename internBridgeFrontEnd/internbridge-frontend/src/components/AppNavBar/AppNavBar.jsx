@@ -3,13 +3,11 @@ import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './AppNavBar.module.scss';
 import { MdDarkMode,MdOutlineDarkMode } from "react-icons/md";
-import { MdNotificationAdd } from "react-icons/md";
-
-import img from '../../assets/imgs/internbridge_logo.png'
+//import { MdNotificationAdd } from "react-icons/md";
 
 const AppNavBar = ( ) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [hasNotifications, setHasNotifications] = useState(false);
+  //const [hasNotifications, setHasNotifications] = useState(false);
   const role = localStorage.getItem('role');
   console.log(role);
 
@@ -101,9 +99,9 @@ const AppNavBar = ( ) => {
           </Nav>
 
           <Nav>
-          <Nav.Link as={Link} to="#" className={`position-relative ${hasNotifications ? styles['notify-dot'] : ''}`}>
+          {/* <Nav.Link as={Link} to="#" className={`position-relative ${hasNotifications ? styles['notify-dot'] : ''}`}>
             <MdNotificationAdd />
-          </Nav.Link>
+          </Nav.Link> */}
 
             <Nav.Link as={Button} onClick={toggleTheme} className={styles['theme-toggle']}>
               {isDarkMode ? <MdOutlineDarkMode /> : <MdDarkMode/> }

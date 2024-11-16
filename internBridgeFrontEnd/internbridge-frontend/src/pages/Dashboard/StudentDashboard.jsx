@@ -6,7 +6,7 @@ import styles from './dashboard.module.scss';
 import Cards from '../../components/Card/Cards';
 import Layout from '../../Layout/Layout';
 const StudentDashboard = () => {
-  const role = 'student';
+  const role = 'ROLE_STUDENT';
 
   return (
 

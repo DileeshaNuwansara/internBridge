@@ -71,7 +71,7 @@ const AppSideBar = () => {
       //   ]
       // },
       { label: 'My Profile', icon: <  FaUserPlus size={25} />, path: '/ROLE_ADMIN/profile-settings' },
-      { label: 'App Settings', icon: <MdOutlineSettings size={20}/>, path: '/ROLE_ADMIN/app-settings' },
+      // { label: 'App Settings', icon: <MdOutlineSettings size={20}/>, path: '/ROLE_ADMIN/app-settings' },
       
     ],
     ROLE_STUDENT: [
@@ -80,6 +80,7 @@ const AppSideBar = () => {
       { label: 'Interviews', icon: <FaCalendarAlt size={20}/>, path: '/ROLE_STUDENT/student-interviews' },
       { label: 'Practice Sessions', icon: <FaCalendarCheck size={20} />, path: '/ROLE_STUDENT/student-practice-sessions' },
       { label: 'Profile', icon: < FaUserPlus size={20}/>, path: '/ROLE_STUDENT/profile-settings' },
+      {label: 'Applied Internships', icon: <FaCalendarAlt size={20} />, path: '/ROLE_STUDENT/applied-internships'},
     ],
     ROLE_COORDINATOR: [
       { label: 'Dashboard', icon: <MdDashboard size={20}/>, path: '/ROLE_COORDINATOR/dashboard' },

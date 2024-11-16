@@ -16,7 +16,7 @@ $input-padding: 0.75rem 1rem;
     margin: 2rem;;
     justify-content: flex-start;
     align-items:flex-start;
-    background-color: #654d13;
+    background-color: #f0e7d4;
  
      .rcontainer {
       display: flex;
@@ -25,7 +25,7 @@ $input-padding: 0.75rem 1rem;
       margin: 2rem;
       justify-content: space-between;
       border-radius: 15px;
-      background: hsl(53, 46%, 93%);
+      background: hsl(51, 64%, 87%);
       overflow: hidden;
       box-shadow: 0 7px 50px rgba(202, 235, 219, 0.8);
      
@@ -135,8 +135,8 @@ $input-padding: 0.75rem 1rem;
          font-weight: 600;
          cursor: pointer;
          backdrop-filter: blur(10px);
-         border: 1px solid rgba(255, 255, 255, 0.3); 
-         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+         border: 1px solid rgba(229, 212, 212, 0.832); 
+         box-shadow: 0 4px 10px rgba(196, 193, 193, 0.1); 
          color: #fff;
          transition: all 0.3s ease;
 

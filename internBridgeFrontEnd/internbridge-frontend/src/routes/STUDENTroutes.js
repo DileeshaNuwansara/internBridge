@@ -4,6 +4,7 @@ import ManageCvPage from '../pages/Student/ManageCvPage';
 import StudentNewInternships from '../pages/Student/StudentNewInternships';
 import StudentInterviews from '../pages/Student/StudentInterviews';
 import ProfileSettings from '../pages/Student/StudentProfileSettings';
+import AppliedInternships from '../pages/Student/AppliedInternships';
 
 const STUDENTRoutes = [
   {
@@ -35,6 +36,11 @@ const STUDENTRoutes = [
     path: "/ROLE_STUDENT/profile-settings",
     element: <ProfileSettings />,
     roles: ["ROLE_STUDENT"], 
+  },
+  {
+    path:"ROLE_STUDENT/applied-internships",
+    element:<AppliedInternships/>,
+    roles:["ROLE_STUDENT"]
   },
 ];
 

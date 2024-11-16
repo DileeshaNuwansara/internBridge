@@ -20,9 +20,9 @@ const Profile = ({ show, handleClose, userId, role }) => {
     let apiEndpoint = '';
 
     if (role === 'ROLE_ADMIN' || role === 'ROLE_COMPANYHR' || role === 'ROLE_COORDINATOR') {
-      apiEndpoint = `/api/v1/user/getUserById/${userId}`; // endpoint for Admin, Company HR, and Coordinator
+      apiEndpoint = `http://localhost:8081/api/v1/user/getUserById/${userId}`; // endpoint for Admin, Company HR, and Coordinator
     } else if (role === 'ROLE_STUDENT') {
-      apiEndpoint = `/api/v1/student/details/${userId}`; // endpoint for Students
+      apiEndpoint = `http://localhost:8081/api/v1/student/details/${userId}`; // endpoint for Students
     }
 
     axios.get(apiEndpoint)
@@ -50,10 +50,11 @@ const Profile = ({ show, handleClose, userId, role }) => {
     let updateEndpoint;
 
     if (role === 'ROLE_STUDENT') {
-      updateEndpoint = `/api/v1/student/update/${userId}`; // endpoint for updating student
+      updateEndpoint = `http://localhost:8081/api/v1/student/update/${userId}`; // endpoint for updating student
     } else {
-      updateEndpoint = `/api/v1/user/updateUser/${userId}`; // endpoint for updating other users
+      updateEndpoint = `http://localhost:8081/api/v1/user/updateUser/${userId}`; // endpoint for updating other users
     }
+    alert('updatted profile informations.');
 
     axios.put(updateEndpoint, updatedProfile)
       .then(response => {
@@ -106,7 +107,7 @@ const Profile = ({ show, handleClose, userId, role }) => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -114,7 +115,7 @@ const Profile = ({ show, handleClose, userId, role }) => {
                 value={updatedProfile.password}
                 onChange={handleInputChange}
               />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group>
               <Form.Label>Company</Form.Label>
               <Form.Control

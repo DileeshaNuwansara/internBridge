@@ -25,7 +25,7 @@ const AdminDashboard = () => {
             <Cards title="Manage Admins" description="Manage administrative access" link="/ROLE_ADMIN/add-admin"  />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
-            <Cards title="Manage Company HR" description="Oversee company HR activities" link="/ROLE_ADMIN/add-companyhr" />
+            <Cards title="Manage Company HRs" description="Oversee company HR activities" link="/ROLE_ADMIN/add-companyhr" />
           </Col>
           <Col xs={12} md={6} lg={4}  className="mb-4">
             <Cards title="Manage New Companies" description="Oversee New companies" link="/ROLE_ADMIN/add-company" />

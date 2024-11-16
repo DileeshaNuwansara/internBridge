@@ -50,7 +50,7 @@ const Signin = () => {
             console.log('Status:', status);
 
           
-          alert('Login Successful');
+          
           console.log('User role from localStorage:', localStorage.getItem("role"));
 
           //navigate(`/${role.toLowerCase()}/dashboard`);
@@ -67,6 +67,7 @@ const Signin = () => {
             console.log("role : ",role)
             //navigate('/nopage');  
           }
+          alert('Login Successful');
         
         } 
       } catch (error) {

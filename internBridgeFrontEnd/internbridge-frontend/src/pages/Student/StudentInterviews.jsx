@@ -33,8 +33,9 @@ const StudentInterviews = () => {
 
   return (
     <Layout>
+    <h2 className={styles.title}>Your Interviews</h2>
     <Container className={styles.interviewListContainer}>
-      <h2 className={styles.title}>Your Interviews</h2>
+      
       <Row>
         {currentInterviews.map(interview => (
           <Col key={interview.interviewId} md={12} lg={6} className="mb-4">

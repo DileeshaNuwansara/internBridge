@@ -18,8 +18,7 @@ const RoleRoute = ({ children, allowedRoles }) => {
     return null;
   }
   
-  
-  // If the role is not allowed, redirect to NoPage or any other page
+
   if (!allowedRoles.includes(userRole)) {
     return <Navigate to="/nopage" />;
   }

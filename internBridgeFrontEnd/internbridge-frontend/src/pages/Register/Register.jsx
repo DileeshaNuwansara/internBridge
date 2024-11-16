@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
-import { Form, Button, Container, Alert, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { FaUserShield } from "react-icons/fa";
 import { BsShieldLockFill, BsFillTelephoneFill } from "react-icons/bs";
 import { MdBusiness } from "react-icons/md";

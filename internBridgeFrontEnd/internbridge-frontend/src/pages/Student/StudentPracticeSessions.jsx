@@ -32,12 +32,10 @@ const StudentPracticeSessionPage = () => {
 
   return (
   <Layout>
+
+    <h2 className={`${styles.title}`} style={{ textAlign: 'left' }}>Your Practice Sessions</h2>
     <Container className={styles.practiceSessionContainer}>
-
-    
       <Row className="justify-content-center">
-      <h2 className={`${styles.title}`} style={{ textAlign: 'center' }}>Your Practice Sessions</h2>
-
         {currentSessions.map((session) => (
           <Col key={session.id} md={6} lg={4} className="mb-4">
             <Card className={styles.practiceCard}>

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap'; 
-//import AppNavbar from '../../components/AppNavBar/AppNavBar';
-//import AppSidebar from '../../components/AppSideBar/AppSideBar';
 import styles from './dashboard.module.scss';
 import Cards from '../../components/Card/Cards';
 import Layout from '../../Layout/Layout';
 const CoordinatorDashboard = () => {
 
   const role = localStorage.getItem('role');
-  const userId = localStorage.getItem('userId');
+  //const userId = localStorage.getItem('userId');
 
   return (
 

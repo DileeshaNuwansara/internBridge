@@ -35,7 +35,7 @@ const ManagePracticeSessions = () => {
       });
   }, []);
 
-  const handleCreateClick = () => setShowCreateModal(true);
+ // const handleCreateClick = () => setShowCreateModal(true);
   const handleCreateModalClose = () => setShowCreateModal(false);
 
   const handleNewSessionChange = (e) => {

@@ -46,11 +46,11 @@ const ADMINRoutes = [
         element: <ProfileSettings />,
         roles: ["ROLE_ADMIN"], 
       },
-      {
-        path: "/ROLE_ADMIN/app-settings",
-        element: <AppSettings/>,
-        roles: ["ROLE_ADMIN"], 
-      },
+    //   {
+    //     path: "/ROLE_ADMIN/app-settings",
+    //     element: <AppSettings/>,
+    //     roles: ["ROLE_ADMIN"], 
+    //   },
       {
         path: "/ROLE_ADMIN/not-hired-students",
         element: <NotHiredStudents/>,

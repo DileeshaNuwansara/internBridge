@@ -16,28 +16,28 @@ public class Internship {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        //@Column(name = "internship_id")
+        @Column(name = "internship_id")
         private Long internshipId;
 
-        //@Column(name = "title")
+        @Column(name = "title")
         private String title;
 
-        //@Column(name = "description")
+        @Column(name = "description")
         private String description;
 
-        //@Column(name = "requirements")
+        @Column(name = "requirements")
         private String requirements;
 
-        //@Column(name = "position")
+        @Column(name = "position")
         private String position;
 
-        //@Column(name = "start_date")
+        @Column(name = "start_date")
         private LocalDate startDate;
 
-        //@Column(name = "available_positions")
+        @Column(name = "available_positions")
         private int availablePositions;
 
-        //@Column(name = "company")
+        @Column(name = "company")
         private String company;
 
         @Lob
@@ -51,4 +51,7 @@ public class Internship {
 
         @OneToMany(mappedBy = "internship")
         private List<Application> applications;
+
+        @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Interview> interviews;
 }

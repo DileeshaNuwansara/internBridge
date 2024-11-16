@@ -13,6 +13,7 @@ public interface InternshipRepository extends JpaRepository<Internship, Long> {
     List<Internship> findByUser(User user);
 
     List<Internship> findByInternshipId(Long internshipId);
+    List<Internship> findByUserUserId(Long userId);
 
     @Query("SELECT i FROM Internship i ORDER BY i.startDate DESC")
     List<Internship> findAllInternshipsSortedByDate();

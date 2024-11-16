@@ -9,11 +9,11 @@ import java.util.List;
 public class StudentDTO {
     private Long userId;
     private String name;
-    private String email;
     private String password;
+    private String email;
     private String company;
     private String phone;
-    private String address;
+    private String role;
     private String status;
     private String scNumber;
     private Double gpa;

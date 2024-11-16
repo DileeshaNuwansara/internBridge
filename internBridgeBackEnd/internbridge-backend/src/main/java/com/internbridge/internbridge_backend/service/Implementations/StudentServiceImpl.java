@@ -39,6 +39,32 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public StudentDTO createStudent(StudentDTO studentDTO) {
+        User user = new User();
+        user.setName(studentDTO.getName());
+        user.setEmail(studentDTO.getEmail());
+        user.setPassword(studentDTO.getPassword());
+        user.setCompany(studentDTO.getCompany());
+        user.setPhone(studentDTO.getPhone());
+        user.setRole(studentDTO.getRole());
+        user.setStatus(studentDTO.getStatus());
+        User savedUser = userRepository.save(user);
+
+        Student student = new Student();
+        student.setUserId(savedUser.getUserId());
+        student.setScNumber(studentDTO.getScNumber());
+        student.setGpa(studentDTO.getGpa());
+        student.setPosition(studentDTO.getPosition());
+        //student.setCompanyHr(studentDTO.getCompanyHrId());
+
+        Student savedStudent = studentRepository.save(student);
+
+        // Map saved entities to StudentDTO
+        return modelMapper.map(savedStudent, StudentDTO.class);
+    }
+
+
+    @Override
     public StudentDTO getStudentProfileByUserId(Long userId) {
         Student student = studentRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + userId));
@@ -69,9 +95,9 @@ public class StudentServiceImpl implements StudentService {
             student.setCompanyHr(companyHr);
         }
 
-        studentRepository.save(student);
+        Student updatedStudent = studentRepository.save(student);
 
-        return modelMapper.map(student, StudentDTO.class);
+        return modelMapper.map(updatedStudent, StudentDTO.class);
     }
 
     @Override
@@ -116,6 +142,21 @@ public class StudentServiceImpl implements StudentService {
                         .build()
                 )
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public StudentDTO assignCompanyHr(Long userId, Long companyHrId) {
+        Student student = studentRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with ID " + userId));
+
+        User companyHr = userRepository.findById(companyHrId)
+                .orElseThrow(() -> new ResourceNotFoundException("Company HR not found with ID " + companyHrId));
+
+        // Set the company HR reference
+        student.setCompanyHr(companyHr);
+
+        Student updatedStudent = studentRepository.save(student);
+        return modelMapper.map(updatedStudent, StudentDTO.class);
     }
 
 }

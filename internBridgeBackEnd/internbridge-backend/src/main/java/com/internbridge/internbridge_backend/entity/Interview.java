@@ -28,17 +28,20 @@ public class Interview {
     private String description;
     private String meetingLink;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<User> students;
 
     @ManyToOne
-    @JoinTable(
-            name = "interview_students",
-            joinColumns = @JoinColumn(name = "interview_interview_id"),
-            inverseJoinColumns = @JoinColumn(name = "students_user_id")
-    )
-    private User companyHR;
+    //@JoinColumn(name = "internship_id", nullable = false)
+    private Internship internship;
+
+    @OneToMany(mappedBy = "interview", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InterviewParticipation> participants;
+
 
     @OneToMany(mappedBy = "interview")
     private List<Application> applications;
+
+    @ManyToOne
+    @JoinColumn(name = "company_hr_id")
+    private User companyHR;
+
 }

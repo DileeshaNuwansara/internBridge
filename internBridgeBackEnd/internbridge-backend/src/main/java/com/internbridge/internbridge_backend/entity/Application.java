@@ -23,24 +23,19 @@ public class Application {
     private Long applicationId;
 
     @ManyToOne
-    //@JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
     //one application to one student
 
     @ManyToOne
-    //@JoinColumn(name = "internship_id", nullable = true)
+    @JoinColumn(name = "internship_id", nullable = false)
     private Internship internship;
     //many application for one internship
 
     // Many-to-One: Each application could be for an interview
     @ManyToOne
-   // @JoinColumn(name = "interview_id", nullable = true)
+    @JoinColumn(name = "interview_id", nullable = false)
     private Interview interview;
-
-    //many applictaion to one practice session
-    @ManyToOne
-    //@JoinColumn(name = "practiceSessionId", referencedColumnName = "practicesessionId")
-    private PracticeSession practiceSession;
 
 
 
@@ -52,7 +47,7 @@ public class Application {
     }
 
     @Enumerated(EnumType.STRING)
-    private ApplicationStatus status;
+    private ApplicationStatus applicationStatus;
 
     private LocalDate appliedDate;
 

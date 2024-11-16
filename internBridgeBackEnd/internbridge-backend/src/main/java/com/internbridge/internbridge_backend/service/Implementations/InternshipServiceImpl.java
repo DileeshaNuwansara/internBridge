@@ -120,4 +120,12 @@ public class InternshipServiceImpl implements InternshipService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<InternshipDTO> getInternshipsByUser(Long userId) {
+        List<Internship> internships = internshipRepository.findByUserUserId(userId);
+        return internships.stream()
+                .map(internship -> modelMapper.map(internship, InternshipDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

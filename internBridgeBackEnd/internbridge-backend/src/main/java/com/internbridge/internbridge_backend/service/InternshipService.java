@@ -20,4 +20,6 @@ public interface InternshipService {
     void deleteInternship(Long internshipId);
 
     List<ApplicationDTO> getApplicationsByInternshipId(Long internshipId);
+
+    List<InternshipDTO> getInternshipsByUser(Long userId);
 }

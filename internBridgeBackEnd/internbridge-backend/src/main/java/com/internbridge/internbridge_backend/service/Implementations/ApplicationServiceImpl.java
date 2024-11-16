@@ -1,6 +1,7 @@
 package com.internbridge.internbridge_backend.service.Implementations;
 
 import com.internbridge.internbridge_backend.dto.ApplicationDTO;
+import com.internbridge.internbridge_backend.dto.InternshipDTO;
 import com.internbridge.internbridge_backend.entity.*;
 import com.internbridge.internbridge_backend.exception.ResourceNotFoundException;
 import com.internbridge.internbridge_backend.repository.*;
@@ -62,13 +63,9 @@ public class ApplicationServiceImpl implements ApplicationService {
                 Interview interview = interviewRepository.findById(interviewId)
                         .orElseThrow(() -> new RuntimeException("Interview not found"));
                 application.setInterview(interview);
-            } else if (practiceSessionId != null) {
-                PracticeSession practiceSession = practiceSessionRepository.findById(practiceSessionId)
-                        .orElseThrow(() -> new RuntimeException("Practice session not found"));
-                application.setPracticeSession(practiceSession);
             }
 
-            application.setStatus(Application.ApplicationStatus.APPLIED);
+            application.setApplicationStatus(Application.ApplicationStatus.APPLIED);
             Application savedApplication = applicationRepository.save(application);
 
             return modelMapper.map(savedApplication, ApplicationDTO.class);
@@ -98,13 +95,13 @@ public class ApplicationServiceImpl implements ApplicationService {
                     .collect(Collectors.toList());
         }
 
-        @Override
-        public List<ApplicationDTO> getApplicationsForPracticeSession(Long sessionId) {
-            return applicationRepository.findByPracticeSessionPracticesessionId(sessionId)
-                    .stream()
-                    .map(application -> modelMapper.map(application, ApplicationDTO.class))
-                    .collect(Collectors.toList());
-        }
+//        @Override
+//        public List<ApplicationDTO> getApplicationsForPracticeSession(Long sessionId) {
+//            return applicationRepository.findByPracticeSessionPracticesessionId(sessionId)
+//                    .stream()
+//                    .map(application -> modelMapper.map(application, ApplicationDTO.class))
+//                    .collect(Collectors.toList());
+//        }
 
     @Override
     public void updateApplicationStatus(Long applicationId, ApplicationDTO applicationDTO) {
@@ -115,11 +112,11 @@ public class ApplicationServiceImpl implements ApplicationService {
                 .orElseThrow(() -> new RuntimeException("Student not found")));
         application.setInternship(internshipRepository.findById(applicationDTO.getInternshipId()).orElse(null));
         application.setInterview(interviewRepository.findById(applicationDTO.getInterviewId()).orElse(null));
-        application.setPracticeSession(practiceSessionRepository.findById(applicationDTO.getPracticeSessionId()).orElse(null));
+
 
         // Set status using enum conversion
-        if (applicationDTO.getStatus() != null) {
-            application.setStatus(Application.ApplicationStatus.valueOf(applicationDTO.getStatus().toUpperCase()));
+        if (applicationDTO.getApplicationStatus() != null) {
+            application.setApplicationStatus(Application.ApplicationStatus.valueOf(applicationDTO.getApplicationStatus().toUpperCase()));
         }
 
         application.setAppliedDate(applicationDTO.getAppliedDate());
@@ -129,11 +126,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         applicationRepository.save(application);
     }
-
-
-
-
-
 
 
         @Override
@@ -150,6 +142,34 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applications.stream()
                 .map(application -> modelMapper.map(application, ApplicationDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public ApplicationDTO applyToInternship(Long studentId, Long internshipId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found with ID: " + studentId));
+        Internship internship = internshipRepository.findById(internshipId)
+                .orElseThrow(() -> new RuntimeException("Internship not found with ID: " + internshipId));
+
+        Application application = new Application();
+        application.setStudent(student);
+        application.setInternship(internship);
+        application.setAppliedDate(LocalDate.now());
+        application.setApplicationStatus(Application.ApplicationStatus.APPLIED);
+
+        Application savedApplication = applicationRepository.save(application);
+
+        return modelMapper.map(savedApplication, ApplicationDTO.class);
+
+    }
+
+    @Override
+    public List<InternshipDTO> getInternshipsByStudent(Long studentId) {
+        List<Application> applications = applicationRepository.findByStudentUserId(studentId);
+        return applications.stream()
+                .map(app -> modelMapper.map(app.getInternship(), InternshipDTO.class))
+                .collect(Collectors.toList());
+
     }
 
 

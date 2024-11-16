@@ -34,10 +34,9 @@ public class User {
 //    @Size(min = 8, max = 25)
     private String password;
 
-
     //@Column(name="email",nullable=false,unique=true,length=80)
     @NotBlank(message = "Email cannot be blank")
-//    @Email(message = "Please provide a valid email address")
+    //@Email(message = "Please provide a valid email address")
     private String email;
 
     //    @Column(name="company",nullable=false,unique=true,length=50)

@@ -28,15 +28,24 @@ public class Student extends User {
     @Column(length=20)
     private String position;
 
+    @OneToMany(mappedBy = "student",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Application> applications;
+
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PracticeSessionAttendance> practiceSessions;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InterviewParticipation> participants;
+
     @ManyToOne
-    //@JoinColumn(name = "company_hr_id", nullable = false)
+    @JoinColumn(name = "companyhr_id", nullable = true)
     private User companyHr;
 
 //    @Lob
 //    private byte[] cv;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Application> applications;
+
 
 
     protected void onCreate() {

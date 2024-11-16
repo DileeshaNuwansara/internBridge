@@ -49,16 +49,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository UserRepository;
 
 
-
-
-
     @Override
     public UserDTO registerUser(UserDTO userDTO) {
-        // Find user by email, and check if it already exists
+
         User existingUser = userRepository.findByEmail(userDTO.getEmail());
 
         if (existingUser != null) {
-            // Throw an exception if the user already exists
+
             throw new IllegalArgumentException("User with email " + userDTO.getEmail() + " already exists.");
         }
 
@@ -70,7 +67,7 @@ public class UserServiceImpl implements UserService {
             return modelMapper.map(savedUser, UserDTO.class);
 
         } catch (DataIntegrityViolationException e) {
-            // Handle unique constraint violation error
+
             throw new IllegalArgumentException("Could not register user. Duplicate entry detected: " + e.getMessage());
         }
     }

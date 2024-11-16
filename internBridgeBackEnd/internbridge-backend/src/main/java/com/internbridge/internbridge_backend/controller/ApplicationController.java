@@ -2,6 +2,7 @@ package com.internbridge.internbridge_backend.controller;
 
 
 import com.internbridge.internbridge_backend.dto.ApplicationDTO;
+import com.internbridge.internbridge_backend.dto.InternshipDTO;
 import com.internbridge.internbridge_backend.service.ApplicationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,16 @@ public class ApplicationController {
         return new ResponseEntity<>(applications, HttpStatus.OK);
     }
 
+    @PostMapping("/apply")
+    public ApplicationDTO applyToInternship(@RequestParam Long studentId, @RequestParam Long internshipId) {
+        return applicationService.applyToInternship(studentId, internshipId);
+    }
+
+    @GetMapping("/student/{studentId}/internships")
+    public List<InternshipDTO> getInternshipsByStudent(@PathVariable Long studentId) {
+        return applicationService.getInternshipsByStudent(studentId);
+    }
+
 //    @GetMapping("/internship/{internshipId}")
 //    public ResponseEntity<List<ApplicationDTO>> getApplicationsForInternship(@PathVariable Long internshipId) {
 //        List<ApplicationDTO> applications = applicationService.getApplicationsForInternship(internshipId);
@@ -60,11 +71,11 @@ public class ApplicationController {
         return new ResponseEntity<>(applications, HttpStatus.OK);
     }
 
-    @GetMapping("/practice-session/{sessionId}")
-    public ResponseEntity<List<ApplicationDTO>> getApplicationsForPracticeSession(@PathVariable Long sessionId) {
-        List<ApplicationDTO> applications = applicationService.getApplicationsForPracticeSession(sessionId);
-        return new ResponseEntity<>(applications, HttpStatus.OK);
-    }
+//    @GetMapping("/practice-session/{sessionId}")
+//    public ResponseEntity<List<ApplicationDTO>> getApplicationsForPracticeSession(@PathVariable Long sessionId) {
+//        List<ApplicationDTO> applications = applicationService.getApplicationsForPracticeSession(sessionId);
+//        return new ResponseEntity<>(applications, HttpStatus.OK);
+//    }
 
     @PutMapping("/{applicationId}/status")
     public ResponseEntity<Void> updateApplicationStatus(@PathVariable Long applicationId, @RequestBody ApplicationDTO applicationDTO) {

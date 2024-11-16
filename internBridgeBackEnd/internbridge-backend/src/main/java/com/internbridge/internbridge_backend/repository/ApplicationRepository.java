@@ -14,7 +14,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 
     List<Application> findByInterviewInterviewId(Long interviewId);
 
-    List<Application> findByPracticeSessionPracticesessionId(Long practicesessionId);
+
+    //List<Application> findByPracticeSessionPracticesessionId(Long practicesessionId);
 
     List<Application> findByInternship(Internship internship);
 

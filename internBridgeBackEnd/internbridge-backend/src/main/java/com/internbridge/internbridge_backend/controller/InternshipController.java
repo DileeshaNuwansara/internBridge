@@ -63,4 +63,9 @@ public class InternshipController {
         List<ApplicationDTO> applications = applicationService.getApplicationsByInternshipId(internshipId);
         return ResponseEntity.ok(applications);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<InternshipDTO> getInternshipsByUser(@PathVariable Long userId) {
+        return internshipService.getInternshipsByUser(userId);
+    }
 }

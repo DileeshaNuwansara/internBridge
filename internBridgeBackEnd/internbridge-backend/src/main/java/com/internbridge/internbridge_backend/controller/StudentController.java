@@ -21,12 +21,26 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @PostMapping("/create")
+    public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO) {
+        try {
+            StudentDTO createdStudent = studentService.createStudent(studentDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
+        } catch (Exception ex) {
+            // Log the exception
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
     @GetMapping("/details/{userId}")
     public ResponseEntity<StudentDTO> getStudentProfileByUserId(@PathVariable Long userId) {
         try {
+            System.out.println("Fetching profile for userId: " + userId);
             StudentDTO studentDTO = studentService.getStudentProfileByUserId(userId);
             return ResponseEntity.ok(studentDTO);
         } catch (ResourceNotFoundException ex) {
+            System.out.println("Student not found with id ");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

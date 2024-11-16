@@ -14,6 +14,8 @@ public class InterviewDTO {
     private String status;
     private String description;
     private String meetingLink;
-    private List<Long> studentIds;
     private Long companyHRId;
+    private List<Long> studentIds;
+    private List<StudentDTO> assignedStudents;
+
 }

@@ -1,6 +1,7 @@
 package com.internbridge.internbridge_backend.service;
 
 import com.internbridge.internbridge_backend.dto.ApplicationDTO;
+import com.internbridge.internbridge_backend.dto.InternshipDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,10 +14,12 @@ public interface ApplicationService {
     List<ApplicationDTO> getApplicationsByStudent(Long studentId);
     List<ApplicationDTO> getApplicationsForInternship(Long internshipId);
     List<ApplicationDTO> getApplicationsForInterview(Long interviewId);
-    List<ApplicationDTO> getApplicationsForPracticeSession(Long sessionId);
+    //List<ApplicationDTO> getApplicationsForPracticeSession(Long sessionId);
     void updateApplicationStatus(Long applicationId, ApplicationDTO applicationDTO);
     void deleteApplication(Long applicationId);
     List<ApplicationDTO> getApplicationsByInternshipId(Long internshipId);
+    ApplicationDTO applyToInternship(Long studentId, Long internshipId);
+    List<InternshipDTO> getInternshipsByStudent(Long studentId);
 
     public byte[] generateCv(Long studentId);
     ApplicationDTO uploadCv(Long studentId, MultipartFile file) throws IOException;

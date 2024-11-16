@@ -15,8 +15,8 @@ public class ApplicationDTO {
     private Long studentId;
     private Long internshipId;
     private Long interviewId;
-    private Long practiceSessionId;
-    private String status;
+//    private Long practiceSessionId;
+    private String applicationStatus;
     private LocalDate appliedDate;
     private Long userId;
     private byte[] cv;

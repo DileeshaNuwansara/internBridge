@@ -19,11 +19,13 @@ public class InterviewController {
     private InterviewService interviewService;
 
     @PostMapping("/create")
-    public ResponseEntity<List<InterviewDTO>> createInterview(@RequestBody InterviewDTO interviewDTO) {
-
-
-        List<InterviewDTO> createdInterviews = interviewService.createInterview(interviewDTO);
-        return ResponseEntity.ok(createdInterviews);
+    public ResponseEntity<InterviewDTO> createInterview(@RequestBody InterviewDTO interviewDTO) {
+        try {
+            InterviewDTO createdInterview = interviewService.createInterview(interviewDTO);
+            return ResponseEntity.ok(createdInterview);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     //@PreAuthorize("hasRole('ROLE_COMPANYHR')")
@@ -32,16 +34,24 @@ public class InterviewController {
     public ResponseEntity<InterviewDTO> updateInterview(@PathVariable Long interviewId, @RequestBody InterviewDTO interviewDTO) {
         System.out.println("Received interviewId: " + interviewId);
         System.out.println("Received interviewDTO: " + interviewDTO);
-
-        InterviewDTO updatedInterview = interviewService.updateInterview(interviewId, interviewDTO);
-        return ResponseEntity.ok(updatedInterview);
+        try {
+            InterviewDTO updatedInterview = interviewService.updateInterview(interviewId, interviewDTO);
+            return ResponseEntity.ok(updatedInterview);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     //@PreAuthorize("hasRole('ROLE_COMPANYHR')")
     @DeleteMapping("/delete/{interviewId}")
-    public ResponseEntity<Void> deleteInterview(@PathVariable Long interviewId) {
-        interviewService.deleteInterview(interviewId);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteInterview(@PathVariable Long interviewId) {
+
+        try{
+            interviewService.deleteInterview(interviewId);
+            return ResponseEntity.ok("Interview deleted successfully");
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("Failed to delete interview");
+        }
     }
 
     @GetMapping("/{interviewId}")
@@ -60,6 +70,16 @@ public class InterviewController {
         return ResponseEntity.ok(interviews);
     }
 
+    @PostMapping("/{id}/addStudents")
+    public ResponseEntity<String> addStudentsToInterview(@PathVariable Long id, @RequestBody List<Long> studentIds) {
+        try {
+            interviewService.addStudentsToInterview(id, studentIds);
+            return ResponseEntity.ok("Students added to interview successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed to add students to interview");
+        }
+    }
+
     @GetMapping("/getAll")
     public ResponseEntity<List<InterviewDTO>> getAllInterviews() {
         List<InterviewDTO> interviews = interviewService.getAllInterviews();
@@ -73,4 +93,10 @@ public class InterviewController {
         return ResponseEntity.ok(interviews);
 
     }
+
+    @GetMapping("/byInternship/{internshipId}")
+    public List<InterviewDTO> getInterviewsByInternshipId(@PathVariable Long internshipId) {
+        return interviewService.getInterviewsWithAssignedStudents(internshipId);
+    }
+
 }

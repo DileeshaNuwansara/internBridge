@@ -73,6 +73,13 @@ const Signin = () => {
       } catch (error) {
         console.error('Error during login:', error);
         alert('Error during login: ' + (error.response?.data?.message || ' Login error'));
+      
+        if (error.response) {
+          console.log('Error response:', error.response);
+          alert('Error during login: ' + (error.response?.data?.message || ' Login error'));
+        } else {
+          alert('Error during login: ' + error.message);
+        }
       }
 };
 

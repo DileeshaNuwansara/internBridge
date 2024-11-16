@@ -10,7 +10,8 @@ const Signout = () => {
   const handleJWTSignout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role'); 
-    navigate('/signin'); 
+    window.location.reload();
+    navigate('/'); 
   };
 
 

@@ -95,8 +95,10 @@ public class InterviewController {
     }
 
     @GetMapping("/byInternship/{internshipId}")
-    public List<InterviewDTO> getInterviewsByInternshipId(@PathVariable Long internshipId) {
-        return interviewService.getInterviewsWithAssignedStudents(internshipId);
+    public ResponseEntity<List<InterviewDTO>> getInterviewsByInternshipId(@PathVariable Long internshipId) {
+        List<InterviewDTO> interviews = interviewService.getInterviewsWithAssignedStudents(internshipId);
+        return ResponseEntity.ok(interviews);
+
     }
 
 }

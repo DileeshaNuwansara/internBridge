@@ -14,8 +14,7 @@ public class ApplicationDTO {
     private Long applicationId;
     private Long studentId;
     private Long internshipId;
-    private Long interviewId;
-//    private Long practiceSessionId;
+    private Long interviewerId;
     private String applicationStatus;
     private LocalDate appliedDate;
     private Long userId;

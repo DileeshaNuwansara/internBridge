@@ -59,12 +59,7 @@ public class ApplicationServiceImpl implements ApplicationService {
                 Internship internship = internshipRepository.findById(internshipId)
                         .orElseThrow(() -> new RuntimeException("Internship not found"));
                 application.setInternship(internship);
-            } else if (interviewId != null) {
-                Interview interview = interviewRepository.findById(interviewId)
-                        .orElseThrow(() -> new RuntimeException("Interview not found"));
-                application.setInterview(interview);
             }
-
             application.setApplicationStatus(Application.ApplicationStatus.APPLIED);
             Application savedApplication = applicationRepository.save(application);
 
@@ -111,7 +106,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         application.setStudent(studentRepository.findById(applicationDTO.getStudentId())
                 .orElseThrow(() -> new RuntimeException("Student not found")));
         application.setInternship(internshipRepository.findById(applicationDTO.getInternshipId()).orElse(null));
-        application.setInterview(interviewRepository.findById(applicationDTO.getInterviewId()).orElse(null));
+
 
 
         // Set status using enum conversion

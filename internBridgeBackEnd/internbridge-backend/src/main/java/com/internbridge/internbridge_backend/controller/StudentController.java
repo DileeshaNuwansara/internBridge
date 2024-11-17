@@ -89,6 +89,7 @@ public class StudentController {
     @GetMapping("/getAll")
     public ResponseEntity<List<StudentDTO>> getAllStudents() {
         List<StudentDTO> studentDTOs = studentService.getAllStudents();
+        System.out.println(studentDTOs);
         return ResponseEntity.ok(studentDTOs);
     }
 }

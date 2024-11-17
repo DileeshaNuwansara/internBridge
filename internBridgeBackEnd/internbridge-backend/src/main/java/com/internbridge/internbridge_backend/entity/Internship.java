@@ -1,9 +1,11 @@
 package com.internbridge.internbridge_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -49,9 +51,11 @@ public class Internship {
         @JoinColumn(name = "user_id", nullable = false)
         private User user;
 
-        @OneToMany(mappedBy = "internship")
+        @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+        @JsonIgnore
         private List<Application> applications;
 
+
         @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<Interview> interviews;
+        private List<Interview> interviews =  new ArrayList<>();
 }

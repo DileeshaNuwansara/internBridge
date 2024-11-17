@@ -25,6 +25,9 @@ public class InterviewServiceImpl implements InterviewService {
     private UserRepository userRepository;
 
     @Autowired
+    private InternshipRepository internshipRepository;
+
+    @Autowired
     private InterviewParticipationRepository interviewParticipationRepository;
 
 
@@ -43,7 +46,12 @@ public class InterviewServiceImpl implements InterviewService {
     @Override
     @Transactional
     public InterviewDTO createInterview(InterviewDTO interviewDTO) {
+        Internship internship = internshipRepository.findById(interviewDTO.getInternshipId())
+                .orElseThrow(() -> new ResourceNotFoundException("Internship not found with ID: " + interviewDTO.getInternshipId() ));
+
         Interview interview = modelMapper.map(interviewDTO, Interview.class);
+        interview.setInternship(internship);
+
         Interview savedInterview = interviewRepository.save(interview);
         return modelMapper.map(savedInterview, InterviewDTO.class);
 
@@ -83,6 +91,8 @@ public class InterviewServiceImpl implements InterviewService {
         Interview interview = interviewRepository.findById(interviewId)
                 .orElseThrow(() -> new ResourceNotFoundException("Interview not found with id: " + interviewId));
 
+
+
         Internship internship = interview.getInternship();
         if (internship == null) {
             throw new RuntimeException("No internship is associated with this interview.");
@@ -107,7 +117,9 @@ public class InterviewServiceImpl implements InterviewService {
             participation.setInterviewStatus("Scheduled");
 
             participants.add(participation);
+            interviewParticipationRepository.save(participation);
         }
+
 
         interview.getParticipants().addAll(participants);
         Interview updatedInterview = interviewRepository.save(interview);
@@ -115,8 +127,8 @@ public class InterviewServiceImpl implements InterviewService {
         InterviewDTO interviewDTO = modelMapper.map(updatedInterview, InterviewDTO.class);
         List<StudentDTO> assignedStudents = updatedInterview.getParticipants().stream()
                 .map(participation -> {
-                    StudentDTO studentDTO = modelMapper.map(participation.getStudent(), StudentDTO.class);
-                    return studentDTO;
+                    StudentDTO studentDto = modelMapper.map(participation.getStudent(), StudentDTO.class);
+                    return studentDto;
                 })
                 .toList();
 
@@ -126,6 +138,9 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Override
     public List<InterviewDTO> getInterviewsWithAssignedStudents(Long internshipId) {
+        Internship internship = internshipRepository.findById(internshipId)
+                .orElseThrow(() -> new ResourceNotFoundException("Internship not found with ID: " + internshipId));
+
         List<Interview> interviews = interviewRepository.findByInternshipInternshipId(internshipId);
 
         return interviews.stream().map(interview -> {

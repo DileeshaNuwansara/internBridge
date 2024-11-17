@@ -1,7 +1,6 @@
 package com.internbridge.internbridge_backend.repository;
 
 import com.internbridge.internbridge_backend.entity.User;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +16,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
     User findByEmail(String email);
+
     User findByUserId(Long id);
+
     List<User> findByRole(String role);
 
 

@@ -1,9 +1,7 @@
 package com.internbridge.internbridge_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -20,7 +18,6 @@ public class User {
 
 
     @Id
-    //@Column(name="userId",length = 50)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
@@ -34,7 +31,7 @@ public class User {
 //    @Size(min = 8, max = 25)
     private String password;
 
-    //@Column(name="email",nullable=false,unique=true,length=80)
+    @Column(name="email",nullable=false,unique=true,length=80)
     @NotBlank(message = "Email cannot be blank")
     //@Email(message = "Please provide a valid email address")
     private String email;
@@ -54,10 +51,11 @@ public class User {
     private String status;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private List<Internship> internships;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Application> applications;
+//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Application> applications;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private ForgotPassword forgotPassword;

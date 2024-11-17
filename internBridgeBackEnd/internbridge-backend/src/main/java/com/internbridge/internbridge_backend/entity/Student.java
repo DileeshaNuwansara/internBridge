@@ -1,7 +1,6 @@
 package com.internbridge.internbridge_backend.entity;
 
-import com.internbridge.internbridge_backend.entity.Application;
-import com.internbridge.internbridge_backend.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -29,13 +28,16 @@ public class Student extends User {
     private String position;
 
     @OneToMany(mappedBy = "student",  cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Application> applications;
 
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<PracticeSessionAttendance> practiceSessions;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<InterviewParticipation> participants;
 
     @ManyToOne

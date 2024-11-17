@@ -11,6 +11,7 @@ public interface InterviewService {
     InterviewDTO createInterview(InterviewDTO interviewDTO);
 
     InterviewDTO updateInterview(Long interviewId, InterviewDTO interviewDTO);
+
     void deleteInterview(Long interviewId);
 
     void addStudentsToInterview(Long interviewId, List<Long> studentIds);

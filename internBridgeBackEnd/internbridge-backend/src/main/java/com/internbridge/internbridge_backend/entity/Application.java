@@ -1,5 +1,6 @@
 package com.internbridge.internbridge_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-
-
 
 @Getter
 @Setter
@@ -22,19 +21,22 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicationId;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( nullable = false)
+    @JsonIgnore
     private Student student;
     //one application to one student
 
-    @ManyToOne
-    @JoinColumn(name = "internship_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( nullable = false)
+    @JsonIgnore
     private Internship internship;
+
     //many application for one internship
 
-    // Many-to-One: Each application could be for an interview
+//    // Many-to-One: Each application could be for an interview
     @ManyToOne
-    @JoinColumn(name = "interview_id", nullable = false)
+    @JoinColumn( nullable = false)
     private Interview interview;
 
 

@@ -10,6 +10,7 @@ public class InterviewDTO {
 
     private Long interviewId;
     private LocalDate startDate;
+    private Long internshipId;
     private LocalTime startTime;
     private String status;
     private String description;

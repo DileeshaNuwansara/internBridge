@@ -1,5 +1,6 @@
 package com.internbridge.internbridge_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,8 +35,10 @@ public class PracticeSession {
 
     private String meetingLink;
 
-    @OneToMany(mappedBy = "practiceSession", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PracticeSessionAttendance> attendences;
+    @OneToMany(mappedBy = "practiceSession", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<PracticeSessionAttendance> attendances;
+
 
     @ManyToOne
     @JoinColumn(name = "companyhr_id")

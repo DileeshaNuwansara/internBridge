@@ -1,5 +1,6 @@
 package com.internbridge.internbridge_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,12 +19,14 @@ public class InterviewParticipation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long participationId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = false)
+    @JsonIgnore
     private Student student;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "interview_id", nullable = false)
+    @JsonIgnore
     private Interview interview;
 
     private String interviewStatus;

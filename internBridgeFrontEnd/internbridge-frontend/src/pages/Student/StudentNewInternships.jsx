@@ -118,6 +118,7 @@ const StudentNewInternships = () => {
       }
     } catch (error) {
       console.error('Error applying for internship:', error);
+      alert("Error when applying internship.")
     }
   };
 

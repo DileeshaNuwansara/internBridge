@@ -98,8 +98,8 @@ const Signin = () => {
 
             <div className={styles.footerDiv}>
                 <span className={styles.text}>Don't have an account?</span>
-                <Link to ={'/register'}>
-                    <button className={styles.btn}>Sign Up</button>
+                <Link to ={'/'}>
+                    <button className={styles.btn}>Back to Home</button>
                 </Link>
             </div>
           </div>

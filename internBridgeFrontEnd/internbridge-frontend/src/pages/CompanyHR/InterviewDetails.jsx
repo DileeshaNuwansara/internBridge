@@ -362,6 +362,7 @@ import styles from './InterviewDetails.module.scss';
 const API_BASE_URL = 'http://localhost:8081/api/v1';
 
 const InterviewDetails = () => {
+  
   const companyHrId = localStorage.getItem('userId');
 
   const [internshipId, setInternshipId] = useState('');

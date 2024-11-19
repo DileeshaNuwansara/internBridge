@@ -159,6 +159,7 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 >
+                  <option value="" disabled>Select Status</option>
                   <option value="Registered">Registered</option>
                   <option value="Pending">Pending</option>
                   <option value="Cancelled">Cancelled</option>

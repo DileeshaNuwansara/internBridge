@@ -180,16 +180,16 @@ const ManagePracticeSessions = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="status" className="mb-3">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                type="text"
-                name="status"
-                value={currentSession.status}
-                onChange={handleInputChange}
-                required
-              />
-            </Form.Group>
+            <Form.Group controlId="status">
+                <Form.Label>Status</Form.Label>
+                <Form.Select name="status" value={currentSession.status} onChange={handleInputChange}>
+                  <option value="Scheduled">Scheduled</option>
+                  <option value="Postponed">Postponed</option>
+                  <option value="Cancelled">Cancelled</option>
+                  <option value="Completed">Completed</option>
+                </Form.Select>
+
+              </Form.Group>
 
             <Form.Group controlId="meetingLink" className="mb-3">
               <Form.Label>Meeting Link</Form.Label>

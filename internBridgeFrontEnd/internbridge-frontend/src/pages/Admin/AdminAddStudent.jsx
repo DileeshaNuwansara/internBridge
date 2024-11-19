@@ -18,7 +18,7 @@ const AdminAddStudent = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/api/v1/student/getAll');
+        const response = await axios.get('http://localhost:8081/api/v1/student/getAllStudents');
         setStudents(response.data);
         setLoading(false);
       } catch (err) {
@@ -32,7 +32,7 @@ const AdminAddStudent = () => {
   }, []);
 
   const handleAddUser = () => {
-    navigate('/register');
+    navigate('/ROLE_ADMIN/student-register');
   };
 
 

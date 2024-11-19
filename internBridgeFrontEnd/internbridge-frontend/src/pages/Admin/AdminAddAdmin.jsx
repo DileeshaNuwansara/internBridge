@@ -169,7 +169,8 @@ return (
                   onChange={handleChange}
                   required
                 >
-                  <option value="Registered">Registered</option>
+                 <option value="" disabled>Select Status</option>
+                 <option value="Registered">Registered</option>
                   <option value="Pending">Pending</option>
                   <option value="Cancelled">Cancelled</option>
                 </Form.Control>

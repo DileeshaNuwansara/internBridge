@@ -19,6 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private long userId;
 
     //    @Column(name="name", nullable=false, unique=true, length=30)
@@ -31,7 +32,7 @@ public class User {
 //    @Size(min = 8, max = 25)
     private String password;
 
-    @Column(name="email",nullable=false,unique=true,length=80)
+    @Column(name="email",unique=true)
     @NotBlank(message = "Email cannot be blank")
     //@Email(message = "Please provide a valid email address")
     private String email;

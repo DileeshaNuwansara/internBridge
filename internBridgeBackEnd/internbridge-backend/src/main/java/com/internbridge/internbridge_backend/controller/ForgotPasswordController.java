@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 
 @Controller
@@ -57,7 +58,10 @@ public class ForgotPasswordController {
             }
 
 
+
+
         int otp = otpGenerator();
+
         ForgotPassword fp = ForgotPassword.builder()
                 .otp(otp)
                 .expirationTime(new Date(System.currentTimeMillis() + 70 * 3000))
@@ -67,9 +71,9 @@ public class ForgotPasswordController {
         mailService.sendSimpleMessage(
                 MailBody.builder()
                         .to(email)
-                        .text("Dear user,\n\n\" +\n" +
+                        .text("Dear User,\n\n \n " +
                                 "We received a request to reset your password. Please use the following otp for  your password. \n" +
-                                "This is the OTP for your forgot password request: " + otp +  "\n\n" + "If you did not request this, please ignore this email.\n\n" +
+                                "This is the OTP for your forgot password request :  " + otp +  "\n\n" + "If you did not request this, please ignore this email.\n\n" +
                                 "Best regards,\n" +
                                 "InternBridge Team"
 
@@ -83,15 +87,15 @@ public class ForgotPasswordController {
         ForgotPasswordDTO forgotPasswordDTO = modelMapper.map(savedFp, ForgotPasswordDTO.class);
 
 
-        return ResponseEntity.ok(forgotPasswordDTO);
-    } catch(
-    Exception e)
+        return ResponseEntity.status(HttpStatus.CREATED).body(forgotPasswordDTO);
 
-    {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(null);
-    }
+        } catch(Exception e)
+
+            {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(null);
+            }
 }
 
 
@@ -107,6 +111,9 @@ public class ForgotPasswordController {
         ForgotPassword fp = forgotPasswordRepository.findByOtpAndUser(otp, user)
                 .orElseThrow(() -> new ResourceNotFoundException("Please provide a valid OTP"));
 
+        System.out.println("OTP: " + otp + ", Email: " + email);
+
+
         // Check if OTP has expired
         if (fp.getExpirationTime().before(Date.from(Instant.now()))) {
             forgotPasswordRepository.deleteById(fp.getFpid());
@@ -119,6 +126,9 @@ public class ForgotPasswordController {
     @PostMapping("/changePassword/{email}")
     public ResponseEntity<String> changePasswordHandler(@RequestBody ChangePassword changePassword,
                                                         @PathVariable String email) {
+
+        System.out.println("Request body: {}"+changePassword);
+
         if (!Objects.equals(changePassword.password(), changePassword.repeatPassword())) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Passwords do not match, Please enter the password again.");
         }
@@ -133,4 +143,5 @@ public class ForgotPasswordController {
         Random rand = new Random();
         return 100000 + rand.nextInt(900000);
     }
+
 }

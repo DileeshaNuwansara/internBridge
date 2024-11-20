@@ -38,8 +38,8 @@ public class UserController {
             String defaultPassword = "S@yHellow123";
             String subject = "Welcome to InternBridge!";
             String text = String.format(
-                    "Dear  %s,\n \n" +
-                            "Welcome to InternBridge! \n \nWe’re excited to have you on board.\n\n" +
+                    "Dear  %s,\n\n" +
+                            "Welcome to InternBridge! \n\nWe’re excited to have you on board.\n\n" +
                             "Here’s \n username: %s\n" +
                             "default password: %s\n\n" +
                             "Please log in and change your password to something more secure after logging in.\n\n\n" +

@@ -1,10 +1,14 @@
 package com.internbridge.internbridge_backend.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+
 import java.util.List;
 
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class StudentDTO {
     private Long userId;

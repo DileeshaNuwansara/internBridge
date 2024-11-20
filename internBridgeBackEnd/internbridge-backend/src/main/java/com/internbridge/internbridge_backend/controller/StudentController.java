@@ -15,7 +15,7 @@ import static com.internbridge.internbridge_backend.entity.Role.ROLE_STUDENT;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
-@RequestMapping("api/v1/student/")
+@RequestMapping("api/v1/student")
 public class StudentController {
 
     @Autowired
@@ -86,7 +86,7 @@ public class StudentController {
     }
 
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAllStudents")
     public ResponseEntity<List<StudentDTO>> getAllStudents() {
         List<StudentDTO> studentDTOs = studentService.getAllStudents();
         System.out.println(studentDTOs);

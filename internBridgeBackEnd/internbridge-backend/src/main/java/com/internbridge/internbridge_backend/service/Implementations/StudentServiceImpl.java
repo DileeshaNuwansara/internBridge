@@ -9,21 +9,27 @@ import com.internbridge.internbridge_backend.repository.UserRepository;
 import com.internbridge.internbridge_backend.service.StudentService;
 import com.internbridge.internbridge_backend.service.UserService;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     @Lazy
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -40,26 +46,44 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO createStudent(StudentDTO studentDTO) {
-        User user = new User();
-        user.setName(studentDTO.getName());
-        user.setEmail(studentDTO.getEmail());
-        user.setPassword(studentDTO.getPassword());
-        user.setCompany(studentDTO.getCompany());
-        user.setPhone(studentDTO.getPhone());
-        user.setRole(studentDTO.getRole());
-        user.setStatus(studentDTO.getStatus());
-        User savedUser = userRepository.save(user);
+//        User user = new User();
+//        user.setName(studentDTO.getName());
+//        user.setEmail(studentDTO.getEmail());
+//        user.setPassword(studentDTO.getPassword());
+//        user.setCompany(studentDTO.getCompany());
+//        user.setPhone(studentDTO.getPhone());
+//        user.setRole(studentDTO.getRole());
+//        user.setStatus(studentDTO.getStatus());
+//        User savedUser = userRepository.save(user);
+//
+//        Student student = new Student();
+//        student.setUserId(savedUser.getUserId());
+//        student.setScNumber(studentDTO.getScNumber());
+//        student.setGpa(studentDTO.getGpa());
+//        student.setPosition(studentDTO.getPosition());
+//        //student.setCompanyHr(studentDTO.getCompanyHrId());
+//
+//        Student savedStudent = studentRepository.save(student);
+//
+//        // Map saved entities to StudentDTO
+//        return modelMapper.map(savedStudent, StudentDTO.class);
 
-        Student student = new Student();
-        student.setUserId(savedUser.getUserId());
-        student.setScNumber(studentDTO.getScNumber());
-        student.setGpa(studentDTO.getGpa());
-        student.setPosition(studentDTO.getPosition());
-        //student.setCompanyHr(studentDTO.getCompanyHrId());
+        //StudentDTO.set(passwordEncoder.encode(StudentDTO.getPassword()));
 
+        studentDTO.setPassword(passwordEncoder.encode(studentDTO.getPassword()));
+
+
+
+        Student student = modelMapper.map(studentDTO, Student.class);
+        System.out.println("Received Student Data: " + student);
+
+        // Ensure the role is set to "student"
+        student.setRole("ROLE_STUDENT");
+
+        // Save student to the database
         Student savedStudent = studentRepository.save(student);
 
-        // Map saved entities to StudentDTO
+
         return modelMapper.map(savedStudent, StudentDTO.class);
     }
 

@@ -7,10 +7,13 @@ import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
 
 import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "student")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Student extends User {
 
     @Column( unique=true, length=30)
@@ -40,9 +43,10 @@ public class Student extends User {
     @JsonIgnore
     private List<InterviewParticipation> participants;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companyhr_id", nullable = true)
     private User companyHr;
+
 
 //    @Lob
 //    private byte[] cv;

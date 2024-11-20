@@ -1,7 +1,9 @@
 package com.internbridge.internbridge_backend.dto;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class ForgotPasswordDTO {
     private Long fpid;
     private Integer otp;

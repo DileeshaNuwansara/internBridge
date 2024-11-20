@@ -14,17 +14,32 @@ const ForgetPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/verifyMail/${email}`, { email });
-
-      if (response.status === 200) {
-        setMessage('Password reset link has been sent to your email.');
+      const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/verifyMail/${email}`,{},
+        {
+          headers: {
+            'Accept': 'application/json',
+          },
+        }
+      );
+      
+        setMessage('Wait minuts.. until OTP will generated.');
+        //navigate('/otp-verification');
         navigate('/otp-verification', { state: { email } });
+
+      if (response.status === 201 || response.status === 200) {
+        setMessage('Password reset link has been sent to your email.');
+        console.log('Response:', response);
+
+        
+        
+       
       } else {
         setMessage('Failed to send reset link. Please try again.');
       }
     } catch (error) {
+      //navigate('/otp-verification', { state: { email } });
       console.error('Error in sending reset link:', error);
-      setMessage('Error in sending reset link. Please try again.');
+      //setMessage('Error in sending reset link. Please try again.');
     }
   };
 

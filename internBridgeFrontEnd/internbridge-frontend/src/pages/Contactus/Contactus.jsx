@@ -14,7 +14,8 @@ export default function ContactUs() {
     email: '',
     phone: '',
     message: '',
-    company: ''
+    company: '',
+    availablePositions:'',
 });
 
 const handleChange = (e) => {
@@ -76,17 +77,22 @@ const handleSubmit = async (e) => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formEmail">
-                    <Form.Label> Email</Form.Label>
+                    <Form.Label> Email :</Form.Label>
                     <Form.Control className={styles.contactFormInput} name="email" type="email" placeholder="Enter  email" required onChange={handleChange}/>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formPhone">
-                    <Form.Label> Phone No</Form.Label>
+                    <Form.Label> Phone No :</Form.Label>
                     <Form.Control className={styles.contactFormInput} name="phone" type="text" placeholder="Enter phone number" required onChange={handleChange}/>
                   </Form.Group>
 
+                  <Form.Group className="mb-3" controlId="formAvailablePositions">
+                    <Form.Label> Available Positions :</Form.Label>
+                    <Form.Control className={styles.contactFormInput} name="availablePositions" type="text" placeholder="Enter availablle positions count" required onChange={handleChange}/>
+                  </Form.Group>
+
                   <Form.Group className="mb-3" controlId="formMessage">
-                    <Form.Label> Message</Form.Label>
+                    <Form.Label> Message :</Form.Label>
                     <Form.Control className={styles.contactFormTextarea} name ="message" as="textarea" rows={4} placeholder="Enter your message" required onChange={handleChange}/>
                   </Form.Group>
 
@@ -96,10 +102,12 @@ const handleSubmit = async (e) => {
                 </Form>
 
                 <div className="text-center mt-4 ">
+                  <br/>
                   <p>
                     <strong>Phone      :  </strong>  0 7 0   3 2   3 2   8 8 8 <br />
                     <strong>Email      :  </strong> S a y H e l l o i n t e r n B r i d g e @ g m a i l . c o m
                   </p>
+                  <br/>
                   <p>
                     <strong>Follow Us  :</strong> 
                     <a href="https://facebook.com/internbridgeUorCs" className="text-primary mx-2">Facebook</a>      |  

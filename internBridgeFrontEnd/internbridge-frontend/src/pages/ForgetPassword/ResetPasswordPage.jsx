@@ -1,26 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './ResetPassword.module.scss';  
 import LandingPageNavbar from '../../components/LandingPageNavbar/LandingPageNavbar';
 import Footer from '../../components/Footer/Footer';
 
 const ResetPasswordPage = () => {
-  const { token } = useParams();  
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { email } = location.state || {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       setMessage('Passwords do not match!');
       return;
     }
 
     try {
-      const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/changePassword/{email}`, { password });
+      const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/changePassword/${email}`, 
+        { password: password,
+        repeatPassword: confirmPassword,}
+      );
+
       if (response.status === 200) {
         setMessage('Password has been reset successfully!');
         navigate('/signin');

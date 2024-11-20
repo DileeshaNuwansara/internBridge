@@ -119,6 +119,8 @@ const StudentNewInternships = () => {
         internshipId,
       });
 
+      alert('You applied for this internship');
+
       if (response.status === 200) {
         // Update applied internships and button state
         setAppliedInternships((prev) => [...prev, internshipId]);

@@ -381,6 +381,8 @@ const InterviewDetails = () => {
     startTime: '',
     meetingLink: '',
     companyHrId: companyHrId,
+    internshipId:internshipId,
+
   });
   const [selectedInterviewId, setSelectedInterviewId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -607,6 +609,8 @@ const InterviewDetails = () => {
                   onChange={handleInputChange}
                 />
               </Form.Group>
+
+             
               <Form.Group controlId="formStudentId">
                 <Form.Label>Select Students</Form.Label>
                 {students.map((student) => (

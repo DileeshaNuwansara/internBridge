@@ -41,13 +41,13 @@ const NewContacts = () => {
             }
         };
 
-        const sendEmailToHR = async (id) => {
-            try {
-                await axios.post(`http://localhost:8081/api/v1/contacts/${id}/sendLoginDetails`);
-            } catch (error) {
-                console.error('Error sending email:', error);
-            }
-        };
+        // const sendEmailToHR = async (id) => {
+        //     try {
+        //         await axios.post(`http://localhost:8081/api/v1/contacts/${id}/sendLoginDetails`);
+        //     } catch (error) {
+        //         console.error('Error sending email:', error);
+        //     }
+        // };
 
         
 
@@ -64,10 +64,11 @@ const NewContacts = () => {
                         <Card className={`${styles.contactCard} ${contact.status === 'Pending' ? styles.pending : styles.approved}`}>
                             <Card.Body className="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <Card.Title>{contact.company}</Card.Title>
+                                    <Card.Title>{contact.company} : Needs to Connect with InternBridge !</Card.Title>
                                     <Card.Text><strong>Contact Name:</strong> {contact.name}</Card.Text>
                                     <Card.Text><strong>Email:</strong> {contact.email}</Card.Text>
                                     <Card.Text><strong>Phone:</strong> {contact.phone}</Card.Text>
+                                    <Card.Text><strong>Message :</strong> {contact.message}</Card.Text>
                                     <Card.Text><strong>Positions:</strong> {contact.availablePositions}</Card.Text>
                                 </div>
                                 <div>

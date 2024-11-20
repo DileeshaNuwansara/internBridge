@@ -12,22 +12,20 @@ const GetOtpPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const email = location.state?.email || '';
+    const { email } = location.state || {};
   
     const handleOtpChange = (e) => setOtp(e.target.value);
 
     const handleVerifyOtp = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:8081/api/v1/forgotPwd/verifyotp/{otp}/{email}', {
-            email,
-            otp,
-          });
+          const response = await axios.post(`http://localhost:8081/api/v1/forgotPwd/verifyotp/${otp}/${email}`);
+
     
-          if (response.data.success) {
-            navigate('/reset-password"');
+          if (response.data === 'OTP has been verified') {
+            navigate('/reset-password',{ state: { email } });
           } else {
-            setError('Invalid OTP. Please try again.');
+            setError('Expired OTP, Please try again.');
           }
         } catch (err) {
           setError('Failed to verify OTP. Please try again later.');

@@ -90,6 +90,8 @@ const StudentNewInternships = () => {
         const response = await axios.get('http://localhost:8081/api/v1/internships/all');
         const sortedInternships = response.data.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
         setInternships(sortedInternships);
+        console.log(response.data);
+
       } catch (error) {
         console.error('Error fetching internships:', error);
       }
@@ -105,6 +107,12 @@ const StudentNewInternships = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleApply = async (internshipId) => {
+    
+    if (!studentId || !internshipId) {
+      alert("Missing student or internship information.");
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:8081/api/v1/application/apply', {
         studentId,
@@ -115,6 +123,8 @@ const StudentNewInternships = () => {
         // Update applied internships and button state
         setAppliedInternships((prev) => [...prev, internshipId]);
         alert('You applied for this internship');
+        console.log(response.data);
+
       }
     } catch (error) {
       console.error('Error applying for internship:', error);
@@ -138,11 +148,11 @@ const StudentNewInternships = () => {
               <Card.Text><strong>Requirements :</strong> {internship.requirements}</Card.Text>
               <Card.Text><strong>Company :</strong> {internship.company}</Card.Text>
               
-              {/* Apply Now Button */}
+          
               <Button
                 variant="primary"
                 onClick={() => handleApply(internship.internshipId)}
-                disabled={appliedInternships.includes(internship.internshipId)} // Disable if already applied
+                disabled={appliedInternships.includes(internship.internshipId)} 
               >
                 {appliedInternships.includes(internship.internshipId) ? 'Applied' : 'Apply Now'}
               </Button>

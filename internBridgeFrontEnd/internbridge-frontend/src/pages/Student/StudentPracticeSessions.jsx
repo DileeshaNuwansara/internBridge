@@ -13,7 +13,7 @@ const StudentPracticeSessionPage = () => {
     // Fetch practice sessions from the backend
     const fetchSessions = async () => {
       try {
-        const response = await axios.get('/api/v1/practice-sessions');
+        const response = await axios.get('http://localhost:8081/api/v1/practice-sessions');
         setPracticeSessions(response.data);
       } catch (error) {
         console.error('Error fetching practice sessions:', error);

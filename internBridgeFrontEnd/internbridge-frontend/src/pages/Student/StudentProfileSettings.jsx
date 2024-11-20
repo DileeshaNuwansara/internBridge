@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
-import Layout from  '../../Layout/Layout';
+
+import React, { useState, useEffect } from 'react';
+import Layout from '../../Layout/Layout';
 import Profile from '../../components/Profile/Profile';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import styles from './StudentProfileSettings.module.scss'; 
-const StudentProfileSettings = ({ role }) => {
+
+const StudentProfileSettings = ({  role ='ROLE_STUDENT' }) => {
   const [showProfile, setShowProfile] = useState(false);
+  const [userId, setUserId] = useState(localStorage.getItem('userId')); 
   const navigate = useNavigate();
 
-  const handleOpenProfile = () => setShowProfile(true);
+  
+  useEffect(() => {
+    localStorage.setItem('userId', userId);
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+      console.log(userId);
+    } else {
+      console.error("User ID not found in localStorage.");
+    }
+  }, [userId]);
+
+  const handleOpenProfile = () => {
+    if (userId) {
+      setShowProfile(true);
+    } else {
+      alert("User ID is missing. Please log in again."); // Notify user if userId is missing
+    }
+  };
+
   const handleCloseProfile = () => setShowProfile(false);
 
-  const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('userId');
-
   return (
-    
     <Layout role={role}>
       <h2 className={styles.title}>Student Profile Settings</h2>
       
@@ -39,7 +57,6 @@ const StudentProfileSettings = ({ role }) => {
         </Col>
       </Row>
 
-
       <Row className="justify-content-center mt-4">
         <Col xs={12} sm={8} md={6}>
           <Card className={styles.profileCard}>
@@ -59,14 +76,13 @@ const StudentProfileSettings = ({ role }) => {
         </Col>
       </Row>
 
-     
-      {showProfile && (
+      {showProfile && userId && (
         <Profile
-          role={role}
-          token={token}
           show={showProfile}
-          userId={userId}
           handleClose={handleCloseProfile}
+          userId={userId}
+          role={role} 
+          
         />
       )}
     </Layout>

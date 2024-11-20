@@ -9,7 +9,11 @@ const Profile = ({ show, handleClose, userId, role }) => {
   const [error, setError] = useState(null);
   const [updatedProfile, setUpdatedProfile] = useState(null);
 
+ // userId = localStorage.getItem('userId',userId);
+
   useEffect(() => {
+
+    
     if (!role || !userId) {
       setError('User role/userId is missing.');
       setLoading(false);
